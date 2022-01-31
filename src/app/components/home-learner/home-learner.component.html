@@ -1,0 +1,264 @@
+<section class="categories-section spad">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 p-l-0">
+                <div class="app-sidebar">
+                    <div class="scrollbar-sidebar">
+                        <div class="app-sidebar__inner">
+                            <ul class="vertical-nav-menu">
+                                <li class="app-sidebar__heading"></li>
+                                <li>
+                                    <!-- class="mm-active" -->
+                                    <a href routerLink="/course-category" [queryParams]="{category: 'Development' }" >
+                                        <i class="fas fa-code"></i>
+                                        Development
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href routerLink="/course-category" [queryParams]="{category: 'Design' }">
+                                        <i class="fas fa-drafting-compass"></i>
+                                        Design
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href routerLink="/course-category" [queryParams]="{category: 'Finance & Accounting' }">
+                                        <i class="fas fa-coins"></i>
+                                        Finance & Accounting
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href routerLink="/course-category" [queryParams]="{category: 'Photography' }">
+                                        <i class="fas fa-camera"></i>
+                                        Photography
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href routerLink="/course-category" [queryParams]="{category: 'Music' }">
+                                        <i class="fas fa-music"></i>
+                                        Music
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href routerLink="/course-category" [queryParams]="{category: 'Business' }">
+                                        <i class="fas fa-chart-bar"></i>
+                                        Business
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href routerLink="/course-category" [queryParams]="{category: 'IT & Software' }">
+                                        <i class="fas fa-sitemap"></i>
+                                        IT & Software
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href routerLink="/course-category" [queryParams]="{category: 'Office Productivity' }">
+                                        <i class="fas fa-building"></i>
+                                        Office Productivity
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href routerLink="/course-category" [queryParams]="{category: 'Health & Fitness' }">
+                                        <i class="fas fa-heartbeat"></i>
+                                        Health & Fitness
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12">
+                <div class="app-main">
+                    <!-- <ngx-alerts></ngx-alerts> -->
+
+                    <h2 class="mb-3 pl-30">Hello {{FirstName}}, Let's start Learning</h2>
+
+                    <p class="mb-3 pl-30">Ready for your next lesson?</p>
+
+                    <div class="app-main__inner">
+
+                        <!-- <div class="row"> -->
+                            <h3 id="message" class="mt-5 pl-30">{{message}}</h3>
+
+                            <div *ngIf="enrolledCourses" class="enroll slider">
+                                <div *ngFor="let enrolledCourse of enrolledCourses">
+                                    <span *ngIf="enrolledCourse.isVideoCourse != false">
+                                    <a [routerLink]="['/course-lecture/course', enrolledCourse.courseId]">
+                                    <app-my-course-item courseName="{{enrolledCourse.courseName}}" courseImage="{{enrolledCourse.courseImageUrl}}" duration=""></app-my-course-item>
+                                </a>
+                                <!-- <a *ngIf="enrolledCourse.courseTypeName != 'PassCode'" [routerLink]="['/course-lecture/course', enrolledCourse.courseId]">
+                                    <app-my-course-item courseName="{{enrolledCourse.courseName}}" courseImage="{{enrolledCourse.courseImageUrl}}"></app-my-course-item>
+                                </a> -->
+                            </span>
+                            <span *ngIf="enrolledCourse.isVideoCourse == false">
+                                <a [routerLink]="['/course-class/course', enrolledCourse.courseId]">
+                                    <app-my-course-item courseName="{{enrolledCourse.courseName}}" courseImage="{{enrolledCourse.courseImageUrl}}" duration=""></app-my-course-item>
+                                </a>
+                                </span>
+                                </div>
+                            </div>
+                        
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+
+    </div>
+
+
+</section>
+
+<section class="downloadapp-section tpad">
+    <div class="container-fluid">
+        <div class="row align-items-center adv-warp">
+            <div class="col-lg-8">
+                <p class="mb-0 x2"><b>Training a Team? </b>Its simple!!! Constitute a team of 5 or more accountability partners and access courses on the go</p>
+            </div>
+            <div class="col-lg-4 text-right">
+
+
+                <a [routerLink]="[ '/school-sign-up' ]"> <button class="adv-btn inline">Get expertplat for Schools</button> </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section  *ngIf="recommendedCourses != null" class="course-section spad">
+    <div class="container">
+        <div class="section-title mb-3">
+            <h2>Recommended for You</h2>
+            <p>Customize your course preference by outlining your interest areas from Expertplat Catalog</p>
+        </div>
+    </div>
+    
+    <div class="course-warp slide">
+    <div *ngIf="loading" class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+
+      <div *ngIf="recommendedCourses" class="regular slider">
+        <div *ngFor="let recommendedCourse of recommendedCourses">
+            <a routerLink="/course-preview" [queryParams]="{ course: recommendedCourse.courseData.courseName, id: recommendedCourse.courseData.id }">
+            <app-course-item courseName="{{recommendedCourse.courseData.courseName}}" firstName="{{recommendedCourse.courseData.firstName}}" lastName="{{recommendedCourse.courseData.lastName}}" aboutCourse="{{recommendedCourse.courseData.aboutCourse}}" courseAmount="{{recommendedCourse.courseAmount}}" courseTypeName="{{recommendedCourse.courseData.courseTypeName}}" courseImage="{{recommendedCourse.courseData.courseImageUrl}}" courseDescription="{{recommendedCourse.courseData.courseSubTitle}}" rating="{{recommendedCourse.averageRating}}"></app-course-item>
+        </a>
+        </div>
+    </div>
+
+  </div>
+    </section>
+
+<section *ngIf="popularCourses != null" class="course-section fpad">
+    <div class="container">
+        <div class="section-title mb-3">
+            <h2>Trending</h2>
+            <p>Need to know what skills others are catching up with? Checkout our indemand courses.</p>
+        </div>
+    </div>
+    <div class="course-warp slide">
+        <div *ngIf="loading" class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+
+          <div *ngIf="popularCourses" class="regular slider">
+            <div *ngFor="let popularCourse of popularCourses">
+                    <a routerLink="/course-preview" [queryParams]="{ course: popularCourse.courseData.courseName, id: popularCourse.courseData.id }">
+                    <app-course-item courseName="{{popularCourse.courseData.courseName}}" firstName="{{popularCourse.courseData.firstName}}" lastName="{{popularCourse.courseData.lastName}}" aboutCourse="{{popularCourse.courseData.aboutCourse}}" courseAmount="{{popularCourse.courseData.courseAmount}}" courseTypeName="{{popularCourse.courseData.courseTypeName}}" courseImage="{{popularCourse.courseData.courseImageUrl}}" courseDescription="{{popularCourse.courseData.courseSubTitle}}" rating="{{popularCourse.averageRating}}" rateCount="{{popularCourse.averageRating | number : '1.1-1'}}"></app-course-item>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- download section -->
+
+<section *ngIf="mostViewedCourses != null" class="project-tab fpad">
+    <div class="container">
+        <div class="section-title mb-3">
+            <h2>What Students are viewing
+            </h2>
+            <p>Explore our bouquet of course other students are looking at.</p>
+        </div>
+    </div>
+    <div class="course-warp slide">
+        <div *ngIf="loading" class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+
+          <div *ngIf="mostViewedCourses" class="regular slider">
+            <div *ngFor="let mostViewedCourse of mostViewedCourses">
+                <a routerLink="/course-preview" [queryParams]="{ course: mostViewedCourse.courseData.courseName, id: mostViewedCourse.courseData.id }">
+                    <app-course-item courseName="{{mostViewedCourse.courseData.courseName}}" firstName="{{mostViewedCourse.courseData.firstName}}" lastName="{{mostViewedCourse.courseData.lastName}}" aboutCourse="{{mostViewedCourse.courseData.aboutCourse}}" courseAmount="{{mostViewedCourse.courseData.courseAmount}}" courseTypeName="{{mostViewedCourse.courseData.courseTypeName}}" courseImage="{{mostViewedCourse.courseData.courseImageUrl}}" courseDescription="{{mostViewedCourse.courseData.courseSubTitle}}" rating="{{mostViewedCourse.averageRating}}" rateCount="{{mostViewedCourse.averageRating | number : '1.1-1'}}"></app-course-item>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="downloadapp-section dpad pb-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 text-center">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="assets/img/google-play-badge.png" width="150px">
+                    </div>
+                    <div class="col-md-6">
+                        <img src="assets/img/app-store-badge.png" width="150px">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <img src="assets/img/Group 400.png" width="400px">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="signup-warp">
+                    <div class="section-title text-left">
+                        <h2>Download the expertplat App</h2>
+                        <p>Need a more personalized experience? Download the Expertplat Mobile App. Its simple, fast, and offers a seamless learning experience.</p>
+                    </div>
+                    <form class="downloadapp-form">
+                        <input type="text" id="v-upload" placeholder="10 Digit Mobile number">
+                        <button class="site-btn inline">Get Link</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <img src="assets/img/Group 394.png" width="250px">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section *ngIf="categories != null" class="site-section mt-5 section-title bg-light pt-0">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-7 text-center">
+                <h2>Top Categories</h2>
+                <p>Check out the Category of Courses that are mostly viewed.</p>
+            </div>
+        </div>
+        </div>
+        <div class="course-warp">
+        <div class="row top-course">
+            <div *ngFor="let categorie of categories" class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+                <a href [routerLink]="['/course-category']" [queryParams]="{category: categorie.courseCategoryName}" class="category-item">
+                        <div class="card">
+                            <img src="{{categorie.categoryImageUrl}}"  width= "300" height="350" class="card-img-top" alt="{{categorie.courseCategoryName}}">
+                            <div class="card-body">
+                              <h5 class="card-title">{{categorie.courseCategoryName}}</h5>
+                            </div>
+                          </div>
+                </a>
+            </div>
+        </div>
+        </div>
+</section>

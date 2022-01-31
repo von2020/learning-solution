@@ -1,0 +1,902 @@
+<div class="container-fluid">
+<div class="dashboard-ecommerce spad">
+    <div class="dashboard-content">
+        <!-- Page Wrapper -->
+<!-- <div id="wrapper">
+    <div id="content-wrapper" class="spad d-flex flex-column">
+        <div id="content">
+            <div class="container"> -->
+
+              <div class="row mb-3">
+                <div class="col-md-12">
+                <div class="section-title">
+                  <h2>Create Course</h2>
+              </div>
+            </div>
+              </div>
+
+                <!-- <div class="row"> -->
+                <div class="tabControl">
+                    <div class="container">
+                        <ul class="nav nav-pills nav-fill" id="pills-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-1" role="tab">Step 1</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-2" role="tab">Step 2</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-3" role="tab">Step 3</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-req-tab" data-toggle="pill" href="#pills-4" role="tab">Step 4</a>
+                            </li>
+                            <!-- <li class="nav-item">
+                              <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-5" role="tab">Finish</a>
+                          </li> -->
+                        </ul>
+                    </div>
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-1" role="tabpanel" aria-labelledby="pills-home-tab">
+  
+                              <div class="edit-section container-fluid spad">
+                                <div class="row">
+                                  <div class="col-md-7">
+                              </div>
+                              <div class="col-md-5"> 
+                              <div class="alert alert-info text-center mt-2 mb-2" role="alert">
+                                Click on "Save Changes" below to Apply Changes before moving to the next Step
+                              </div>
+                              <div class="save-section shadow">
+                                <a class="save-item d-flex justify-content-center">
+                                  <button id="submit" href="#pills-2" type="submit" (click)="createCourse()" class="btn btn-danger ibtn">save changes</button> 
+                                </a>
+                              </div>
+                              </div>
+                                </div>
+                              <div class="card">
+                                <div class="card-header section-subtitle">
+                                  <h3>General Information</h3>
+                              </div> 
+                                  <div class="row card-body">
+                                  <div class="col-md-12">
+                                    <div class="form-group mt-5">
+                                        <label for="courseTitle">Course Title</label>
+                                        <input type="text" [(ngModel)]="CourseName" class="form-control form-control-lg" id="courseTitle" placeholder="">
+          
+                                      </div>
+                                  </div>
+                                  <div class="col-md-12">
+                              <div class="form-group">
+                                <label for="courseSubTitle">Course Subtitle</label>
+                                <textarea class="form-control" [(ngModel)]="CourseSubTitle" id="courseSubTitle" rows="1" maxlength="200"></textarea>
+                                <small id="descriptionHelp" class="form-text text-muted">Not more than 200 characters.</small>
+                              </div>
+                              </div>
+                              <div class="col-md-12">
+                            <div class="form-group mt-5">
+                            <div class="row">
+                                <div class="col-md-5 view_img_left">
+                                    <div class="view__img">
+                                        <img id="courseImage" src="assets/img/add_img.jpg" alt="" width="480" height="270">
+                                        </div>
+                                </div>
+                                <div class="col-md-7 view_img_right">
+                                    <h4>Cover Image</h4>
+                                <p>Upload your course image here. It must meet our course image quality standards to be accepted. Important guidelines: 750x422 pixels; .jpg, .jpeg,. gif, or .png. no text on the image.</p>
+                                <div class="upload__input">
+                                <div class="input-group">
+                                <div class="custom-file">
+                                <input type="file"
+                                (change)="onSelect($event)"
+                                accept="'image/jpeg,image/jpg,image/png'" class="custom-file-input" id="inputGroupFile04">
+                                <label class="custom-file-label" for="inputGroupFile04">Select Image</label>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="row mt-5">
+                                <div class="col-md-5 view_img_left">
+                                <div class="view__img">
+                                <img id="videoImage" src="assets/img/add_video.jpg" alt="" width="480" height="270">
+                                </div>
+                                </div>
+                                <div class="col-md-7 view_img_right">
+                                <h4>Promotional Video</h4>
+                                <p>Students who watch a well-made promo video are 5X more likely to enroll in your course. We've seen that statistic go up to 10X for exceptionally awesome videos. Learn how to make yours awesome!</p>
+                                <div class="upload__input">
+                                <div class="input-group">
+                                <div class="custom-file">
+                                <input accept="video/mp4"
+                                (change)="onSelectVideo($event)" type="file" class="custom-file-input" id="inputGroupFile05">
+                                <label class="custom-file-label" for="inputGroupFile05">Select Video</label>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                        </div>
+                            </div>
+                        
+                            <div class="col-md-12">
+                              <form class="mt-5" [formGroup]="editorForm" (submit)="onSubmit()">
+                                  <div class="form-group">
+                                    <label for="editor">Description</label>
+                                    <quill-editor [style]="editorStyle" [modules]="config" [theme]="quillTheme" (onContentChanged)="maxLength($event)" formControlName="editor"></quill-editor>
+                                    <!-- <input type="text" name="" id="" class="form-control" placeholder="" aria-describedby="helpId"> -->
+                                    <small id="descriptionHelp" class="form-text text-muted">Shortly describe this course.</small>
+                                    <span *ngIf="editorForm.get('editor').value != null">{{ 1007 - editorForm.get('editor').value.length }} words left</span>
+                                  </div>
+                              </form>
+                              </div>
+                              <!-- <div id="toolbar"></div> -->
+                              <!-- <div aria-describedby="descriptionHelp" id="editor"></div> -->
+                              <!-- <small id="descriptionHelp" class="form-text text-muted">Shortly describe this course.</small> -->
+                              
+                        <!-- </div> -->
+                                
+                              <!-- <div class="col-md-5"> -->
+                                <flash-messages></flash-messages>
+                                    <div class="col-md-12">
+                                        <div class="course-option">
+                                  <label class="mb-2" for="options">Options</label>
+                                  
+                                </div>
+                                </div>
+                                  <!-- <div class="card shadow">
+                                    <div class="card-body b-radius"> -->
+                        
+                                        <div class="col-md-12">
+                                      <div class="form-group">
+                                        <label for="courseCategory">Category</label>
+                                        <select id="category" (change)="showSubCategory()" [(ngModel)]="CourseCategoryId" class="form-control">
+                                          <option [ngValue]="null">Choose Category*</option>
+                                          <option *ngFor="let categorie of categories" value="{{categorie.id}}">{{categorie.courseCategoryName}}</option>
+                                        </select>
+                                        <small id="categoryHelp" class="form-text text-muted">Select a category.</small>
+                                      </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                      <div id="subCategorySelect" style="display:none;" class="form-group">
+                                        <label for="courseSubCategory">Sub Category</label>
+                                        <select id="subCategory" (change)="onSelectEvent($event)" [(ngModel)]="CourseSubCategoryId" class="form-control">
+                                          <option [ngValue]="null">Choose Subcategory*</option>
+                                          <option *ngFor="let subCategory of subCategorys" value="{{subCategory.id}}">{{subCategory.courseSubCategoryName}}</option>
+                                        </select>
+                                        <small id="subCategoryHelp" class="form-text text-muted">Select a Subcategory.</small>
+                                      </div>
+                                      </div>
+                                      <div class="col-md-4">
+                                        <div class="form-group">
+                                          <label for="courseType">Course Type</label>
+                                          <select name="courseType" id="sel" (change)="toggle($event)" [(ngModel)]="CourseTypeId" class="form-control">
+                                            <option [ngValue]="null">Choose Type*</option>
+                                            <option *ngFor="let courseType of courseTypes" value="{{courseType.id}}">{{courseType.courseTypeName}}</option>
+                                            <!-- <option value="1" selected>Paid</option>
+                                            <option value="2">Free</option>
+                                            <option value="3">Passcode</option> -->
+                                          </select>
+                                          <small id="selectCourseHelp" class="form-text text-muted">Select a course type.</small>
+                                        </div>
+                                      </div>
+                                      <div class="col-md-4" id="courseCompleted" style="display:none;">
+                                        <div class="form-group">
+                                          <label for="isCourseCompleted">Completed Offline ?</label>
+                                          <select name="IsCompletedOffline" id="isCourseCompleted" (change)="toggleValue($event)" [(ngModel)]="IsCompletedOffline" class="form-control">
+                                            <option [ngValue]="null">Select Option*</option>
+                                            <option value="1">Yes</option>
+                                            <option value="2">No</option>
+                                          </select>
+                                        </div>
+  </div>
+  <div class="col-md-4" id="dateCompleted" style="display:none;">
+                                        <div class="form-group">
+                                        <label for="dateCourseCompleted">Date Completed</label>
+                                        <input name="DateCompletedOffline" id="dateCourseCompleted" type="date" placeholder="select a Date" [(ngModel)]="DateCompletedOffline" class="form-control" required>
+                                      </div>
+</div>
+
+                                      <!-- <div class="form-group">
+                                        <label for="courseType">Course Type</label>
+                                        <select name="courseType" id="sel" (change)="toggle()" [(ngModel)]="CourseTypeId" class="form-control">
+                                          <option value="1" selected>Paid</option>
+                                          <option value="2">Free</option>
+                                        </select>
+                                        <small id="selectCourseHelp" class="form-text text-muted">Select a course type.</small>
+                                      </div> -->
+                        <div class="col-md-4">
+                                      <div class="form-group">
+                                        <label for="levelType">Course Level</label>
+                                        <select name="levelType" id="selType" [(ngModel)]="LevelTypeId" class="form-control">
+                                          <option [ngValue]="null">Select Option*</option>
+                                          <option value="1">Primary/Elementary</option>
+                                          <option value="2">Secondary/Higher</option>
+                                          <option value="3">University/Adult</option>
+                                          <option value="4">All</option>
+                                        </select>
+                                        <small id="selectCourseHelp" class="form-text text-muted">Select a course Level.</small>
+                                      </div>
+                        </div>
+                        <div class="col-md-4" id="price" style="display:block;">
+                                      <div class="form-group">
+                                        <label for="inlineFormInputGroupPrice">Price</label>
+                                        <div class="input-group">
+                                          <div class="input-group-prepend">
+                                            <div class="input-group-text">₦</div>
+                                          </div>
+                                          <input type="number" class="form-control" [(ngModel)]="CourseAmount" id="inlineFormInputGroupPrice" placeholder="">
+                                        </div>
+                                      </div>
+</div>
+                            </div>
+                              </div>
+                              </div>
+                            <!-- <div class="row navbuttons">
+                                <div class="col-6 col-sm-auto" id="btnNext">
+                                    <a class="btn site-btn btnNext">Next</a>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="tab-pane fade" id="pills-2" role="tabpanel" aria-labelledby="pills-profile-tab">
+                            <div class="title-icon">
+                                <h3 class="title"><i class="fa fa-film"></i>Course Content</h3>
+                                </div>
+                                <div class="container-fluid course__form">
+                                <div class="row">
+                                <div class="col-lg-12">
+                                <div class="extra_info">
+                                <h4 class="part__title">New Course Content</h4>
+                                </div>
+                                <div class="view_info10">
+                                <div class="row">
+                                <div class="col-lg-12 col-md-12">
+                                        <div class="form-group mt-5">
+                                            <label for="courseTitle">Course Content Title</label>
+                                            <input #courseTitle type="text" [(ngModel)]="Topic" type="text" class="form-control form-control-lg" id="courseTitle" placeholder="">
+              
+                                          </div>
+
+                                          <div class="form-button mt-5 mb-5">
+                                            <button (click)="createSection(courseTitle.value);" class="part_btn_save" type="submit">Save Title</button>
+                                            </div>
+                                </div>
+
+                                <div style="display: none;" class="col-lg-12 col-md-12 lectureSection">
+                                <div class="lecture_title">
+                                <h4>Add Lecture</h4>
+                                </div>
+                                </div>
+                                <div style="display: none;" class="col-lg-6 col-md-12 lectureSection">
+                                    <div class="form-group mt-5">
+                                        <label>Lecture Title*</label>
+                                        <input #editedCourseTitle [(ngModel)]="Description" type="text" class="form-control form-control-lg" id="courseTitle" placeholder="">
+          
+                                      </div>
+                                </div>
+                                <div style="display: none;" class="col-lg-6 col-md-6 lectureSection">
+                                <div class="part_input mt-30 lbel25 mt-5">
+                                <label>File*</label>
+                                <div class="input-group">
+                                <div class="custom-file">
+                                <input accept="video/mp4"
+                                (change)="onSelectVideo($event)" type="file" class="custom-file-input" id="inputGroupFile06">
+                                <label class="custom-file-label" for="inputGroupFile06">No Choose file - (Pdf, Video)</label>
+                                </div>
+                                </div>
+                                </div>
+                                </div>                               
+                                <div style="display: none;" class="col-lg-12 col-md-12 mb-5 lectureSection">
+                                <button class="part_btn_save prt-sv" (click)="addVideo()" type="submit">Save Lecture</button>
+                                </div>
+                                <div style="display: none;" class="col-lg-12 col-md-12 lectureSection">
+                                <div class="table-responsive mt-50 mb-0">
+                                <table class="table ucp-table">
+                                <thead class="thead-s">
+                                <tr>
+                                <th class="text-center" scope="col">S/N</th>
+                                <th class="cell-ta">Description</th>
+                                <th class="text-center" scope="col">FileName</th>
+                                <th class="text-center" scope="col">FileType</th>
+                                <th class="text-center" scope="col">FileSize</th>
+                                <th class="text-center" scope="col">Duration</th>
+                                <th class="text-center" scope="col">Preview</th>
+                                <th class="text-center" scope="col">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let courseTopicVideoContent of courseTopicVideoContents; let i = index">
+                                <td class="text-center">{{i+1}}</td>
+                                <td class="cell-ta">courseTopicVideoContent.Description</td>
+                                <td class="text-center">courseTopicVideoContent.FileName</td>
+                                <td class="text-center">courseTopicVideoContent.FileType</td>
+                                <td class="text-center">courseTopicVideoContent.FileSize</td>
+                                <td class="text-center">courseTopicVideoContent.Duration</td>
+                                <td class="text-center"><span role="button" (click)="playVideo(courseTopicVideoContent.FileUrl)" title="Play" class=" ml-5 gray-s"> <i class="fa fa-video-camera" aria-hidden="true"></i> </span></td>
+                                <td class="text-center">
+                                  <span role="button" title="Edit" class="gray-s"><i class="fa fa-pencil"></i></span>
+                                  <span role="button" (click)="removeVideo(courseTopicVideoContent)" title="Delete" class=" ml-5 gray-s"><i class="fa fa-trash-alt"></i></span>
+                                </td>
+                                </tr>
+                                </tbody>
+                                </table>
+                                </div>
+                                </div>
+                                <div style="display: none;" id="lectureSection" class="col-lg-12 col-md-12 lectureSection">
+                                <div class="save_content">
+                                <button class="save_content_btn" (click)="createMultipleCourseTopicVideos()" type="Submit">Save Course Content</button>
+                                </div>
+                                </div>
+
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                                <div *ngIf="courseTopicLists" class="table-responsive mt-30">
+                                <table class="table ucp-table" id="content-table">
+                                <thead class="thead-s">
+                                <tr>
+                                <th class="text-center" scope="col">Content</th>
+                                <th class="cell-ta">Title</th>
+                                <th class="text-center" scope="col">lectures</th>
+                                <th class="text-center" scope="col">Volume</th>
+                                 <th class="text-center" scope="col">Duration</th>
+                                <th class="text-center" scope="col">Upload Date</th>
+                                <th class="text-center" scope="col">Files</th>
+                                <th class="text-center" scope="col">Controls</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let courseTopicList of courseTopicLists; let i = index">
+                                <td class="text-center">{{i+1)}</td>
+                                <td class="cell-ta">{{courseTopicList.courseTopic.topic}}</td>
+                                <td class="text-center" [innerHTML]="courseTopicLists.length"></td>
+                                <td class="text-center">{{courseTopicList.duration*1000 | customDuration: 'ms':'hhmmss'}}</td>
+                                <td class="text-center">{{courseTopicList.duration*1000 | customDuration: 'ms':'hhmmss'}}</td>
+                                <td class="text-center">6 April 2019</td>
+                                <td class="text-center"><a href="#">View</a></td>
+                                <td class="text-center">
+                                <a href="#" title="Edit" class="gray-s"><i class="fa fa-edit-alt"></i></a>
+                                <a href="#" title="Delete" class="gray-s"><i class="fa fa-trash-alt"></i></a>
+                                </td>
+                                </tr>
+                                </tbody>
+                                </table>
+                                </div>
+                            <div class="row navbuttons pt-5">
+                                <div class="col-6 col-sm-auto step2Prev" id="btnPrevious">
+                                    <a class="btn site-btn btnPrevious">Previous</a>
+                                </div>
+                                <div class="col-6 col-sm-auto" id="btnNext">
+                                    <a class="btn site-btn btnNext">Next</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="pills-3" role="tabpanel" aria-labelledby="pills-contact-tab">
+                          <div class="title-icon">
+                            <h3 class="title"><i class="fa fa-film"></i>Course Objective</h3>
+                            </div>
+                            <div class="container-fluid course__form">
+                            <div class="row">
+                            <div class="col-lg-12">
+                            <div class="extra_info">
+                            <h4 class="part__title">New Course Objective</h4>
+                            </div>
+                            <div class="view_info10">
+                            <div class="row">
+                            <div class="col-lg-12 col-md-12">
+                                    <div class="form-group mt-5">
+                                        <label for="courseObjective">Add Objective</label>
+                                        <input #courseObjective type="text" type="text" class="form-control form-control-lg" id="courseObjective" placeholder="">
+          
+                                      </div>
+
+                                      <div class="form-button mt-5 mb-5">
+                                        <button (click)="addObjective(courseObjective.value);" class="part_btn_save" type="submit">Add</button>
+                                        </div>
+                            </div>
+
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                            <div *ngIf="objectiveContents.length != 0" class="table-responsive mt-30">
+                            <table class="table ucp-table" id="content-table">
+                            <thead class="thead-s">
+                            <tr>
+                            <th class="text-center" scope="col">S/N</th>
+                            <th class="cell-ta">Title</th>
+                            <th class="text-center" scope="col">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let objectiveContent of objectiveContents; let i = index">
+                            <td class="text-center">{{i+1}}</td>
+                            <td class="cell-ta">{{objectiveContent}}</td>
+                            <td class="text-center">
+                            <span title="Edit" class="gray-s"><i class="fa fa-edit"></i></span>
+                            <span role="button" (click)="remove(objectiveContent)" title="Delete" class=" ml-5 gray-s"><i class="fa fa-trash-alt"></i></span>
+                            </td>
+                            </tr>
+                            </tbody>
+                            </table>
+                            
+                            <div class="col-lg-12 col-md-12">
+                            <div class="save_content">
+                            <button (click)="createMultipleCourseObjectives()" class="save_content_btn" type="Submit">Save Course Objective</button>
+                            </div>
+                            </div>
+
+
+                            </div>
+                            <div class="row navbuttons pt-5">
+                                <div class="col-6 col-sm-auto" id="btnPrevious">
+                                    <a class="btn site-btn btnPrevious">Previous</a>
+                                </div>
+                                <div class="col-6 col-sm-auto" id="btnNext">
+                                    <a class="btn site-btn btnNext">Next</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="pills-4" role="tabpanel" aria-labelledby="pills-req-tab">
+                          <div class="title-icon">
+                            <h3 class="title"><i class="fa fa-film"></i>Course Requirement</h3>
+                            </div>
+                            <div class="container-fluid course__form">
+                            <div class="row">
+                            <div class="col-lg-12">
+                            <div class="extra_info">
+                            <h4 class="part__title">New Course Requirement</h4>
+                            </div>
+                            <div class="view_info10">
+                            <div class="row">
+                            <div class="col-lg-12 col-md-12">
+                                    <div class="form-group mt-5">
+                                        <label for="courseRequirement">Add Requirement</label>
+                                        <input #courseRequirement type="text" type="text" class="form-control form-control-lg" id="courseRequirement" placeholder="">
+          
+                                      </div>
+
+                                      <div class="form-button mt-5 mb-5">
+                                        <button (click)="addRequirement(courseRequirement.value);" class="part_btn_save" type="submit">Add</button>
+                                        </div>
+                            </div>
+
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                            <div *ngIf="requirementContents.length != 0" class="table-responsive mt-30">
+                            <table class="table ucp-table" id="content-table">
+                            <thead class="thead-s">
+                            <tr>
+                            <th class="text-center" scope="col">S/N</th>
+                            <th class="cell-ta">Title</th>
+                            <th class="text-center" scope="col">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let requirementContent of requirementContents; let i = index">
+                            <td class="text-center">{{i+1}}</td>
+                            <td class="cell-ta">{{requirementContent}}</td>
+                            <td class="text-center">
+                            <span title="Edit" class="gray-s"><i class="fa fa-edit"></i></span>
+                            <span role="button" (click)="removeReq(requirementContent)" title="Delete" class=" ml-5 gray-s"><i class="fa fa-trash-alt"></i></span>
+                            </td>
+                            </tr>
+                            </tbody>
+                            </table>
+                            
+                            <div class="col-lg-12 col-md-12">
+                            <div class="save_content">
+                            <button (click)="createMultipleCourseRequirements()" class="save_content_btn" type="Submit">Save Course Requirement</button>
+                            </div>
+                            </div>
+
+
+                            </div>
+                        
+                            <div class="row navbuttons pt-5">
+                                <div class="col-6 col-sm-auto" id="btnPrevious">
+                                    <a class="btn site-btn btnPrevious">Previous</a>
+                                </div>
+                                <div class="col-6 col-sm-auto" id="btnNext">
+                                    <a [routerLink]="['/courses-facilitator']" class="btn site-btn btnNext">Finish</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="tab-pane fade" id="pills-5" role="tabpanel" aria-labelledby="pills-contact-tab">Thank You!</div> -->
+                    </div>
+               
+        </div>
+            <!-- </div> -->
+            </div>
+          </div>
+        </div>
+   <!--   </div>
+  </div> -->
+  
+      
+      <!-- Add Section Modal-->
+  <div class="modal fade" id="addSectionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add a Section</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- <div class="terminal"> -->
+            <div class="form-group">
+              <label for="courseTitle">Course Content Title</label>
+              <input #courseTitle type="text" [(ngModel)]="Topic" class="form-control form-control-lg" placeholder="">
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" data-dismiss="modal" (click)="createSection(courseTitle.value);">Continue</a>
+        </div><!--createCourseTopic-->
+      </div>
+    </div>
+  </div>
+  
+      <!-- Add Preview Modal-->
+      <div class="modal fade" id="addPreviewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add a Preview</h5>
+              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <!-- <div class="form-group">
+                  <label for="coursePreviewTitle">Preview Title</label>
+                  <input #coursePreviewTitle type="text" [(ngModel)]="Topic" class="form-control form-control-lg" placeholder="">
+                </div> -->
+                
+            <div class="form-group mt-5">
+              <label for="courseImage">Upload Video</label>
+              <small id="uploadHelp" class="form-text text-muted">Not More than 50mb<flash-messages></flash-messages></small>
+              <ngx-dropzone [multiple]="'false'"
+              [maxFileSize]="'50000000'"
+              accept="image/jpeg,image/jpg,image/png,video/mp4"
+              (change)="onSelectMedia($event)" style="margin: 20px;">
+                <ngx-dropzone-label>Drag and Drop to Upload file</ngx-dropzone-label>
+                <ngx-dropzone-image-preview
+                  ngProjectAs="ngx-dropzone-preview"
+                  *ngFor="let m of Medias"
+                  [file]="m"
+                  [removable]="true"
+                  (removed)="onRemoveMedia(m)"
+                >
+                  <ngx-dropzone-label> ({{ m.type }})</ngx-dropzone-label>
+                </ngx-dropzone-image-preview>
+              </ngx-dropzone>
+          </div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+              <a class="btn btn-primary" data-dismiss="modal" (click)="createPreview();">Continue</a>
+            </div><!--createCourseTopic-->
+          </div>
+        </div>
+      </div>
+  
+  
+<!-- Play Preview Modal -->
+<div class="modal fade" id="videoModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title" id="videoModalLabel">Course Preview</h5>
+		  <button type="button" class="close" (click)="stopVideo()" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">×</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+			<video id="my-video"  class="video-js vjs-big-play-centered" controls preload="auto" width="560" height="350" poster="MY_VIDEO_POSTER.jpg" data-setup='{}'>
+				<source type='video/mp4'>
+				<p class="vjs-no-js">
+					To view this video please enable JavaScript, and consider upgrading to a web browser that
+					<a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+				</p>
+			</video>
+		</div>
+		<div class="modal-footer">
+		</div>
+	  </div>
+	</div>
+  </div>
+
+  
+  <!-- Edit Section Modal-->
+  <div class="modal fade" id="editSectionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Subsection</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+  
+          <div class="tab" role="tabpanel">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item active">
+                    <a class="nav-link active" href="#Section1" role="tab" data-toggle="tab">Media</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="#Section2" role="tab" data-toggle="tab">Quiz</a>
+                </li> -->
+                <li class="nav-item">
+                  <a class="nav-link" href="#Section3" role="tab" data-toggle="tab">Resource</a>
+              </li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content tabs">
+                <div role="tabpanel" class="tab-pane active" id="Section1">
+          <!-- <div class="terminal"> -->
+            <div class="form-group">
+              <label for="courseTitle">Edit Content Title</label>
+              <input type="text" #editedCourseTitle [(ngModel)]="Description" class="form-control form-control-lg" placeholder="">
+            </div>
+            <div class="form-group mt-5">
+              <label for="courseImage">Upload File</label>
+              <flash-messages></flash-messages>
+              <ngx-dropzone 
+              [multiple]="'false'"
+              [maxFileSize]="'50000000'"
+              accept="image/jpeg,image/jpg,image/png,video/mp4,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf"
+              (change)="onSelectMedia($event)" style="margin: 20px;">
+                <ngx-dropzone-label>Drag and Drop to Upload file</ngx-dropzone-label>
+                <ngx-dropzone-image-preview
+                  ngProjectAs="ngx-dropzone-preview"
+                  *ngFor="let m of Medias"
+                  [file]="m"
+                  [removable]="true"
+                  (removed)="onRemove(f)"
+                  (removed)="onRemoveMedia(m)"
+                >
+                  <ngx-dropzone-label> ({{ m.type }})</ngx-dropzone-label>
+                </ngx-dropzone-image-preview>
+              </ngx-dropzone>
+          </div>
+            
+            <div>
+              <button (click)="onUploadFile()">upload</button>
+            </div>
+        </div>
+        <!-- <div role="tabpanel" class="tab-pane fade" id="Section2">
+          <div class="position-relative form-group">
+            <label for="exampleAddress" class="">Select Assessment</label>
+            <select id="editQuiz" class="form-control">
+              <option *ngFor="let Quiz of Quizzes" value="{{Quiz.id}}">{{Quiz.description}}</option>
+            </select>
+        </div>
+        </div> -->
+        <div role="tabpanel" class="tab-pane fade" id="Section3">
+                    
+          <div class="form-group">
+            <label for="courseTitle">Resource Title</label>
+            <input type="text" #editedCourseTitle [(ngModel)]="Description" class="form-control form-control-lg" placeholder="">
+          </div>
+          <div class="form-group mt-5">
+            <label for="courseImage">Upload File</label>
+            <small id="uploadHelp" class="form-text text-muted">Not More than 10mb<flash-messages></flash-messages></small>
+            <ngx-dropzone [multiple]="'false'"
+            [maxFileSize]="'50000000'"
+            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf"
+            (change)="onSelectMedia($event)" style="margin: 20px;">
+              <ngx-dropzone-label>Drag and Drop or Click to Upload file</ngx-dropzone-label>
+              <ngx-dropzone-image-preview
+                ngProjectAs="ngx-dropzone-preview"
+                *ngFor="let m of Medias"
+                [file]="m"
+                [removable]="true"
+                (removed)="onRemoveMedia(m)"
+              >
+                <ngx-dropzone-label> ({{ m.type }})</ngx-dropzone-label>
+              </ngx-dropzone-image-preview>
+            </ngx-dropzone>
+        </div>
+          
+          <div>
+            <button (click)="onUploadMaterial()">upload</button>
+          </div>
+        </div>
+    </div>
+    </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" (click)="editSubSection(editedCourseTitle.value);" data-dismiss="modal" >Continue</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Edit SubSection Modal-->
+  <div class="modal fade" id="editSubSectionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Subsection</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- <div class="terminal"> -->
+  
+            <div class="tab" role="tabpanel">
+              <!-- Nav tabs -->
+              <ul class="nav nav-tabs" role="tablist">
+                  <li class="nav-item active">
+                      <a class="nav-link active" href="#Section4" role="tab" data-toggle="tab">Media</a>
+                  </li>
+                  <!-- <li class="nav-item">
+                      <a class="nav-link" href="#Section5" role="tab" data-toggle="tab">Quiz</a>
+                  </li> -->
+                  <li class="nav-item">
+                    <a class="nav-link" href="#Section6" role="tab" data-toggle="tab">Resource</a>
+                </li>
+              </ul>
+              <!-- Tab panes -->
+              <div class="tab-content tabs">
+                  <div role="tabpanel" class="tab-pane active" id="Section4">
+                    
+            <div class="form-group">
+              <label for="courseTitle">Course Title</label>
+              <input type="text" #editedCourseTitle [(ngModel)]="Description" class="form-control form-control-lg" placeholder="">
+            </div>
+            <div class="form-group mt-5">
+              <label for="courseImage">Upload File</label>
+              <small id="uploadHelp" class="form-text text-muted">Not More than 50mb<flash-messages></flash-messages></small>
+              <ngx-dropzone [multiple]="'false'"
+              [maxFileSize]="'50000000'"
+              accept="image/jpeg,image/jpg,image/png,video/mp4"
+              (change)="onSelectMedia($event)" style="margin: 20px;">
+                <ngx-dropzone-label>Drag and Drop to Upload file</ngx-dropzone-label>
+                <ngx-dropzone-image-preview
+                  ngProjectAs="ngx-dropzone-preview"
+                  *ngFor="let m of Medias"
+                  [file]="m"
+                  [removable]="true"
+                  (removed)="onRemoveMedia(m)"
+                >
+                  <ngx-dropzone-label> ({{ m.type }})</ngx-dropzone-label>
+                </ngx-dropzone-image-preview>
+              </ngx-dropzone>
+          </div>
+            
+          <div class="row">
+            <div class="col-md-4">
+              <button type="submit" class="btn expertplat-btn-primary" (click)="onUploadFile()">upload</button>
+            </div>
+            <!-- <div>
+              <button (click)="onUploadFile()">upload</button>
+            </div> -->
+  
+            <div class="col-md-8"> 
+              <div class="alert alert-info text-center" role="alert">
+                Click on "Upload" to Upload the file before Submitting
+              </div>
+              </div>
+            </div>
+                  </div>
+                  <div role="tabpanel" class="tab-pane fade" id="Section6">
+                    
+                    <div class="form-group">
+                      <label for="courseTitle">Resource Title</label>
+                      <input type="text" #editedCourseTitle [(ngModel)]="Description" class="form-control form-control-lg" placeholder="">
+                    </div>
+                    <div class="form-group mt-5">
+                      <label for="courseImage">Upload File</label>
+                      <small id="uploadHelp" class="form-text text-muted">Not More than 10mb<flash-messages></flash-messages></small>
+                      <ngx-dropzone [multiple]="'false'"
+                      [maxFileSize]="'50000000'"
+                      accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf"
+                      (change)="onSelectMedia($event)" style="margin: 20px;">
+                        <ngx-dropzone-label>Drag and Drop or Click to Upload file</ngx-dropzone-label>
+                        <ngx-dropzone-image-preview
+                          ngProjectAs="ngx-dropzone-preview"
+                          *ngFor="let m of Medias"
+                          [file]="m"
+                          [removable]="true"
+                          (removed)="onRemoveMedia(m)"
+                        >
+                          <ngx-dropzone-label> ({{ m.type }})</ngx-dropzone-label>
+                        </ngx-dropzone-image-preview>
+                      </ngx-dropzone>
+                  </div>
+                    
+                    <div>
+                      <button (click)="onUploadMaterial()">upload</button>
+                    </div>
+                  </div>
+              
+                </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" (click)="createSubSection(editedCourseTitle.value);" data-dismiss="modal" >Continue</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <!-- Success Modal-->
+  <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="sucess-modal-container confirm-rate">
+            <div class="success-modal-top-buttons-container-reverse"><button data-dismiss="modal" aria-label="Close"
+                data-purpose="close-button" type="button" class="btn btn-quintinary"><span
+                  aria-hidden="true">Close</span></button></div>
+            <div class="success-modal-page-content">
+              <div *ngIf="success" class="success-checkmark">
+                <div class="check-icon">
+                  <span class="icon-line line-tip"></span>
+                  <span class="icon-line line-long"></span>
+                  <div class="icon-circle"></div>
+                  <div class="icon-fix"></div>
+                </div>
+              </div>
+              
+              <div *ngIf="error" class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex;">
+                <span class="swal2-x-mark">
+                    <span class="swal2-x-mark-line-left"></span>
+                    <span class="swal2-x-mark-line-right"></span>
+               </span>
+             </div>
+  
+  
+              <div>
+                <h2 data-purpose="primary-message">{{message}}</h2>
+              </div>
+            </div>
+          </div>
+  
+            </div>
+            <div *ngIf="finish" class="modal-footer">
+              <!-- <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button> -->
+              <a [routerLink]="[ '/courses-facilitator']" data-dismiss="modal" class="btn btn-success">OK</a>
+            </div>
+        </div>
+      </div>
+    </div>
+  
+  
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a routerLinkActive="list-item-active" data-dismiss="modal" (click)="onLogoutClick()" class="btn btn-primary">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    

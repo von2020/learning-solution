@@ -1,0 +1,7 @@
+input[type=file] {
+    color: #71748d;
+    background-color: #fff;
+    border: 1px solid #d2d2e4;
+    outline: 0;
+    box-shadow: none;
+}

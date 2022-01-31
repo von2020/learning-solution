@@ -1,0 +1,8 @@
+.pt-20 {
+    padding-top: 10rem;
+}
+
+.form-body > .confirmation-bg::before {
+      /* background-image: url("../../../assets/img/page-bg/schools-bg.jpg"); */
+      background-image: none;
+}

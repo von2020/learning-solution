@@ -1,0 +1,74 @@
+ngb-rating {
+    color: #FFC107;
+    font-size: 80px;
+}
+.course-info {
+    height: 250px
+}
+
+@media screen and (min-width: 768px) {
+    .course-info {
+        height: 200px
+    }
+
+    .course-item .course-info .course-text p,
+    .course-item .course-info .course-text .text p{
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin-bottom: 0;
+        font-weight: 400;
+    }
+}
+
+.course-info .course-text p {
+    font-size: 14.1px;
+    line-height: 1.5;
+    font-weight: 400;
+    margin-top: 1rem;
+}
+
+@media screen and (min-width: 320px) and (max-width: 400px) {
+    .course-info .course-text p {
+        font-size: 12.1px;
+    }
+}
+
+.text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    margin: 0 !important;
+    -webkit-line-clamp: 1; /* number of lines to show */
+    -webkit-box-orient: vertical;
+ }
+
+ .course-name {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* number of lines to show */
+        -webkit-box-orient: vertical;
+ }
+
+ .course-thumb {
+    background-position: center !important;
+ }
+
+ .rating-item {
+     display: inline-flex;
+     /* justify-content: center; */
+     align-items: center;
+ }
+ 
+ .rating-item .rate-count {
+     margin-right: 4px;
+     font-size: 14px;
+     font-stretch: ultra-condensed;
+     font-weight: 600;
+     color: #db7900;
+     padding-top: 3px;
+ }
+
+ /* .course-text .text p {
+    line-height: 1.2 !important;
+ } */

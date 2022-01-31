@@ -1,0 +1,147 @@
+<nav class="main-menu">
+    <ul class="navbar-nav sidebar accordion" id="accordionSidebar">
+        <li *ngIf="isExternal == true" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" >
+            <a [routerLink]="['/home-teachers']">
+              <i class="fa fa-book-open fa-2x"></i>
+                <span class="nav-text">
+                    Dashboard
+                </span>
+            </a>
+        </li>
+        <li *ngIf="isExternal != true" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" >
+            <a [routerLink]="['/home-internal-facilitator']">
+              <i class="fa fa-book-open fa-2x"></i>
+                <span class="nav-text">
+                    Dashboard
+                </span>
+            </a>
+        </li>
+        <li *ngIf="isExternal == true" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" class="has-subnav">
+            <!-- <a data-toggle="modal" data-target="#courseConfirmModal" [routerLink]="['/create-course']"> -->
+                <a [routerLink]="['/create-course']">
+              <i class="fa fa-edit fa-2x"></i>
+                <span class="nav-text">
+                    Create a Course
+                </span>
+            </a>
+            
+        </li>
+        <li *ngIf="isExternal != true" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" class="has-subnav">
+            <a [routerLink]="['/create-course-facilitator']">
+              <i class="fa fa-edit fa-2x"></i>
+                <span class="nav-text">
+                    Create a Course
+                </span>
+            </a>
+            
+        </li>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" class="has-subnav">
+            <a [routerLink]="['/create-assessment']">
+                <i class="fa fa-book fa-2x"></i>
+                <span class="nav-text">
+                    Assessment
+                </span>
+            </a>
+            
+        </li>
+        <!-- <li [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" class="has-subnav">
+            <a [routerLink]="['/create-questions']">
+                <i class="fa fa-question-circle fa-2x"></i>
+                <span class="nav-text">
+                    Questions
+                </span>
+            </a>
+            
+        </li> -->
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" class="has-subnav">
+            <a [routerLink]="['/courses-facilitator']">
+               <i class="fa fa-folder-open fa-2x"></i>
+                <span class="nav-text">
+                    My Courses
+                </span>
+            </a>
+           
+        </li>
+        <li *ngIf="isExternal == true" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" class="has-subnav">
+            <a [routerLink]="['/earnings']">
+                <i class="fa fa-wallet fa-2x"></i>
+                <span class="nav-text">
+                    Earnings
+                </span>
+            </a>
+           
+        </li>
+        <!-- <li [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" >
+            <a [routerLink]="['/analytics-facilitator']">
+              <i class="fa fa-chart-bar fa-2x"></i>
+                <span class="nav-text">
+                    Analytics
+                </span>
+            </a>
+        </li> -->
+        
+    </ul>
+</nav>
+
+<!-- Confirm Modal-->
+<div class="modal fade" id="courseConfirmModal" tabindex="-1" role="dialog" aria-labelledby="courseConfirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="courseConfirmModalLabel">Select Course Type</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="subscription-section bpad">
+                <div class="row">
+                  <div class="col-md-6">
+                    <a [routerLink]="['/create-course']" class="plan-btn">
+                    <div class="card shadow plan-wrapper">
+                      <div class="card-body plan-card p-0">
+                        <div class="col p-0">
+                          <div class="row no-gutters align-items-center">
+                        <div class="col-md-5 p-0">
+                          <div class="create-plan b-radius">
+                            <img src="assets/img/19918@2x.png">
+                          </div>
+                          
+                        </div>
+              
+                        <div class="col-md-7 rpad">
+                          <div class="h4 mb-2 font-weight-bold">Video Course</div>
+                        </div>
+                        </div>
+                      </div>
+                      </div>
+                    </div>
+                </a>
+                  </div>
+                  <div class="col-md-6">
+                    <a [routerLink]="['/create-course-material']" class="plan-btn">
+                    <div class="card shadow">
+                      <div class="card-body p-0">
+                        <div class="col p-0">
+                          <div class="row no-gutters align-items-center">
+                        <div class="col-md-5 p-0">
+                          <div class="create-plan b-radius">
+                            <img src="assets/img/material-presentation.jpg">
+                          </div>
+                          
+                        </div>
+              
+                        <div class="col-md-7 rpad">
+                          <div class="h4 mb-2 font-weight-bold">Material Course</div>
+                        </div>
+                        </div>
+                      </div>
+                      </div>
+                    </div>
+                </a>
+                  </div>
+                </div>
+              </div>
+        </div>
+      </div>
+    </div>

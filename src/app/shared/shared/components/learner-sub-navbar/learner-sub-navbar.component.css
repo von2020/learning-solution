@@ -1,0 +1,154 @@
+
+  .container {
+    max-width: 1340px;
+  }
+  
+  .item .more-course-list {
+    list-style: none;
+  }
+  
+  .spinner-border {
+    position: absolute;
+    z-index: 999;
+  }
+
+  .z-2 {
+      z-index: 2;
+  }
+
+  .navbar-light .navbar-nav .nav-link {
+    color: rgb(226, 226, 226);
+}
+  
+  .pr {
+    position: relative !important;
+    padding-top: 4rem;
+    padding-bottom: 1rem;
+  }
+  
+  .section-title {
+	text-align: left;
+	padding: 0;
+	margin-bottom: 0px;
+}
+
+  .spad {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.course-section .section-title p {
+    font-size: 20px;
+    font-weight: 400;
+    /* margin-bottom: 25px; */
+}
+
+.course-section .section-subtitle h3 {
+    font-size: 24px;
+    /* font-weight: 600; */
+    margin-top: 25px;
+}
+
+.title-content {
+    flex: 1 1;
+    min-width: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-height: 100px;
+}
+
+.jumbotron {
+    /* background-color: #006666; */
+    color: #fff;
+    width: 100%;
+    height: 180px;
+    position: relative;
+    background-position: 50%;
+    background-size: cover;
+    padding: 0 !important;
+    margin-bottom: 0px;
+  }
+  
+  .jumbotron h3 {
+    color: white;
+  }
+  
+  
+  .breadcrumb {
+    background: none;
+    margin: 0;
+  }
+  
+  .breadcrumb a,
+  .breadcrumb span {
+    color: darkgrey;
+  }
+  
+  .breadcrumb a:hover,
+  .breadcrumb span:hover {
+    color: dimgrey;
+    text-decoration: none;
+  }
+  
+  .breadcrumb li {
+    list-style: none;
+    float: left;
+    margin: 5px;
+  }
+  
+  .breadcrumb li:last-child {
+    margin-right: 20px;
+  }
+  
+  .breadcrumb li::after {
+    content: "->";
+    color: darkgrey;
+  }
+  
+  .breadcrumb li:last-child::after {
+    content: "";
+  }
+  
+  .breadcrumb .breadcrumb-item.active {
+    color: #fff;
+  }
+  
+  .breadcrumb .breadcrumb-item.notactive a {
+    color: rgb(185, 185, 185) !important;
+  }
+  
+  .breadcrumb-item+.breadcrumb-item::before {
+    display: inline-block;
+    padding-right: .5rem;
+    color: #EEF5F2;
+    content: "/";
+  }
+  
+  .breadcrumb-text-container {
+    position: relative;
+    width: 100%;
+    z-index: 3;
+  }
+  
+  .breadcrumb-background-gradient {
+    /* background: linear-gradient(to right, rgb(0, 115, 115),  rgb(0, 64, 64));     */
+    background: linear-gradient(320deg, #006666, rgba(39, 16, 102, 0) 90%, rgba(39, 16, 102, 0) 0, #006666);
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+  }
+  
+  .breadcrumb-background-image {
+    background-position: 50%;
+    background-size: cover;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+  }

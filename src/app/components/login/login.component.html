@@ -1,0 +1,122 @@
+<app-navbar></app-navbar>
+<div class="form-body">
+        
+    <div class="row account-bg">
+        <div class="col-md-8">
+        <div class="img-holder">
+            <!-- <div class="bg"></div> -->
+            <div class="info-holder">
+                <h2>Join over 5 million expertplat students' and teachers around the world</h2>
+                <!-- <p>Access to the most powerfull tool in the entire design and web industry.<br><br>
+                    Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p> -->
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 form-holder">
+        <!-- <div class="form-holder"> -->
+            <div class="form-content pda">
+                <div class="form-items">
+                    <div class="page-links">
+                        <a href="#" class="active">Login</a>
+                    </div>
+                    <flash-messages></flash-messages>
+                    <div class="tab" role="tabpanel">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item active">
+                                <a class="nav-link active" href="#Section1" role="tab" data-toggle="tab">Learner</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#Section2" role="tab" data-toggle="tab">Facilitator</a>
+                            </li>
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content tabs">
+                            <div role="tabpanel" class="tab-pane active" id="Section1">
+                                
+                    <form (submit)="onLoginSubmit()" [formGroup]="loginForm">
+                        <div class="form-group mb-0">
+                            <label for="Email"class="form-adjust" >E-mail Address</label>
+                            <input class="form-control" type="email" formControlName="Email" name="Email" required>
+                          </div>
+                          <div class="form-group mb-0">
+                            <label for="Password"class="form-adjust" >Password</label>
+                            <input class="form-control" type="password" formControlName="Password" name="Password" required>
+                          </div>
+                        <div class="form-button">
+                            <button id="submitLoginLeanerData" type="submit" class="ibtn">Login</button><a [routerLink]="['/forgot-password-learner']">Forgot password?</a>
+                        </div>
+                    </form>
+                    
+                    <div class="other-links">
+                        <span>Don't have an Account yet ?</span><a [routerLink]="['/register']">Sign up</a>
+                    </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="Section2">
+                                
+                    <form (submit)="onFacilitatorLogin()" [formGroup]="loginForm">
+                        <div class="form-group mb-0">
+                            <label for="Email"class="form-adjust" >E-mail Address</label>
+                            <input class="form-control" type="email" formControlName="Email" name="Email" required>
+                          </div>
+                          <div class="form-group mb-0">
+                            <label for="Password"class="form-adjust" >Password</label>
+                            <input class="form-control" type="password" formControlName="Password" name="Password" required>
+                          </div>
+                        <div class="form-button">
+                            <button id="submitLoginFacilitatorData" type="submit" class="ibtn">Login</button><a [routerLink]="['/forgot-password-facilitator']">Forgot password?</a>
+                        </div>
+                    </form>
+                    
+                    <!-- <div class="other-links">
+                        <span>Don't have an Account yet ?</span><a [routerLink]="['/register']">Sign up</a>
+                    </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- </div> -->
+    </div>
+    </div>
+</div>
+<!-- [style.display]="showModal ? 'block' : 'none'" -->
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            <div class="modal-title" id="confirmModalLabel">Email Confirmation</div>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+        <div class="modal-body mb-2">
+            <div style="border-radius:200px; height:100px; width:100px; background: #F8FAF5; margin:0 auto;">
+                <img src="assets/img/Group 15946@2x.png">
+            </div>
+            <flash-messages></flash-messages>
+            <div class="mb-3 text-center">
+                <p>We have sent a code to <span style="font-size:20px;color:#006666;">{{email}}</span></p>
+                <p>Please Enter the code sent to you</p>
+                </div>
+                <form (submit)="onActivateSubmit()"class="success-input">
+                        
+                    <input class="form-control side-space" type="text" [(ngModel)]="Code" name="confirmation-code" placeholder="" required>
+
+                    <div class="success-divider"></div>
+                    
+                    <div class="form-button mt-2">
+                        <a  style="color:#006666;" (click)="resendCode()">resend code</a>
+                        <button id="submit" type="submit" class="btn btn-danger ibtn">continue</button> 
+                    </div>
+                </form>
+        </div>
+        <!-- <div class="modal-footer justify-content-center">
+            <div class="form-button mt-2">
+                <a  style="color:#006666;"href="#">resend code</a>
+                <button id="submit" type="submit" class="btn btn-danger ibtn">continue</button> 
+            </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  
+<app-footer></app-footer>

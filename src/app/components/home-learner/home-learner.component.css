@@ -1,0 +1,108 @@
+/* @import '../../../assets/action-grid-slider.css'; */
+@import '../../../assets/star-rating-svg.css';
+@import '../../../assets/slick.css';
+
+.downloadapp-section .container {
+  max-width: 1650px !important;
+}
+
+/* .courseSlider {
+  position: relative;
+}
+@media (max-width: 767px) {
+  .courseSlider {
+    border-color: transparent;
+  }
+}
+.courseSlider .MS-content {
+  margin: 0 1%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+  .courseSlider .MS-content {
+    margin: 0;
+  }
+}
+
+.courseSlider .MS-content .item {
+  display: inline-block;
+  width: 25%;
+  position: relative;
+  vertical-align: top;
+  overflow: hidden;
+  height: 100%;
+  white-space: normal;
+  padding: 0 10px;
+}
+
+@media (max-width: 1200px) {
+  .courseSlider .MS-content .item {
+    width: 25%;
+  }
+}
+@media (max-width: 992px) {
+  .courseSlider .MS-content .item {
+    width: 33.3333%;
+  }
+}
+@media (max-width: 767px) {
+  .courseSlider .MS-content .item {
+    width: 50%;
+  }
+}
+.courseSlider .MS-content .item p {
+  font-size: 30px;
+  text-align: center;
+  line-height: 1;
+  vertical-align: middle;
+  margin: 0;
+  padding: 10px 0;
+}
+.courseSlider .MS-controls button {
+  position: absolute;
+  border-radius: 7px;
+  border: 0;
+  outline: 0;
+  padding: 8px 16px;
+  top: calc(50% - 20px);
+  background: #006666;
+    color: #fff;
+    box-shadow: 10px 10px 60px #67729469;
+}
+
+.courseSlider .MS-controls button:hover {
+    background: #007373;
+    color: #fafafa;
+    box-shadow: 10px 10px 60px #67729469;
+}
+
+.courseSlider .MS-controls button i{
+  font-size: 14px;
+}
+
+@media (max-width: 767px) {
+  .courseSlider .MS-controls button {
+    display: none;
+  }
+}
+.courseSlider .MS-controls button:hover {
+  cursor: pointer;
+}
+.courseSlider .MS-controls .MS-left {
+  left: 10px;
+}
+@media (max-width: 992px) {
+  .courseSlider .MS-controls .MS-left {
+    left: -2px;
+  }
+}
+.courseSlider .MS-controls .MS-right {
+  right: 10px;
+}
+@media (max-width: 992px) {
+  .courseSlider .MS-controls .MS-right {
+    right: -2px;
+  }
+} */

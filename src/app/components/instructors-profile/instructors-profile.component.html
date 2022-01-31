@@ -1,0 +1,194 @@
+<div class="dashboard-ecommerce">
+    <div class="container-fluid dashboard-content ">
+        <!-- <div class="wrapper _bg4586"> -->
+          <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="back-section">
+                  <a (click)="backClicked()" role="button">
+                    <button type="button" class="btn btn-secondary btn-outline"> <i class="fas fa-arrow-left mr-2"></i>Go Back</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    <div class="_216b01">
+      <div class="container">
+        <div class="row justify-content-md-center">
+          <div class="col-md-10">
+            <div class="section3125 rpt145">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="dp_dt150">
+                    <div class="img148">
+                      <img src="{{profilePicture == null ? 'assets/img/user-profile-black.svg' : profilePicture}}" alt="">
+                    </div>
+                    <div class="prfledt1">
+                      <h2>{{facilitator.firstName}}&nbsp;{{facilitator.lastName}}</h2>
+                      <span>{{facilitator.profession}}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <ul class="_bty149">
+                    <li *ngIf="facilitator.facilitatorTypeId == 2"><button (click)="resendLink(facilitator.email)" class="msg124 btn500">Reset Password</button></li>
+                    <li><button class="msg125 btn500">Message</button></li>
+                  </ul>
+                  
+                  <ul class="_ttl120">
+                    <li>
+                      <div class="_ttl121">
+                        <div class="_ttl122">Enroll Students</div>
+                        <div class="_ttl123">{{coursesCount == null ? '0' :coursesCount}}</div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="_ttl121">
+                        <div class="_ttl122">Courses</div>
+                        <div class="_ttl123">{{facilitatorCourseCount == null ? '0' :facilitatorCourseCount}}</div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="_ttl121">
+                        <div class="_ttl122">Reviews</div>
+                        <div class="_ttl123">{{reviewsCount == null ? '0' :reviewsCount}}</div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="_ttl121">
+                        <div class="_ttl122">Subscribers</div>
+                        <div class="_ttl123">452K</div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="_215b15">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="course_tabs">
+              <nav>
+                <div class="nav nav-tabs tab_crse" id="nav-tab" role="tablist">
+                  <a class="nav-item nav-link active" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab"
+                    aria-selected="true">About</a>
+                  <a class="nav-item nav-link" id="nav-courses-tab" data-toggle="tab" href="#nav-courses" role="tab"
+                    aria-selected="false">Courses</a>
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="_215b17">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="course_tab_content">
+              <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-about" role="tabpanel">
+                  <div class="_htg451">
+                    <div class="_htg452">
+                      <h3>Bio</h3>
+                      <p>{{facilitator.bio == null ? 'Facilitator has not added any bio Information' : facilitator.bio}}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="nav-courses" role="tabpanel">
+                  <div class="crse_content">
+                    <h3>courses ({{facilitatorCourseCount == null ? '0' :facilitatorCourseCount}})</h3>
+                    <h3 *ngIf="message" id="message" class="mt-5 pl-30 text-center">{{message}}</h3>
+                    <div class="_14d25">
+                      <div class="row">
+                        <div class="text-center">
+                        <div *ngIf="loading" class="spinner-border" role="status">
+                          <span class="sr-only">Loading...</span>
+                        </div>
+                      </div>
+                        <!-- <div *ngIf="facilitatorCourses"> -->
+                        <div *ngFor="let facilitatorCourse of facilitatorCourses| paginate : {
+        itemsPerPage: pageSize,
+        currentPage: page,
+        totalItems: count
+        };
+        let i = index
+        " [class.active]="i == currentIndex" (click)="setActiveCourse(facilitatorCourse, i)" class="col-md-3">
+                            <a routerLink="/course-view" [queryParams]="{ course: facilitatorCourse.courseData.courseName, id: facilitatorCourse.courseData.id }">
+                            <div class="course-item">
+                              <div class="course-thumb set-bg"
+                                [ngStyle]="{'background': 'url(' + facilitatorCourse.courseData.courseImageUrl + ') no-repeat 0 0 / cover'}">
+                                <!-- <div class="price">Price: {{courseAmount |currency:"₦"}}</div> -->
+                              </div>
+                              <div class="course-info">
+                                <div class="course-text">
+                                  <h6 class="course-name">{{facilitatorCourse.courseData.courseName}}</h6>
+                                  <p>by&nbsp;{{facilitator.firstName}} <span>{{facilitator.lastName}}</span></p>
+                                  <!-- <p [innerHTML] = "courseDescription"></p> -->
+                                  <!-- <div class="students">120 Students</div> -->
+                                  <!-- <div class="my-rating"></div> -->
+                                  <!-- <ngb-rating [max]="5" [(rate)]="currentRate" [readonly]="false"></ngb-rating> -->
+                                </div>
+                                <div class="course-author">
+                                  <div class="ca-pic set-bg" [ngStyle]="{'background': 'url(' + facilitator.profilePictureUrl + ') no-repeat 0 0 / cover'}"></div>
+                                  <!-- <p>{{firstName}} <span>{{lastName}}</span></p> -->
+                                </div>
+                              </div>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+  
+  
+                      <div *ngIf="facilitatorCourses" class="row">
+                        <div class="col-md-12">
+                          <div class="d-flex justify-content-space-between">
+                            <pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true"
+                              (pageChange)="handlePageChange($event)"></pagination-controls>
+  
+                            <div>
+                              Items per Page:
+                              <select (change)="handlePageSizeChange($event)">
+                                <option *ngFor="let size of pageSizes" [ngValue]="size">
+                                  {{ size }}
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- </div> -->
+  </div>
+  </div>
+  
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a routerLinkActive="list-item-active" data-dismiss="modal" (click)="onLogoutClick()" class="btn btn-primary">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>

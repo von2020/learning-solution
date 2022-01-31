@@ -1,0 +1,511 @@
+<div class="container-fluid">
+    <div class="my-course-section spad">
+        <div class="row">
+            <div class="col-md-12">
+            <div class="section-title">
+              <h2>Add Questions</h2>
+          </div>
+        </div>
+          </div>
+          <!-- <h6>Assessment ID: {{quiz.id}} </h6><h6>Course:{{quiz.CourseId}}</h6> -->
+          <div class="row">
+              <div class="col-md-12">
+                <div class="main-card mb-3 card">
+                    <div class="card-body">
+                        <!-- <section id="tabs">
+                            <div class="container">
+                                <h6 class="section-title h1">Tabs</h6> -->
+                                <!-- <div class="row">
+                                    <div class="col-xs-12 "> -->
+                                        <nav>
+                                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                                <a class="nav-item nav-link active" id="nav-mulitple-tab" data-toggle="tab" href="#nav-mulitple" role="tab" aria-controls="nav-mulitple" aria-selected="true">Multiple Choice</a>
+                                                <a class="nav-item nav-link" id="nav-filling-tab" data-toggle="tab" href="#nav-filling" role="tab" aria-controls="nav-filling" aria-selected="false">Filling Blanks</a>
+                                                <a class="nav-item nav-link" id="nav-true-false-tab" data-toggle="tab" href="#nav-true-false" role="tab" aria-controls="nav-true-false" aria-selected="false">True or False</a>
+                                                <a class="nav-item nav-link" id="nav-bulk-tab" data-toggle="tab" href="#nav-bulk" role="tab" aria-controls="nav-bulk" aria-selected="false">Bulk Upload</a>
+                                            </div>
+                                        </nav>
+
+                                        <!-- <div class="position-relative mt-5 form-group">
+                                                        <label for="exampleAddress" class="">Select Assessment</label>
+                                                        <select class="form-control" name="" required="">
+                                                            <option value selected disabled>----</option>
+                                                            <option value>a</option>
+                                                            <option value>b</option>
+                                                            <option value>c</option>
+                                                            </select>
+                                                    </div> -->
+
+                                                    <!-- <div class="position-relative form-group">
+                                                        <label for="exampleAddress" class="">Select Assessment</label>
+                                                        <select id="course" (change)="toggleCourse()" class="form-control" required>
+                                                            <option value selected disabled>----</option>
+                                                            <option *ngFor="let course of courses" value={{course.id}}>{{course.courseName}}</option>
+                                                           
+                                                          </select>
+                                                    </div> -->
+
+                                        <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                                            <div class="tab-pane fade show active"  id="nav-mulitple" role="tabpanel" aria-labelledby="nav-mulitple-tab">
+                                                <div>
+                                                    
+                                                    <!-- <div class="form-group"> 
+                                                    <div id="txtHint"></div>                                            </div>
+        
+                                                     <div class="form-group">
+                                                    <div id="txtHint"></div>
+                                                    </div> -->
+                                                    <!-- <div class="position-relative form-group">
+                                                        <label for="exampleAddress" class="">Select Assessment</label>
+                                                        <select class="form-control" name="" required="">
+                                                            <option value selected disabled>----</option>
+                                                            <option value>a</option>
+                                                            <option value>b</option>
+                                                            <option value>c</option>
+                                                            </select>
+                                                    </div> -->
+
+                                                        <div class="form-group">
+                                                        <label for="exampleInputEmail1">Question</label>
+                                                        <textarea  id="mulQuestion" style="resize: none;" rows="4" class="form-control" placeholder="Enter Question" name="question" required="" autocomplete="off"></textarea>
+                                                        </div>
+                                                        
+                                              <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="100">Option No.</th>
+                                                        <th>Option</th>
+                                                        <th width="100">Answer</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">1</th>
+                                                        <td>
+                                                        <div class="form-group">
+                                                        <label for="exampleInputEmail1">Option 1</label>
+                                                        <input id="mulOpt1" type="text"  class="form-control" placeholder="Enter option 1" >
+                                                        </div>
+                                                        </td>
+                                                        <td><div class="radio"><span><input type="radio" name="answer" id="mOption1" ></span></div></td>
+                                    
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">2</th>
+                                                        <td>
+                                                        <div class="form-group">
+                                                        <label for="exampleInputEmail1">Option 2</label>
+                                                        <input  id="mulOpt2" type="text" class="form-control" placeholder="Enter option 2" >
+                                                        </div>
+                                                        </td>
+                                                        <td><div class="radio"><span><input type="radio" name="answer" id="mOption2"></span></div></td>
+                        
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">3</th>
+                                                        <td>
+                                                        <div class="form-group">
+                                                        <label for="exampleInputEmail1">Option 3</label>
+                                                        <input  id="mulOpt3" type="text" class="form-control" placeholder="Enter option 3" >
+                                                        </div>
+                                                        </td>
+                                                        <td><div class="radio"><span><input type="radio" name="answer" id="mOption3" ></span></div></td>
+                                        
+                                                    </tr>
+                                                    
+                                                    <tr>
+                                                        <th scope="row">4</th>
+                                                        <td>
+                                                        <div class="form-group">
+                                                        <label for="exampleInputEmail1">Option 4</label>
+                                                        <input  id="mulOpt4" type="text" class="form-control" placeholder="Enter option 4" name="opt4">
+                                                        </div>
+                                                        </td>
+                                                        <td><div class="radio"><span><input type="radio" name="answer" id="mOption4" ></span></div></td>
+                                        
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                    
+                                             <button (click)="add(MultipleQuestion)" class="btn btn-primary">ADD</button>
+                                                        
+                                        </div>
+                                     </div>
+                                            <div class="tab-pane fade "  id="nav-filling" role="tabpanel" aria-labelledby="nav-filling-tab">
+                                                <form>
+                                                    <div class="form-group">
+                                                    <!-- <div class="form-group">
+                                                  
+                                                </div>
+                                                   <div class="form-group"> 
+                                                   <div id="txtHints"></div>                                            </div>
+       
+                                                    <div class="form-group">
+                                                   <div id="txtHints"></div>
+                                                   </div>
+                                                   <div class="form-group">
+                                                   <div id="txtHintts"></div>
+                                                   </div> -->
+       
+                                                       <div class="form-group">
+                                                       <label for="exampleInputEmail1">Question</label>
+                                                       <textarea id="filQuestion" style="resize: none;" rows="4" class="form-control" placeholder="Enter Question" name="question" required="" autocomplete="off"></textarea>
+                                                       </div>
+                                                       <div class="form-group">
+                                                       <label for="exampleInputEmail1">Answer</label>
+                                                       <input id="filAnswer" type="text" class="form-control" placeholder="Enter answer" name="answer" required="" autocomplete="off">
+                                                       </div>
+                                              
+                                               <button (click)="addFill()" class="btn btn-primary">ADD</button>
+                                              
+                                                       </div></form>
+                                            </div>
+                                            <div class="tab-pane fade "  id="nav-true-false" role="tabpanel" aria-labelledby="nav-true-false-tab">
+                                                <form>
+                                                   
+                                                    <!-- <div class="form-group"> 
+                                                    <div id="txtHint"></div>                                            </div>
+        
+                                                     <div class="form-group">
+                                                    <div id="txtHint"></div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                    <div id="txtHintt"></div>
+                                                    </div> -->
+                                                        <div class="form-group">
+                                                        <label for="exampleInputEmail1">Question</label>
+                                                        <textarea id="boolQuestion" style="resize: none;" rows="4" class="form-control" placeholder="Enter Question" name="question" required="" autocomplete="off"></textarea>
+                                                        </div>
+                                                        
+                                              <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="100">Option No.</th>
+                                                        <th>Option</th>
+                                                        <th width="100">Answer</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">1</th>
+                                                        <td>
+                                                        <div class="form-group">
+                                                        <label for="exampleInputEmail1">True</label>
+                                                    </div>
+                                                        </td>
+                                                        <td><div class="radio"><span><input type="radio" name="answer" id="option1" required=""></span></div></td>
+                                    
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">2</th>
+                                                        <td>
+                                                        <div class="form-group">
+                                                        <label for="exampleInputEmail1">False</label>
+                                                        </div>
+                                                        </td>
+                                                        <td><div class="radio"><span><input type="radio" name="answer" id="option2" required=""></span></div></td>
+                        
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                    
+                                             <button (click)="addBool()" class="btn btn-primary">ADD</button>
+                                                        
+                                                        </form>                                            
+                                            </div>
+                                            <div class="tab-pane fade" id="nav-bulk" role="tabpanel" aria-labelledby="nav-bulk-tab">
+                                                <form>
+                                                    <div class="form-group">
+                                                   
+                                                   <div class="form-group"> 
+                                                   <div id="txtHints3"></div>                                            </div>
+       
+                                                    <div class="form-group">
+                                                   <div id="txtHints3"></div>
+                                                   </div>
+                                                   <div class="form-group">
+                                                   <div id="txtHintts3"></div>
+                                                   </div>
+       
+                                                       <div class="form-group">
+                                                       <label for="exampleInputEmail1">Select Type</label>
+                                                   <select class="form-control" name="type" required="">
+                                                   <option value="">--Select Type--</option>
+                                                       <option value="mc">Multiple Choice</option>
+                                                       <option value="fib">Filling the Blank</option>
+                                                       <option value="tof">True or False</option>
+       
+                                                       </select>
+       
+                                                       </div>
+                                                       <div class="form-group">
+                                                       <label for="exampleInputEmail1">Select File</label>
+                                                   <input type="file" class="form-control" name="uploadedFile" required="">
+                                                       </div>
+                                              
+                                               <button type="submit" class="btn btn-primary">Submit</button>
+                                              
+                                                       </div></form>                                            
+                                            </div>
+                                        </div>
+                                    
+                                    <!-- </div>
+                                </div> -->
+                            <!-- </div>
+                        </section> -->
+                    </div>
+                </div>
+               
+              </div>
+
+              <div class="col-md-12 pt-2">
+              <div class="card mb-3"> 
+                <ul class="list-group">
+                    <li  *ngFor="let item of questions" class="list-group-item d-flex justify-content-between align-items-center">
+                      {{item.Question || item.question}}
+                <div>
+                 <button class="btn btn-primary mr-4" (click)="question = item" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"></i></button> 
+                 <button class="btn btn-danger mr-2" (click)="question = item" data-toggle="modal" data-target="#exampleModal2"><i class="fas fa-trash"></i></button> 
+                </div>
+            </li>
+                   
+                  </ul>
+                  
+                <button class="btn btn-success btn-block font-18 mt-2 " (click)="submit()" title="submit questions to server">SUBMIT</button>
+             </div>
+            </div>
+
+            </div>
+          </div>
+          </div>
+        <!-- </div>
+    </div> -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">{{question.Question}}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div *ngIf="question.QuestionTypeId == 1">
+                <div>
+                                                    
+                    <div class="form-group"> 
+                    <div id="txtHint"></div>                                            </div>
+
+                     <div class="form-group">
+                    <div id="txtHint"></div>
+                    </div>
+                    <div class="form-group">
+                    <div id="txtHintt"></div>
+                    </div>
+                        <div class="form-group">
+                        <label for="exampleInputEmail1">Question</label>
+                        <textarea id="mulQuestionE" style="resize: none;" value="{{question.Question}}" rows="4" class="form-control" placeholder="Enter Question" name="question" required="" autocomplete="off"></textarea>
+                        </div>
+                        
+              <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th width="100">Option No.</th>
+                        <th>Option</th>
+                        <th width="100">Answer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>
+                        <div class="form-group">
+                        <label for="exampleInputEmail1">Option 1</label>
+                        <input id="mulOpt1E" type="text" value="{{question.Option1}}"  class="form-control" placeholder="Enter option 1" >
+                        </div>
+                        </td>
+                        <td><div class="radio"><span><input [checked]="question.Answer == 'Option1'" type="radio" name="answer" id="mOption1E" ></span></div></td>
+    
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>
+                        <div class="form-group">
+                        <label for="exampleInputEmail1">Option 2</label>
+                        <input  id="mulOpt2E" type="text" value="{{question.Option2}}" class="form-control" placeholder="Enter option 2" >
+                        </div>
+                        </td>
+                        <td><div class="radio"><span><input [checked]="question.Answer == 'Option2'" type="radio" name="answer" id="mOption2E"></span></div></td>
+
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>
+                        <div class="form-group">
+                        <label for="exampleInputEmail1">Option 3</label>
+                        <input  id="mulOpt3E" value="{{question.Option3}}" type="text" class="form-control" placeholder="Enter option 3" >
+                        </div>
+                        </td>
+                        <td><div class="radio"><span><input [checked]="question.Answer == 'Option3'" type="radio" name="answer" id="mOption3E" ></span></div></td>
+        
+                    </tr>
+                    
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>
+                        <div class="form-group">
+                        <label for="exampleInputEmail1">Option 4</label>
+                        <input  id="mulOpt4E" value="{{question.Option4}}" type="text" class="form-control" placeholder="Enter option 4" name="opt4">
+                        </div>
+                        </td>
+                        <td><div class="radio"><span><input [checked]="question.Answer == 'Option4'" type="radio" name="answer" id="mOption4E" ></span></div></td>
+        
+                    </tr>
+                </tbody>
+            </table>
+    
+             
+                        
+        </div>
+              </div>
+
+              <div *ngIf="question.QuestionTypeId == 2">
+                <form >
+                    <div class="form-group">
+                    <div class="form-group">
+                  
+                </div>
+                   <div class="form-group"> 
+                   <div id="txtHints"></div>                                            </div>
+
+                    <div class="form-group">
+                   <div id="txtHints"></div>
+                   </div>
+                   <div class="form-group">
+                   <div id="txtHintts"></div>
+                   </div>
+
+                       <div class="form-group">
+                       <label for="exampleInputEmail1">Question</label>
+                       <textarea id="filQuestionE"   style="resize: none;" rows="4" value="{{question.Question}}" class="form-control" placeholder="Enter Question" name="question" required="" autocomplete="off"></textarea>
+                       </div>
+                       <div class="form-group">
+                       <label for="exampleInputEmail1">Answer</label>
+                       <input id="filAnswerE" type="text" class="form-control" placeholder="Enter answer" value="{{question.Answer}}" required="" autocomplete="off">
+                       </div>
+              
+              
+                       </div></form>
+              </div>
+              <div *ngIf="question.QuestionTypeId == 3">
+                <form>
+                                                   
+                    <div class="form-group"> 
+                    <div id="txtHint"></div>                                            </div>
+
+                     <div class="form-group">
+                    <div id="txtHint"></div>
+                    </div>
+                    <div class="form-group">
+                    <div id="txtHintt"></div>
+                    </div>
+                        <div class="form-group">
+                        <label for="exampleInputEmail1">Question</label>
+                        <textarea id="boolQuestionE" value="{{question.Question}}" style="resize: none;" rows="4" class="form-control" placeholder="Enter Question" name="question" required="" autocomplete="off"></textarea>
+                        </div>
+                        
+              <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th width="100">Option No.</th>
+                        <th>Option</th>
+                        <th width="100">Answer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>
+                        <div class="form-group">
+                        <label for="exampleInputEmail1">True</label>
+                    </div>
+                        </td>
+                        <td><div class="radio"><span><input type="radio" [checked]="question.Answer == 'Option1'" name="answer" id="option1E" required=""></span></div></td>
+    
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>
+                        <div class="form-group">
+                        <label for="exampleInputEmail1">False</label>
+                        </div>
+                        </td>
+                        <td><div class="radio"><span><input type="radio" [checked]="question.Answer == 'Option2'" name="answer" id="option2E" required=""></span></div></td>
+
+                    </tr>
+                </tbody>
+            </table>
+    
+             <button (click)="addBool()" class="btn btn-primary">ADD</button>
+                        
+                        </form>     
+              </div>
+              <div>
+                  
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button (click)="update()"  type="button" data-dismiss="modal" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel2">{{question.Question}}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+             <p class="text-center">ALERT!!!</p> 
+             <p class="text-center">Are you sure you want  to delete the question?</p>
+
+            
+            
+              
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button (click)="remove()"  type="button" data-dismiss="modal" class="btn btn-danger">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a routerLinkActive="list-item-active" data-dismiss="modal" (click)="onLogoutClick()" class="btn btn-primary">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  

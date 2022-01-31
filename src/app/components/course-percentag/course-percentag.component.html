@@ -1,0 +1,119 @@
+<div class="dashboard-ecommerce">
+    <div class="container-fluid dashboard-content ">
+        <!-- ============================================================== -->
+        <!-- pageheader  -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">Manage Course(s) percentage</h2>
+                    <p class="pageheader-text">Nulla euismod urna eros, sit amet scelerisque torton lectus vel mauris facilisis faucibus at enim quis massa lobortis rutrum.</p>
+                    <div class="page-breadcrumb">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Course Management</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Manage Course(s) percentage</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+    <!-- ============================================================== -->
+    <!-- basic table  -->
+    <!-- ============================================================== -->
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card">
+            <h5 class="card-header">Course List</h5>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped table-bordered first">
+                        <thead>
+                            <tr>
+                                <th class="text-center">S/N</th>
+                                <th class="text-center">Course Name</th>
+                                <th class="text-center">Percentage(%)</th>
+                                <th class="text-center">Date Created</th>
+                                <th class="text-center">Last Updated</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let course of courses; let i = index">
+                                <td class="text-center">{{i+1}}</td>
+                                <td class="text-center">{{course.courseName}}</td>
+                                <td class="text-center">{{course.percentage}}</td>
+                                <td class="text-center">{{course.dateCreated | customDate}}</td>
+                                <td class="text-center">{{course.lastUpdated | customDate}}</td>
+                                <td class="text-center">
+                                    <span> 
+                                        <button data-toggle="modal" data-target="#editModal"(click)="updateCourse(course)" type="button" id="PopoverCustomT-" class="btn btn-outline-danger btn-sm" >Edit</button>
+                                    </span>
+                                        </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end basic table  -->
+    <!-- ============================================================== -->
+</div>
+</div>
+</div>
+
+<!-- Edit Modal-->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Edit Percentage</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        
+        <div class="modal-body">
+          <form>
+            <div class="col-md-12">
+            <div class="form-group">
+                <label for="percentage" class="col-form-label">Percentage</label>
+                <input [(ngModel)]="activeCourse.percentage" name="percentage" id="percentage" type="text" class="form-control form-control-lg">
+            </div>
+        </div>
+        
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">No</button>
+          <a routerLinkActive="list-item-active" (click)="updateCoursePercentage()" class="btn btn-delete">Yes</a>
+        </div>
+
+        <!-- <div class="col-md-12">
+            <a role="button" (click)="createCategory()" class="btn btn-rounded btn-dark">Submit</a>
+        </div> -->
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a routerLinkActive="list-item-active" data-dismiss="modal" (click)="onLogoutClick()" class="btn btn-primary">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>

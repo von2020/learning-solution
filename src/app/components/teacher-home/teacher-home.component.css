@@ -1,0 +1,390 @@
+
+.modal .modal-body input[type=text], 
+.modal .modal-body input[type=email], 
+.modal .modal-body input[type=tel], 
+.modal .modal-body input[type=password] {
+    border-radius: 5px;
+    color: #29303b;
+    font-size: 18px;
+    height: auto;
+    padding: 11px 45px 12px 40px;
+}
+
+.modal-body {
+    padding: 24px 24px 16px;
+}
+
+.modal.show .modal-dialog {
+    -webkit-transform: none;
+    transform: none;
+    margin: 150px auto;
+    justify-content: center;
+    z-index: 2;
+}
+
+.modal-header {
+    padding: 24px;
+}
+
+.modal-title {
+    font-weight: 700;
+    font-size: 15px;
+}
+.icon-addon {
+    position: relative;
+    color: #555;
+    display: block;
+}
+
+.icon-addon:after,
+.icon-addon:before {
+    display: table;
+    content: " ";
+}
+
+.icon-addon:after {
+    clear: both;
+}
+
+.icon-addon.addon-md .glyphicon,
+.icon-addon .glyphicon, 
+.icon-addon.addon-md .fa,
+.icon-addon .fa {
+    position: absolute;
+    z-index: 2;
+    left: 10px;
+    font-size: 14px;
+    width: 20px;
+    margin-left: -2.5px;
+    text-align: center;
+    padding: 10px 0;
+    top: 1px
+}
+
+.icon-addon.addon-lg .form-control {
+    line-height: 1.33;
+    height: 46px;
+    font-size: 18px;
+    padding: 10px 16px 10px 40px;
+}
+
+.icon-addon.addon-sm .form-control {
+    height: 30px;
+    padding: 5px 10px 5px 28px;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.icon-addon.addon-lg .fa,
+.icon-addon.addon-lg .glyphicon {
+    font-size: 18px;
+    margin-left: 0;
+    left: 11px;
+    top: 4px;
+}
+
+.icon-addon.addon-md .form-control,
+.icon-addon .form-control {
+    padding-left: 30px;
+    float: left;
+    font-weight: normal;
+}
+
+.icon-addon.addon-sm .fa,
+.icon-addon.addon-sm .glyphicon {
+    margin-left: 0;
+    font-size: 12px;
+    left: 5px;
+    top: -1px
+}
+
+.icon-addon .form-control:focus + .glyphicon,
+.icon-addon:hover .glyphicon,
+.icon-addon .form-control:focus + .fa,
+.icon-addon:hover .fa {
+    color: #2580db;
+}
+
+.t-and-c-label {
+    font-size: 10px;
+}
+
+#grayOutDiv
+{
+    background-color: #333;
+    opacity: 0.7;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    z-index: 9999;
+}
+
+.flash-messages
+{
+    z-index: 10000;
+    position: relative;
+}
+#teacher-testimonial {
+    background: linear-gradient(112deg, #ffffff 50%, antiquewhite 50%);
+    /* max-width: 900px; */
+    margin: auto
+}
+
+#teacher-testimonial .carousel-caption p {
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+#myCarousel .carousel-item {
+    position: relative;
+    height: auto;
+    min-height: 600px;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+ 
+
+#myCarousel .carousel-caption {
+    /* position: initial; */
+    z-index: 10;
+    padding: 5rem 8rem;
+    color: rgba(78, 77, 77, 0.856);
+    text-align: left;
+    font-size: 1.2rem;
+    font-style: italic;
+    margin: 0 auto;
+    font-weight: bold;
+    line-height: 2rem;
+    width: 100%;
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media(max-width:999px) {
+    #myCarousel .carousel-caption {
+        /* position: initial; */
+        z-index: 10;
+        padding: 5rem 8rem;
+        color: rgba(78, 77, 77, 0.856);
+        text-align: left;
+        font-size: 1.2rem;
+        font-style: italic;
+        margin: 0 auto;
+        font-weight: bold;
+        line-height: 2rem;
+        width: 100%;
+        position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    }
+
+#myCarousel .right.carousel-caption {
+    /* position: initial;
+    z-index: 10;
+    padding: 5rem 8rem;
+    color: rgba(78, 77, 77, 0.856); */
+    text-align: right;
+    /* font-size: 1.2rem;
+    font-style: italic;
+    font-weight: bold;
+    line-height: 2rem */
+}
+
+#myCarousel .carousel-content p {
+    font-size: 1.2rem;
+    width: 30%;
+    font-weight: normal;
+    line-height: 1.5;
+    color: #fff;
+}
+
+#myCarousel .right.carousel-content p {
+    font-size: 1.2rem;
+    width: 30%;
+    margin-right: 0;
+    float: right;
+    font-weight: normal;
+    line-height: 1.5;
+    color: #fff;
+}
+
+.carousel-caption {
+    position: initial;
+    z-index: 10;
+    padding: 5rem 8rem;
+    color: rgba(78, 77, 77, 0.856);
+    text-align: center;
+    font-size: 1.2rem;
+    font-style: italic;
+    font-weight: bold;
+    line-height: 2rem
+}
+
+@media(max-width:767px) {
+    .carousel-caption {
+        /* position: initial; */
+        z-index: 10;
+        padding: 3rem 2rem;
+        color: rgba(78, 77, 77, 0.856);
+        text-align: center;
+        font-size: 0.7rem;
+        font-style: italic;
+        font-weight: bold;
+        line-height: 1.5rem
+    }
+
+    #myCarousel .carousel-content p, #myCarousel .right.carousel-content p {
+        font-size: 1.2rem;
+        width: 100%;
+        margin-right: 0;
+        float: right;
+        font-weight: normal;
+        line-height: 1.5;
+        color: #fff;
+    }
+
+    .carousel-content h2 {
+        line-height: 1.1;
+        margin-bottom: 6px;
+    }
+
+    #teacher-testimonial .carousel-caption p {
+        font-size: 15px;
+        line-height: 1.4;
+    }
+
+    .testimonie-section .testimonie-section-title h2 {
+        font-size: 34px;
+        font-weight: 600;
+        margin-bottom: 25px;
+    }
+
+    .testimonie-section .testimonie-section-title p {
+        font-size: 16px;
+        /* font-weight: 600; */
+        margin-top: 15px;
+        line-height: 1.5;
+    }
+
+    .member_counter .member-section-title h2 {
+        font-size: 34px;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 15px;
+    }
+
+    .member_counter .member-section-title {
+        margin-bottom: 30px;
+    }
+
+    .member_counter .single_member_counter {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .member_counter .single_member_counter span {
+        font-size: 40px;
+        font-weight: 400;
+        font-stretch: condensed;
+        color: #fff;
+    }
+
+    #myCarousel .right.carousel-caption {
+        /* position: initial; */
+        z-index: 10;
+        padding: 3rem 2rem;
+        color: rgba(78, 77, 77, 0.856);
+        text-align: left;
+        font-size: 0.7rem;
+        font-style: italic;
+        font-weight: bold;
+        line-height: 1.5rem
+    }
+
+    #myCarousel .carousel-caption {
+        /* position: initial; */
+        z-index: 10;
+        padding: 3rem 2rem;
+        color: rgba(78, 77, 77, 0.856);
+        text-align: left;
+        font-size: 0.7rem;
+        font-style: italic;
+        font-weight: bold;
+        line-height: 1.5rem
+    }
+
+    .help-section .help-text {
+        text-align: center;
+        padding: 0px;
+    }
+}
+
+@media(max-width:360px) {
+    .help-section .help-text h4{
+        font-size: 14px;
+    }
+}
+
+.carousel-caption img {
+    width: 10rem;
+    border-radius: 10rem;
+    margin-top: 2rem
+}
+
+@media(max-width:767px) {
+    .carousel-caption img {
+        width: 10rem;
+        border-radius: 10rem;
+        margin-top: 1rem
+    }
+}
+
+#image-caption {
+    font-style: normal;
+    font-size: 1.6rem;
+    margin-top: 0.5rem
+}
+
+@media(max-width:767px) {
+    #image-caption {
+        font-style: normal;
+        font-size: 0.8rem;
+        margin-top: 0.5rem
+    }
+}
+
+#teacher-testimonial i {
+    background-color: rgb(226, 71, 3);
+    padding: 1.4rem
+}
+
+@media(max-width:767px) {
+    #teacher-testimonial i {
+        padding: 0.8rem
+    }
+}
+
+.carousel-control-prev {
+    justify-content: flex-start
+}
+
+.carousel-control-next {
+    justify-content: flex-end
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    transition: none;
+    opacity: unset
+}

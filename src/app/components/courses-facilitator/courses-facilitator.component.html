@@ -1,0 +1,76 @@
+<div class="container-fluid">
+    <div class="my-course-section spad">
+        <div class="row">
+            <div class="col-md-12">
+            <div class="section-title title-content">
+              <h2>Courses</h2>
+              <a [routerLink]="['/create-course']">
+              <button type="button" class="btn new-course-btn">New Course <i class="fas fa-plus"></i></button>
+            </a>
+          </div>
+        </div>
+          </div>
+
+          <div class="row">
+              <div *ngFor="let facilitatorCourse of facilitatorCourses" class="mb-5 col-md-3">
+                <div class="feature h_medium bg-gray radius-2">
+                <div class="card">
+                    <img class="card-img-top" height="240" src="{{facilitatorCourse.courseData.courseImageUrl}}" alt="Card image cap">
+                    <div class="card-body title-content">
+                      <h6 class="card-title course-name">{{facilitatorCourse.courseData.courseName}}</h6>
+                      <i class="fas fa-pen"></i>
+                    <!-- <div class="mb-1 course-rating" data-rating="5.0"></div> -->
+                  </div>
+                    </div>
+                  <div class="details">
+                    <div class="card-actions">
+                      <button data-purpose="delete-button" (click)="deleteCourse(facilitatorCourse.courseData.id)" type="button" class="btn btn-danger">Delete</button>
+                      <button data-purpose="edit-button" (click)="goToEditCourse(facilitatorCourse)" type="button" class="btn btn-default">Edit</button>
+                    </div>
+                  </div>
+                </div>
+                  <!-- [routerLink]="['/create-course', facilitatorCourse.id]" -->
+              </div>
+          </div>
+    </div>
+
+</div>
+
+<!-- Delete Modal-->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Delete Course</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">Are you sure you want to Delete this Course?.</div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">No</button>
+        <a routerLinkActive="list-item-active" (click)="confirmDeleteCourse()" class="btn btn-delete">Yes</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a routerLinkActive="list-item-active" (click)="onLogoutClick()" class="btn btn-primary">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>

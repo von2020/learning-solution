@@ -1,0 +1,610 @@
+<app-navbar></app-navbar>
+<div id="course-wrapper">
+		
+	<div id="course-content-wrapper">
+	<section class="summary-section ">
+		<div class="courseSummary">
+		<div class="container summary-content">
+			<div class="summary-text text-white">
+				<h2>{{course.courseData.courseName}}</h2>
+				<p>{{course.courseData.courseSubTitle}}</p>
+			</div>
+			<div class="other-details text-white">
+				<span *ngIf="students">
+					<span><i class="fas fa-users"></i></span>
+					<span>{{students.length}} Students</span>
+				</span>
+			</div>
+			<div class="row">
+				<div class="col-lg-6 text-left">
+					<form class="summary-btn">
+						<button class="btn mb-3 summaryText-btn" type="submit" data-toggle="modal" data-target="#exampleModal" (click)="playPreview(course.courseData.courseVideoPreviewUrl)" *ngIf="course.courseData.courseVideoPreviewUrl != null">Watch Preview<i class="far fa-play-circle"></i></button>
+						<button class="btn mb-3 summaryText-btn" (click)="noPreview()" *ngIf="course.courseData.courseVideoPreviewUrl == null">Watch Preview<i class="far fa-play-circle"></i></button>
+						<button class="btn mb-3 summaryText-btn" type="submit" onclick="">Share<i class="fas fa-share"></i></button>
+						<button class="btn mb-3 summaryText-btn" type="submit" onclick="">Wishlist<i class="fas fa-heart"></i></button>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+		<div class="sub-summary">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-5 sub-summary-content">
+					<span class="badge badge-best-seller">Best seller</span>
+					<div class="metrics-align">
+					<div class="previewCourse-rating"></div>
+					<span class="metrics-align ml-3 mt-2" *ngIf="courseRating"><span style="font-size: 14px;font-weight: 600;color: #db7900;">{{courseRating | number : '1.1-1'}}</span>&nbsp; ({{courseRate}} Rating)</span>
+					</div>
+					<span class="metrics-align time" *ngIf="course.duration > 0"><span><i class="far fa-clock"></i></span><span>{{course.duration*1000 | customDuration: 'ms':'hhmmss'}}</span></span>
+				</div>
+				<div class="col-md-7 sub-summary-content-author" *ngIf="facilitator != null">
+                    <img src="{{facilitator.profilePictureUrl == null ? 'assets/img/gender-neutral-user.png' : facilitator.profilePictureUrl}}" width="40px" class="clickme rounded-circle" alt="profile">
+					<div class="author-profile">Created by <span style="color: #006666; font-weight: bold;">{{facilitator.firstName}}&nbsp;{{facilitator.lastName}}</span></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</section>
+
+	<div id="content">
+
+	<!-- Begin Page Content -->
+
+		<div class="description-content">
+			<div class="container-fluid">
+				<div *ngIf="course.courseData.courseDescription != null" class="description-section spad">
+					<div class="row">
+						<div class="col-md-8">
+							<div class="section-subtitle mb-5 d-flex">
+							  <h3>Course Description</h3><div class="side-line"></div>
+						  </div>
+						  <article>
+						  <p [innerHTML] = "course.courseData.courseDescription"></p>
+						  </article>
+					</div>
+					
+					<div class="col-md-4">
+						<flash-messages></flash-messages>
+						<div class="option-section shadow">
+							<h3 class="option-item mb-3" *ngIf="course.courseData.courseTypeName != 'PassCode'"> {{totalAmount == 0 ? 'Free' : totalAmount |currency:"₦"}}</h3>
+							<h3 class="option-item mb-3" *ngIf="course.courseData.courseTypeName == 'PassCode'"> Passcode </h3>
+						  <a class="option-item d-flex justify-content-center" >
+							<button id="submit" (click)="getCart()" type="submit" class="w-100 btn btn-danger ibtn" *ngIf="course.courseData.courseTypeName != 'PassCode'">Add to cart</button>
+							<button id="submit" (click)="getPassCodeCart()" type="submit" class="w-100 btn btn-danger ibtn" *ngIf="course.courseData.courseTypeName == 'PassCode'">Add to cart</button>
+						  </a>
+						  <a class="option-item d-flex justify-content-center">
+							<button class="btn mb-3 soft-btn" type="submit" (click)="balancePayment()" *ngIf="course.courseData.courseTypeName != 'PassCode'">Buy now</button> 
+							<button class="btn mb-3 soft-btn" type="submit" (click)="closePayment()" *ngIf="course.courseData.courseTypeName == 'PassCode'">Get now</button> 
+						  </a>
+						  <p class="option-item text-center text-gray-900">30-Day Money-Back Guarantee</p>
+						  <div class="option-item">
+							<h6 class="font-weight-bold mb-2"> What This Course Includes : </h6>
+							
+								  <ul class="option-item-includes">
+									<li class="metrics-align" *ngIf="course.duration > 0">
+										<span class="fs-20 material-icons mr-2">ondemand_video</span>
+									<span></span>{{course.duration*1000 | customDuration: 'ms':'hhmmss'}}&nbsp; on-demand video
+									</li>
+									<!-- <li>
+										<i class="far fa-file fa-fw mr-2"></i>
+										32 articles
+									</li> -->
+									<li class="metrics-align" *ngIf="courseResources.length > 0">
+										<span class="fs-20 material-icons mr-2">cloud_download</span>
+										{{courseResources.length}} downloadable resources
+									</li>
+									<li class="metrics-align">
+										<span class="fs-20 material-icons mr-2">timeline</span>
+										Full lifetime access
+									</li>
+									<li class="metrics-align">
+										<i class="fas fa-mobile-alt fa-fw mr-2"></i>
+										Access on mobile and TV
+									</li>
+									<li class="metrics-align">
+										<i class="fas fa-graduation-cap fa-fw mr-2"></i>
+										Certificate of completion
+									</li>
+								  </ul>
+						</div>
+						<a role="button" id="hide"><p class="option-item text-center couponText">Apply Coupon</p></a>
+						<div id="Create" style="display:none" class="couponDiv">
+						<div class="input-group">
+							<input type="text" [(ngModel)]="couponCode" class="form-control" placeholder="Enter Code" aria-label="Recipient's username" aria-describedby="basic-addon2">
+							<div class="input-group-append">
+							  <button (click)="applyCouponCode()" class="btn btn-default" type="button">Continue</button>
+							</div>
+						  </div>
+						  <a role="button" id="show" class="option-item text-danger">Cancel</a>
+						</div>
+						  <div class="dropdown-divider"></div>
+						  
+						  <div class="option-item mt-3">
+							<h6 class="font-weight-bold">Training more than Four People ?</h6>
+							<p class="t-wrap text-gray-500">Get your team access to expertplat's top 4, 000+ courses anytime, anywhere.</p>
+							<a class="option-item d-flex justify-content-center" [routerLink]="[ '/school-log-in' ]">
+								<button class="btn mb-3 soft-btn" type="submit">Get expertplat for Schools</button> 
+							  </a>
+						  </div>
+						</div>
+			
+			
+					  </div>
+				</div>
+			</div>
+
+		</div>
+		</div>
+
+		<div class="main-content content-alignment">
+			<div class="container-fluid">
+			  <div class="preview-section spad">
+			  <div class="row">
+			  <div class="col-md-8">
+				<div class="section-subtitle d-flex">
+				  <h3>Course Content</h3><div class="side-line"></div>
+			  </div>
+			  
+			  <div *ngIf="courseTopicLists" id="accordion" class="mt-3 accordion">
+				<div *ngFor="let courseTopicList of courseTopicLists;let i = index" [id]="'heading'+courseTopicList.courseTopic.id" class="card border-2 mb-3 shadow">
+					<div class="card-header course-topic-header collapsed" data-toggle="collapse" [attr.data-target]="'#collapse'+courseTopicList.courseTopic.id">
+						<a class="card-title"> {{courseTopicList.courseTopic.topic}} </a>
+						<span *ngIf="course.courseData.courseTypeName != 'PassCode'" style="font-size:14px;color:rgba(0, 0, 0, 0.5); margin-right: 8px;">{{courseTopicList.duration*1000 | customDuration: 'ms':'hhmmss'}}</span>
+					</div>
+					<div [id]="'collapse'+courseTopicList.courseTopic.id" class="card-body p-0 collapse moreCollapse" data-parent="#accordion">
+					  <ul *ngIf="course.courseData.courseTypeName != 'PassCode' && course.courseData.isVideoCourse == true" class="section_menu" aria-labelledby="userDropdown">
+						<li *ngFor="let courseTopicContent of courseTopicList.courseTopic.video" class="section-item">
+						  <!-- <a (click)="playVideo(courseTopicContent.courseVideoPreviewUrl)" role="button" class="d-inline"> -->
+							<a class="d-inline">
+							<i class="far fa-play-circle fa-fw mr-2"></i>
+						  {{courseTopicContent.description}}
+						  <p style="float: right; margin: 0px; font-size:14px;color:rgba(0, 0, 0, 0.5);">{{courseTopicContent.duration | customDuration: 'ms':'mmss'}}</p>
+						</a>
+						</li>
+						</ul>
+						<ul *ngIf="course.courseData.courseTypeName != 'PassCode' && course.courseData.isVideoCourse == false" class="section_menu" aria-labelledby="userDropdown">
+							<li *ngFor="let courseTopicContent of courseTopicList.courseTopic.material" class="section-item">
+							  <!-- <a (click)="playVideo(courseTopicContent.courseVideoPreviewUrl)" role="button" class="d-inline"> -->
+								<a class="d-inline">
+								<i class="fas fa-book fa-fw mr-2"></i>
+							  {{courseTopicContent.description}}
+							</a>
+							</li>
+							</ul>
+						<!-- <span *ngIf="course.duration != 0"> -->
+						<ul *ngIf="course.courseData.courseTypeName == 'PassCode' && course.courseData.isVideoCourse == true" class="section_menu" aria-labelledby="userDropdown">
+							<li *ngFor="let courseTopicContent of courseTopicList.courseTopic.video" class="section-item">
+							  <!-- <a (click)="playVideo(courseTopicContent.courseVideoPreviewUrl)" role="button" class="d-inline"> -->
+								<a class="d-inline">
+								<i class="far fa-play-circle fa-fw mr-2"></i>
+							  {{courseTopicContent.description}}
+							  <p style="float: right; margin: 0px; font-size:14px;color:rgba(0, 0, 0, 0.5);">{{courseTopicContent.duration | customDuration: 'ms':'mmss'}}</p>
+							</a>
+							</li>
+							</ul>
+						<!-- </span> -->
+							<ul *ngIf="course.courseData.courseTypeName == 'PassCode' && course.courseData.isVideoCourse == false" class="section_menu" aria-labelledby="userDropdown">
+								<li *ngFor="let courseTopicContent of courseTopicList.courseTopic.material" class="section-item">
+								  <!-- <a (click)="playVideo(courseTopicContent.courseVideoPreviewUrl)" role="button" class="d-inline"> -->
+									<a class="d-inline">
+									<i class="fas fa-book fa-fw mr-2"></i>
+								  {{courseTopicContent.description}}
+								</a>
+								</li>
+								</ul>
+					  </div>
+				</div>
+			  </div>
+	
+			</div>
+				
+			  </div></div>
+	</div>
+			</div>
+
+		<div class="objective-content content-alignment">
+			<div class="container-fluid">
+				<div class="objective-section spad">
+					<div class="row">
+						<div class="col-md-7 p-0">
+							<div class="section-subtitle mb-5 d-flex">
+							  <h3>Course Objectives</h3><div class="side-line"></div>
+						  </div>
+						  <article>
+							<p [innerHTML] ="objectiveContent.objective" *ngFor="let objectiveContent of objectiveContents"></p>
+						  </article>
+					<!-- <a href="#">Read More</a>	 -->
+					</div>
+				</div>
+			</div>
+
+		</div>
+		</div>
+
+		<div class="requirement-content content-alignment">
+			<div class="container-fluid">
+				<div class="requirement-section spad">
+					<div class="row">
+						<div class="col-md-7 p-0">
+							<div class="section-subtitle mb-5 d-flex">
+							  <h3>Course Requirements</h3><div class="side-line"></div>
+						  </div>
+						  <article>
+							<p [innerHTML] ="requirementContent.requirement" *ngFor="let requirementContent of requirementContents"></p>
+						  </article>
+					<!-- <a href="#">Read More</a>	 -->
+					</div>
+				</div>
+			</div>
+
+		</div>
+		</div>
+		
+
+		<div class="about-author-content content-alignment">
+			<div class="container-fluid">
+				<div class="about-author-section spad">
+				<div class="row">
+					<div class="col-md-7 p-0">
+						
+						<div class="section-subtitle mb-1">
+						<h3 class="mb-3">About the author</h3>
+						<p>{{facilitator.bio}}</p>
+						</div>
+					
+						
+						<div class="section-subtitle mb-5 d-flex">
+							<h5>More From the Author</h5><div class="side-line"></div>
+					</div>
+
+					<!-- <div [ngClass]="{'show-less': showShortDesciption}" id="dataList"> -->
+
+						<article>
+					<ul class="more-course-list">
+						<li *ngFor="let facilitatorCourse of facilitatorCourses" class="fcourses mb-4">
+							<div class="card shadow">
+								<div class="card-body card-effect">
+								  <div class="col p-0">
+									<div class="row no-gutters align-items-center">
+								  <div class="col-md-4 p-0">
+									<div class="more-courses b-radius">
+									  <img width="250" height="150" src="{{facilitatorCourse.courseData.courseImageUrl}}">
+									</div>
+									
+								  </div>
+				
+								  <div class="col-md-8 rpad">
+									  <div class="row">
+										  <div class="col-md-8">
+											<div class="title">{{facilitatorCourse.courseData.courseName}}</div>
+											<p class="text-gray-700 sub-title">{{facilitatorCourse.courseData.facilitatorFirstName}}&nbsp;{{facilitatorCourse.courseData.facilitatorLastName}}</p>
+											<div class="course-tags mb-2">
+												<span style="font-size: 14px;font-weight: 600;color: #db7900;">{{facilitatorCourse.averageRating | number : '1.1-1'}}</span>
+												<div class="f-rating" attr.data-rating="{{facilitatorCourse.averageRating}}"></div>
+												<!-- <span class="rating-score">5 &nbsp; (1,502)</span> -->
+											</div>
+											<div class="badge badge-best-seller">Best seller</div>
+										  </div>
+										  <div class="col-md-4">
+											<h5 class="title-amount" *ngIf="facilitatorCourse.courseData.courseTypeName != 'PassCode'">{{facilitatorCourse.courseData.courseAmount == 0 ? 'Free' : facilitatorCourse.courseData.courseAmount |currency:"₦"}}</h5>
+											<h5 class="title-amount" *ngIf="facilitatorCourse.courseData.courseTypeName == 'PassCode'">Passcode</h5>
+										  </div>
+									  </div>
+									
+								  </div>
+								  </div>
+								</div>
+								</div>
+							  </div>
+						</li>
+						</ul>
+					</article>
+				
+				<!-- </div>
+				<p class="read-more" type="button" (click)="alterDescriptionText()">
+					{{ showShortDesciption ? 'View all': 'View less' }}
+				</p> -->
+					
+				</div>
+
+				<div class="col-md-5 p-0">
+					<div class="section-author-profile text-center">
+					<img src="{{profilePicture == null ? 'assets/img/gender-neutral-user.png' : profilePicture}}" width="60px" class="clickme rounded-circle" alt="profile">
+					<h4>{{facilitator.firstName}}&nbsp;{{facilitator.lastName}}</h4>
+					<p>{{facilitator.profession}}</p>
+					<a [routerLink]="['/instructor', id]">
+					<button class="btn mb-3 soft-iprofile-btn" type="submit" >View Profile</button></a>
+					
+				</div>
+				</div>
+				</div>
+			</div>
+		</div>
+		</div>
+
+		<div class="feedback-content no-background no-border content-alignment">
+			<div class="container-fluid">
+				<div class="feedback-section spad">
+					<div class="row">
+						<div class="col-md-7 p-0">
+							<div class="section-subtitle mb-5 d-flex">
+							<h3>Student feedback</h3><div class="side-line"></div>
+						</div>
+						<div class="row">
+						<div class="col-md-2 pr-0">
+							<div class="total-feeback">
+								<!-- <h1>4.5</h1> -->
+							<span class="average-rating">{{courseRating == null ? '0.0' :courseRating | number : '1.1-1'}}</span>
+							<div class="previewCourse-rating"></div>
+							<p>Course Rating</p>
+						</div>
+						</div>
+						<div class="col-md-8 mt--69">
+							<div class="progress mb-3">
+								<div class="progress-bar" role="progressbar" aria-valuenow="100"
+								aria-valuemin="0" aria-valuemax="100" style="width:100%">
+								  <span class="sr-only">90% Complete</span>
+								</div>
+							  </div>
+							  <div class="progress mb-3">
+								<div class="progress-bar" role="progressbar" aria-valuenow="70"
+								aria-valuemin="0" aria-valuemax="100" style="width:70%">
+								  <span class="sr-only">70% Complete</span>
+								</div>
+							  </div>
+							  <div class="progress mb-3">
+								<div class="progress-bar" role="progressbar" aria-valuenow="50"
+								aria-valuemin="0" aria-valuemax="100" style="width:50%">
+								  <span class="sr-only">50% Complete</span>
+								</div>
+							  </div>
+							  <div class="progress mb-3">
+								<div class="progress-bar" role="progressbar" aria-valuenow="20"
+								aria-valuemin="0" aria-valuemax="100" style="width:20%">
+								  <span class="sr-only">20% Complete</span>
+								</div>
+							  </div>
+							  <div class="progress mb-3">
+								<div class="progress-bar" role="progressbar" aria-valuenow="10"
+								aria-valuemin="0" aria-valuemax="100" style="width:10%">
+								  <span class="sr-only">10% Complete</span>
+								</div>
+							  </div>
+						</div>
+						<div class="col-md-2 p-0">
+							<div class="mb-1 course-rating" data-rating="5.0"></div>
+							<div class="mb-1 course-rating" data-rating="4.0"></div>
+							<div class="mb-1 course-rating" data-rating="3.0"></div>
+							<div class="mb-1 course-rating" data-rating="2.0"></div>
+							<div class="course-rating" data-rating="1.0"></div>
+						</div>
+						</div>
+					</div>
+					</div>
+
+					<div *ngIf="courseReviews" class="feedback-review fpad">
+					<div class="row">
+						<div class="col-md-7">
+							<ul class="list-group list-group-flush review-list">
+								<li class="list-group-item" *ngFor="let courseReview of courseReviews;let i = index">
+									<div class="row">
+								<div class="col-md-4">
+									<div class="row">
+										<div class="col-md-4">
+											<!-- <div *ngIf="!facilitator.profilePictureUrl"> -->
+											<ngx-avatar [style]="customStyle" size="50" name="{{courseReview.learner_FirstName}}"></ngx-avatar>
+										<!-- </div> -->
+										<!-- <img src="img/authors/2.jpg" width="70px" class="clickme rounded-circle" alt="profile"> -->
+												
+										</div>
+										<div class="col-md-8 p-0">
+											<div class="feedback-review-profile">
+												<p>{{courseReview.review_Date | dateAgo}}</p>
+												<h6>{{courseReview.learner_FirstName}}&nbsp;{{courseReview.learner_LastName}}</h6>
+												
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-8">
+									<div class="reviewCourse-rating" attr.data-rating="{{courseReview.rating_Value}}"></div>
+									<article>
+										<p>{{courseReview.review_Note}}</p>
+									</article>
+								</div>
+								<!-- <div class="side-line"></div> -->
+							</div>
+						</li>
+				</ul>
+				</div>
+					</div>
+				</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="course-section content-alignment p-5" *ngIf="topCategorys">
+			<div class="container-fluid course-width">
+				<div class="row">
+					<div class="col-md-10">
+						<div class="section-title">
+							<h2>Top Courses in <span style="font-weight:bolder; color: #007373;"> {{subCategoryName}}</span></h2>
+							<!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris
+								scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus.</p> -->
+						</div>
+					</div>
+					<div class="col-md-2">
+						<a routerLink="/course-category" [queryParams]="{category: course.courseData.courseCategoryName }" style="color: #006666; font-size: 20px; font-weight: bold;"><u>See {{categoryName}} Courses</u></a>
+					</div>
+				</div>
+				<div class="course-warp slide">
+					<div *ngIf="loading" class="spinner-border" role="status">
+						<span class="sr-only">Loading...</span>
+					  </div>
+			
+					  <div class="regular slider">
+						<div *ngFor="let topCategory of topCategorys">
+							<a routerLink="/course-preview" [queryParams]="{ course: topCategory.courseName, id: topCategory.id }">
+								<app-course-item courseName="{{topCategory.courseName}}" firstName="{{topCategory.firstName}}" lastName="{{topCategory.lastName}}" aboutCourse="{{topCategory.aboutCourse}}" courseAmount="{{topCategory.courseAmount}}" courseImage="{{topCategory.courseImageUrl}}" courseDescription="{{topCategory.courseDescription}}" rating="{{topCategory.averageRating}}"></app-course-item>
+							</a>
+						</div>
+					</div>
+				</div>
+		</div>
+	</div>
+        <!-- /.container-fluid -->
+	</div>
+</div>
+</div>
+
+<!-- Play Preview Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title" id="exampleModalLabel">Course Preview</h5>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">×</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+			<!-- <video id="my-video"  class="video-js" controls preload="auto" width="550" height="350" poster="MY_VIDEO_POSTER.jpg" data-setup='{}'>
+				<source [src]="videoUrl" type='video/mp4'>
+				<p class="vjs-no-js">
+					To view this video please enable JavaScript, and consider upgrading to a web browser that
+					<a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+				</p>
+			</video> -->
+			<video id="my-video"  class="video-js vjs-big-play-centered" controls preload="auto" width="560" height="350" poster="MY_VIDEO_POSTER.jpg" data-setup='{}'>
+				<source type='video/mp4'>
+					<!-- src="{{videoUrl}}" -->
+				<!-- <source src="//amssamples.streaming.mediaservices.windows.net/91492735-c523-432b-ba01-faba6c2206a2/AzureMediaServicesPromo.ism/manifest(format=m3u8-aapl-v3)"
+				 type='application/x-mpegURL'> -->
+				<p class="vjs-no-js">
+					To view this video please enable JavaScript, and consider upgrading to a web browser that
+					<a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+				</p>
+			</video>
+		  <!-- <video id="" width="100%" controls poster="video/thumb.jpg">
+			<source src="video/Login_via_Lynda_dot_com.mp4" type="video/mp4">
+			<source src="video/Login_via_Lynda_dot_com.ogg" type="video/ogg">
+			Your browser does not support the video tag.
+		  </video> -->
+		</div>
+		<div class="modal-footer">
+		  <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		  <button type="button" class="btn btn-primary">Save changes</button> -->
+		</div>
+	  </div>
+	</div>
+  </div>
+
+  <!-- Login Modal-->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+		<div class="modal-header">
+			<div class="modal-title" id="myModalLabel">Login to Continue</div>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+		</div>
+		<div class="modal-body">
+			<flash-messages></flash-messages>
+			<!-- <div class="mb-3">
+				Discover a supportive community of online instructors. Get instant access to all course creation resources.
+				</div> -->
+				<form (submit)="onLoginSubmit()" [formGroup]="loginForm">
+				  <div class="form-group mb-0">
+					  <label for="Email"class="form-adjust" >E-mail Address</label>
+					  <input class="form-control" type="email" formControlName="Email" name="Email" required>
+					</div>
+					<div class="form-group">
+					  <label for="Password"class="form-adjust" >Password</label>
+					  <input class="form-control" type="password" formControlName="Password" name="Password" required>
+					</div>
+				  <div class="form-button">
+					  <button id="submit" type="submit" class="ibtn">Login</button><a href="forget15.html">Forgot password?</a>
+				  </div>
+			  </form>
+			  
+				<!-- [hidden]="true"  -->
+				<!-- data-toggle="modal" data-target="#confirmModal"  -->
+		</div>
+		<div class="modal-footer justify-content-center">
+		  <span>Don't have an Account yet ?</span><a data-dismiss="modal" [routerLink]="['/register']">Sign up</a>
+		  <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		  <button type="button" class="btn btn-primary">Save changes</button> -->
+		</div>
+	  </div>
+	</div>
+  </div>
+
+    <!-- Passcode Modal-->
+	<div class="modal fade" id="passcodeModal" tabindex="-1" role="dialog" aria-labelledby="passcodeModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="max-width: 400px !important;">
+		  <div class="modal-content">
+			<div class="modal-header">
+				<div class="modal-title" id="passcodeModalLabel">Enter Passcode</div>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+			</div>
+			<div class="modal-body">
+				<flash-messages></flash-messages>
+				<!-- <div class="mb-3">
+					Discover a supportive community of online instructors. Get instant access to all course creation resources.
+					</div> -->
+					<form  #f="ngForm">
+						<div class="form-group">
+						  <input id="Passcode" class="form-control form-control-lg" type="text" #PassCodeValue name="PassCode" required>
+						</div>
+					  <div class="form-button">
+						  <button id="submit" type="submit"  (click)="verifyPassCode(PassCodeValue.value)" class="ibtn">Verify</button>
+					  </div>
+				  </form>
+				  <!-- [(ngModel)]="PassCode" -->
+					<!-- [hidden]="true"  -->
+					<!-- data-toggle="modal" data-target="#confirmModal"  -->
+			</div>
+		  </div>
+		</div>
+	  </div>
+
+  <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+		<div class="modal-header">
+			<div class="modal-title" id="confirmModalLabel">Email Confirmation</div>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+		</div>
+		<div class="modal-body mb-2">
+			<div style="border-radius:200px; height:100px; width:100px; background: #F8FAF5; margin:0 auto;">
+				<img src="assets/img/Group 15946@2x.png">
+			</div>
+			<flash-messages></flash-messages>
+			<div class="mb-3 text-center">
+				<p>We have sent a code to <span style="font-size:20px;color:#006666;">{{email}}</span></p>
+				<p>Please Enter the code sent to you</p>
+				</div>
+				<form (submit)="onActivateSubmit()"class="success-input">
+						
+					<input class="form-control side-space" type="text" [(ngModel)]="Code" name="confirmation-code" placeholder="" required>
+
+					<div class="success-divider"></div>
+					
+					<div class="form-button mt-2">
+						<a  style="color:#006666;" (click)="resendLearnerCode()">resend code</a>
+						<button id="submit" type="submit" class="btn btn-danger ibtn">continue</button> 
+					</div>
+				</form>
+		</div>
+		<!-- <div class="modal-footer justify-content-center">
+			<div class="form-button mt-2">
+				<a  style="color:#006666;"href="#">resend code</a>
+				<button id="submit" type="submit" class="btn btn-danger ibtn">continue</button> 
+			</div>
+		</div> -->
+	  </div>
+	</div>
+  </div>
+<app-footer></app-footer>

@@ -1,0 +1,218 @@
+<app-navbar></app-navbar>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item notactive"><a class="text-white" [routerLink]="['/']">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Shopping Cart</li>
+            </ol>
+        </nav>
+        <h3>Shopping Cart</h3>
+    </div>
+</div>
+<div class="cart-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+              <!-- <flash-messages></flash-messages> -->
+                <div class="shopping-list-section card no-background">
+                  <div *ngIf="emptyCart" class="emptyCart">
+                    <span class="material-icons">
+                      shopping_cart
+                    </span>
+                      <p>{{emptyCart}}</p>
+    
+                      <a [routerLink]="['/']"><button type="button" class="btn ibtn">Keep Shopping</button></a>
+                  </div>
+                    <ul *ngIf="cartItems != null" class="list-group list-group-flush">
+                      <li *ngFor="let cartItem of cartItems" class="list-group-item">
+                        <div class="card">
+                          <!-- <div class="card mb-3"> -->
+                            <div class="row no-gutters">
+                              <div class="col-md-3">
+                                <img src="{{cartItem.courseImageUrl}}" class="card-img" height="150" alt="...">
+                              </div>
+                              <div class="col-md-9">
+                                <div class="card-body card-content"> 
+                                  <a routerLink="/course-preview" [queryParams]="{ course: cartItem.courseName, id: cartItem.courseId }">
+                                    <div class="column-wrapper">
+                                  <div class="cart-course-title">{{cartItem.courseName}}</div>
+                                  <div class="cart-course-author">by&nbsp;{{cartItem.facilitator}}</div>
+                                  <div class="cart-course-subtitle">{{cartItem.courseSubTitle}}</div>
+                                </div>
+                              </a>
+                                <div class="cart-course-remove">
+                                <a data-toggle="modal" data-target="#deleteModal" role="button" (click)="deleteCartItem(cartItem.id)"><i class="fas fa-trash-alt"></i></a>
+                            </div>
+                                <div class="price-text-container">
+                                    <div class="list-price">
+                                <div class="price-text cart-current-price text-danger"><span class="sr-only">Original</span><span>{{cartItem.courseAmount == 0 ? 'Free' : cartItem.courseAmount |currency:"₦"}}</span></div>
+                                        <!-- <div class="original-price-container price-text"><span class="sr-only">Discount
+                                            Price</span><span><s><span>₦25,999</span></s></span></div> -->
+                                    </div>
+                                    <div class="text-danger course-price-tag">
+                                    <i class="fas fa-tag"></i>
+                                </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <!-- <li class="list-group-item">Dapibus ac facilisis in</li>
+                      <li class="list-group-item">Vestibulum at eros</li> -->
+                      
+                      <a *ngIf="!emptyCart" id="addMoreLink" (click)="goHome()"> <button class="btn mb-3 soft-btn" type="submit"><i class="fa fa-plus-circle" aria-hidden="true"></i>Add More to Cart</button></a> 
+            
+                    </ul>
+                  </div>
+
+                  </div>
+            <div class="col-md-3">
+                <div class="order-section card shadow no-border">
+                    <div class="card-body">
+                        <div class="total-price">
+                            <h5 class="card-title">Total :</h5>
+                            <div class="course-price-text"><span class="sr-only">Current
+                                    price</span><span><span> {{totalAmount |currency:"₦"}}</span></span></div>
+                            <div *ngIf="totalAmount != subTotal" class="original-price-container price-text"><span class="sr-only">Original
+                                    Price</span><span><s><span>{{subTotal |currency:"₦"}}</span></s></span></div>
+                            <div *ngIf="percentage != null" class="price-text discount-percentage"><span class="sr-only">Discount</span><span>{{percentage == null ? '0' : percentage}}%
+                                    off</span></div>
+
+                        </div>
+                        <!-- <angular4-paystack
+                        [key]="key"
+                        [email]="email"
+                        [amount]="totalAmount"
+                        [ref]="reference"
+                        [class]="'btn btn-lg btn-danger btn-block'"
+                        (close)="paymentCancel()"
+                        (callback)="paymentDone($event)"
+  >
+    Pay with Paystack
+  </angular4-paystack> -->
+                        <!-- <span
+                            angular4-paystack
+                            [key]="key"
+                            [email]="email"
+                            [amount]="totalAmount"
+                            [ref]="reference"
+                            [class]="'btn btn-lg btn-danger btn-block'"
+                            (close)="paymentCancel()"
+                            (callback)="paymentDone($event)"
+                            
+                          >
+                            Pay with Paystack
+                            <i class="fa fa-spinner fa-spin" *ngIf="loading == true"></i>
+                      </span> -->
+                          <!-- <span *ngIf="loading == true">&nbsp; Processing....</span> -->
+                        <button type="button" (click)="balancePayment()" [disabled]="disabled" class="btn btn-lg btn-danger btn-block">Checkout</button>
+                        <hr>
+                        <flash-messages></flash-messages>
+                        <div class="input-group">
+                            <input type="text" [(ngModel)]="couponCode" class="form-control" placeholder="Enter Coupon" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                              <button (click)="applyCouponCode()" class="btn btn-danger" type="button">Apply</button>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+<app-footer></app-footer>
+
+
+
+    <!-- Delete Modal-->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteModalLabel">Remove from Cart</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Are you sure you want to Remove this Course from your Cart?.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">No</button>
+            <a routerLinkActive="list-item-active" (click)="confirmDeleteCartItem()" class="btn btn-delete" data-dismiss="modal">Yes</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <!-- Login Modal-->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                  <div class="modal-title" id="myModalLabel">Login to Continue</div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+              </div>
+              <div class="modal-body">
+                  <flash-messages></flash-messages>
+                  <!-- <div class="mb-3">
+                      Discover a supportive community of online instructors. Get instant access to all course creation resources.
+                      </div> -->
+                      <form (submit)="onLoginSubmit()" [formGroup]="loginForm">
+                        <div class="form-group mb-0">
+                            <label for="Email"class="form-adjust" >E-mail Address</label>
+                            <input class="form-control" type="email" formControlName="Email" name="Email" required>
+                          </div>
+                          <div class="form-group mb-0">
+                            <label for="Password"class="form-adjust" >Password</label>
+                            <input class="form-control" type="password" formControlName="Password" name="Password" required>
+                          </div>
+                        <div class="form-button">
+                            <button id="submit" type="submit" class="ibtn">Login</button><a href="forget15.html">Forgot password?</a>
+                        </div>
+                    </form>
+                    
+                      <!-- [hidden]="true"  -->
+                      <!-- data-toggle="modal" data-target="#confirmModal"  -->
+              </div>
+              <div class="modal-footer justify-content-center">
+                <span>Don't have an Account yet ?</span><a data-dismiss="modal" [routerLink]="['/register']">Sign up</a>
+                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                  <div class="modal-title" id="confirmModalLabel">Email Confirmation</div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+              </div>
+              <div class="modal-body mb-2">
+                  <div style="border-radius:200px; height:100px; width:100px; background: #F8FAF5; margin:0 auto;">
+                      <img src="assets/img/Group 15946@2x.png">
+                  </div>
+                  <flash-messages></flash-messages>
+                  <div class="mb-3 text-center">
+                      <p>We have sent a code to <span style="font-size:20px;color:#006666;">{{email}}</span></p>
+                      <p>Please Enter the code sent to you</p>
+                      </div>
+                      <form (submit)="onActivateSubmit()"class="success-input">
+                              
+                          <input class="form-control side-space" type="text" [(ngModel)]="Code" name="confirmation-code" placeholder="" required>
+      
+                          <div class="success-divider"></div>
+                          
+                          <div class="form-button mt-2">
+                              <a  style="color:#006666;" (click)="resendLearnerCode()">resend code</a>
+                              <button type="submit" class="btn btn-danger ibtn">continue</button> 
+                          </div>
+                      </form>
+              </div>
+            </div>
+          </div>
+        </div>

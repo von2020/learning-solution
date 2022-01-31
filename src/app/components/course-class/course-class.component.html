@@ -1,0 +1,506 @@
+<div class="dashboard-main-wrapper">
+  <div class="dash-row dash-header top">
+    <div class="dash-row-content">
+      <div class="header-course-dashboard-header">
+        <a><img class="logo" alt="expertplat logo" width="140" src="assets/img/logo-white.png"></a>
+        <!-- <div class="logo site-logo">
+                      <img class="img-fluid img-responsive" src="assets/img/logo.png" alt="logo">
+                    </div> -->
+        <div class="header-vertical-divider"></div>
+        <div class="header-course-details">
+          <a href="" class="header-header-link header-course-title" data-purpose="course-header-title"><span
+              width="0"><span><span>{{course.courseData.courseName}}</span></span><span
+                style="position: fixed; visibility: hidden; top: 0px; left: 0px;">…</span></span></a>
+        </div>
+        <div class="header-ratings d-flex">
+          <div class="mr-2">
+            <div *ngIf="leaveRating == true" role="button" tabindex="0" data-purpose="review-button"
+              class="leave-rating-simple-review-container">
+              <span class="leave-rating--single-star--1QqJX udi-small udi udi-star"></span><span
+                class="font-text-sm leave-rating-helper-text" data-toggle="modal" data-target="#addRatingModal"
+                data-purpose="helper-text">Leave a rating</span></div>
+          </div>
+          <span>
+            <a [routerLink]="['/home-learner']">
+              <button type="button" class="btn btn-sm btn-tertiary-white">
+                <span class="marketplace-social-share-button-share-button__text">Exit</span>
+              </button>
+            </a>
+          </span>
+        </div>
+        <div role="toolbar" class="options-menu-buttons">
+          <div class="marketplace-social-share-button-share-button">
+            <button type="button" class="btn btn-sm btn-tertiary-white">
+              <!-- <span class="udi udi-share"></span> -->
+              <i class="fas fa-share"></i>
+              <span class="marketplace-social-share-button-share-button__text">Share</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ============================================================== -->
+  <!-- end navbar -->
+  <!-- ============================================================== -->
+  <!-- ============================================================== -->
+
+  <!-- ============================================================== -->
+  <div class="dashboard-wrapper">
+    <div class="dashboard-item-view scaled-height-limiter">
+      <div class="container dashboard-content ">
+        <div class="my-course-section spad">
+          <!-- ============================================================== -->
+          <!-- pageheader  -->
+          <!-- ============================================================== -->
+
+          <div class="row">
+            <div class="col-sm-12" *ngIf="documentUrl != null">
+              <div class="document-view">
+                <div class="view-header">
+                  <a role="button" (click)="closeDocumentViewer()">
+                  <i class="fa fa-times"></i>
+                </a>
+                </div>
+                <div class="view-content">
+                  <ngx-doc-viewer
+                  [url]="documentUrl"
+                  viewer="google"
+                  style="width:100%;height:50vh;"
+                ></ngx-doc-viewer>
+                </div>
+              </div>
+              
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12">
+
+              <div class="row">
+                <div class="col-xl-8 col-lg-8 col-md-8 mb-3">
+                  <div class="section-title">
+                    <h2>Download/ View Materials</h2>
+                  </div>
+                  <div *ngIf="courseTopicLists" id="accordion" class="mt-3 accordion">
+                    <div *ngFor="let courseTopicList of courseTopicLists;let i = index"
+                      [id]="'heading'+courseTopicList.courseTopic.id" class="card border-2 mb-3 shadow">
+                      <div class="card-header course-topic-header collapsed" data-toggle="collapse"
+                        [attr.data-target]="'#collapse'+courseTopicList.courseTopic.id">
+                        <a class="card-title"> {{courseTopicList.courseTopic.topic}} </a>
+                      </div>
+                      <div [id]="'collapse'+courseTopicList.courseTopic.id" class="card-body p-0 collapse moreCollapse"
+                        data-parent="#accordion">
+                        <div class="card-body">
+                          <div *ngFor="let courseTopicContent of courseTopicList.courseTopic.material"
+                            class="mb-5 col-md-3">
+                            <div class="feature h_medium bg-gray radius-2">
+                              <div class="card">
+                                <div *ngIf="courseTopicContent.fileType == 'Word Document'" class="card-header">
+                                  <img class="card-img-top" height="100" src="assets/img/types/doc.png"
+                                    alt="Card image cap">
+                                </div>
+                                <div *ngIf="courseTopicContent.fileType == 'PDF Document'" class="card-header">
+                                  <img class="card-img-top" height="100" src="assets/img/types/pdf.png"
+                                    alt="Card image cap">
+                                </div>
+                                <div *ngIf="courseTopicContent.fileType == 'Excel Document'" class="card-header">
+                                  <img class="card-img-top" height="100" src="assets/img/types/xls.png"
+                                    alt="Card image cap">
+                                </div>
+                                <!-- <img class="card-img-top" height="240" src="assets/img/types/doc.png" alt="Card image cap"> -->
+                                <div class="card-body title-content">
+                                  <!-- <span class="file-types"> <img src="assets/img/types/doc.png" alt=""> </span> -->
+                                  <h6 class="card-title course-name">{{courseTopicContent.description}}</h6>
+                                  <!-- <div class="mb-1 course-rating" data-rating="5.0"></div> -->
+                                </div>
+                              </div>
+                              <div class="details">
+                                <div class="card-actions">
+                                  <a 
+                                  (click)="viewDocument(courseTopicContent.fileUrl)"
+                                  *ngIf="course.courseData.isVideodownloadable == false" target="_blank"><button
+                                      data-purpose="download-button" type="button" class="btn btn-default"> <i
+                                        class="fa fa-eye" aria-hidden="true"></i> </button></a>
+
+                                        <a *ngIf="course.courseData.isVideodownloadable != false" href="{{courseTopicContent.fileUrl}}" target="_blank"><button
+                                          data-purpose="download-button" type="button" class="btn btn-default"> <i
+                                            class="fa fa-download" aria-hidden="true"></i> </button></a>
+                                  <!-- <button data-purpose="edit-button" (click)="goToEditCourse(facilitatorCourse.courseData.id)" type="button" class="btn btn-default">Edit</button> -->
+                                </div>
+                              </div>
+                            </div>
+                            <!-- [routerLink]="['/create-course', facilitatorCourse.id]" -->
+                          </div>
+                        </div>
+                        <!-- <ul class="section_menu" aria-labelledby="userDropdown">
+                    <li *ngFor="let courseTopicContent of courseTopicList.courseTopic.material" class="section-item">
+                      <a class="d-inline">
+                      <i class="fas fa-book fa-fw mr-2"></i>
+                      {{courseTopicContent.description}}
+                    </a>
+                    </li>
+                    </ul> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4">
+                  <div class="course-certificate">
+                    <h2 class="font-text-lg">Certificate Recipient:</h2><a data-purpose="certificate-recipient"
+                      href="/user/stephen-omodu-oloto/" class="item-card--item-card">
+                      <div aria-hidden="true" class="font-avatar font-heading-md">
+                      <ngx-avatar [style]="customStyle" size="50" name="{{learner.firstName}}"></ngx-avatar>
+                    </div>
+                      <div class="recipient-info--info" data-purpose="recipient-info">
+                        <div class="font-heading-md">{{learner.firstName}}&nbsp;{{learner.lastName}}</div>
+                        <div class="font-text-xs recipient-info--description"></div>
+                      </div>
+                    </a>
+                    <a routerLink="/course-preview" [queryParams]="{ course: course.courseData.courseName, id: course.courseData.id }"
+                      class="certificate-course-card--link" style="display: block;">
+                      <div data-purpose="container" class="course-card--container course-card--medium">
+                        <div class="course-card--image-wrapper"><img alt="" width="240" height="135"
+                            class="course-card--course-image certificate-course-card--image"
+                            src="{{course.courseData.courseImageUrl}}">
+                        </div>
+                        <div class="course-card--main-content course-card--has-price-text">
+                          <div class="font-heading-md course-card--course-title">
+                            {{course.courseData.courseName}}</div>
+                          <div class="font-text-xs course-card--instructor-list"
+                            data-purpose="safely-set-inner-html:course-card:visible-instructors">{{course.courseData.facilitatorFirstName}}&nbsp;{{course.courseData.facilitatorLastName}}</div>
+                          <div *ngIf="leaveRating != true" class="course-card--row">
+                            <span class="star-rating--star-wrapper">
+                              <span
+                                class="sr-only">Rating: {{course.averageRating | number : '1.1-1'}} out of 5
+                              </span>
+                              <span
+                                class="font-heading-sm star-rating--rating-number" aria-hidden="true"
+                                data-purpose="rating-number">{{course.averageRating | number : '1.1-1'}}</span>
+                              </span>
+                              <span class="f-rating" attr.data-rating="{{course.averageRating}}"></span>
+                              <span aria-label="7080 reviews"
+                              class="font-text-xs course-card--reviews-text">({{courseRate}})</span>
+                            </div>
+                          <div class="font-text-xs course-card--row course-card--course-meta-info">
+                            <span *ngIf="course.duration > 0"
+                              class="course-card--row">{{course.duration*1000 | customDuration: 'ms':'hhmmss'}}</span><span
+                              class="course-card--row">{{courseTopicCount}} lectures</span></div>
+                          <div class="price-text--container course-card--price-text-container"
+                            data-purpose="price-text-container">
+                            <div *ngIf="course.courseData.courseTypeName != 'PassCode'"
+                              class="price-text--price-part course-card--discount-price font-heading-md"
+                              data-purpose="course-price-text"><span class="sr-only">Current
+                                price</span><span>{{course.courseData.courseAmount == 0 ? 'Free' : course.courseData.courseAmount |currency:"₦"}}</span></div>
+
+                                <div *ngIf="course.courseData.courseTypeName == 'PassCode'"
+                              class="price-text--price-part course-card--discount-price font-heading-md"
+                              data-purpose="course-price-text"><span class="sr-only">Current
+                                price</span><span class="font-weight-bold">Passcode</span></div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                    <div>
+                    </div>
+                    <div class="certificate-action-button">
+                      <button type="button"
+                      class="course-overview-certificate-button btn btn-sm btn-default"
+                      (click)="getCourseCertificate()"> <i class="fa fa-download" aria-hidden="true"></i> <span class="ml-2">Download</span></button>
+                    </div>
+                    
+                    <div>
+                      <span>
+                        <a routerLink="/profile-learner">
+                        <button type="button"
+                          class="font-btn font-btn-link font-heading-md p-0">
+                          Update your
+                          certificate
+                        </button> 
+                      </a>
+                          with your correct name
+                        </span>
+                      </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="dashboard-lecture-details">
+                <div class="tab" role="tabpanel">
+                  <!-- Nav tabs -->
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item active">
+                      <a class="nav-link active" href="#Section1" role="tab" data-toggle="tab">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#Section2" role="tab" data-toggle="tab">Q&A</a>
+                    </li>
+                    <li class="nav-item active">
+                      <a class="nav-link" href="#Section3" role="tab" data-toggle="tab">Notes</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#Section4" role="tab" data-toggle="tab">Announcements</a>
+                    </li>
+                  </ul>
+                  <!-- Tab panes -->
+                  <div class="tab-content tabs">
+                    <div role="tabpanel" class="tab-pane active" id="Section1">
+                      <div class="container mt-10 dash-content-container">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <ul class="list-group list-group-flush">
+                              <li class="list-group-item">
+                                <div class="course-overview-heading">
+                                  <div class="font-heading-lg mb-space-sm">About this course</div>
+                                </div>
+                              </li>
+                              <li class="list-group-item">
+                                <div class="course-overview">
+                                  <div>By the numbers</div>
+                                  <div class="course-stats">
+                                    <div>Students: {{students}}</div>
+                                    <div>Languages: English</div>
+                                    <div>Captions: No</div>
+                                  </div>
+                                  <div data-purpose="course-additional-stats">
+                                    <div>Lectures: {{courseTopicCount}}</div>
+                                  </div>
+                                </div>
+                              </li>
+                              <li class="list-group-item">
+                                <div class="course-overview">
+                                  <div>Certificates</div>
+                                  <div class="course-overview--wide--37Lev">
+                                    <p class="mb-space-sm">Get expertplat certificate by completing entire course</p>
+                                    <button type="button"
+                                      class="course-overview-certificate-button btn btn-sm btn-default"
+                                      (click)="getCourseCertificate()">expertplat
+                                      certificate</button>
+                                  </div>
+                                </div>
+                              </li>
+                              <li class="list-group-item">
+                                <div class="course-overview">
+                                  <div>Features</div>
+                                  <div class="course-overview--wide--37Lev">
+                                    <span>Available on <a href="#" target="_blank">iOS</a> and <a href="#"
+                                        target="_blank">Android</a></span>
+                                  </div>
+                                </div>
+                              </li>
+                              <li class="list-group-item">
+                                <div class="course-overview">
+                                  <div>Description</div>
+                                  <div *ngIf="course.courseData.courseDescription != null"
+                                    class="course-overview--wide--37Lev">
+                                    <div [ngClass]="{'show-less-description': showShorterDesciption}" id="dataList">
+                                      <p [innerHTML]="course.courseData.courseDescription"></p>
+                                    </div>
+                                    <p class="read-more" type="button" (click)="alterDescriptionTexts()">
+                                      {{showShorterDesciption ? 'View all': 'View less' }}
+                                    </p>
+                                  </div>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="Section2">
+                      <div class="container spad mt-10 dash-content-container">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="text-center">
+                              <h3 id="message" class="mt-5 pl-30">Available Soon</h3>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="Section3">
+                      <div class="container spad mt-10 dash-content-container">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="text-center">
+                              <h3 id="message" class="mt-5 pl-30">Available Soon</h3>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="Section4">
+                      <div class="container spad mt-10 dash-content-container">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="text-center">
+                              <h3 id="message" class="mt-5 pl-30">Available Soon</h3>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- wrapper  -->
+    <!-- ============================================================== -->
+  </div>
+
+
+
+
+  <!-- ============================================================== -->
+  <!-- footer -->
+  <!-- ============================================================== -->
+  <footer class="footer-section rpad pb-0">
+    <div class="footer-top">
+      <div class="footer-warp">
+        <div class="row">
+          <div class="col-md-4">
+            <ul>
+              <li><a [routerLink]="['/']">expertplat for Schools</a></li>
+              <li><a [routerLink]="['/']">Teach on expertplat</a></li>
+              <li><a [routerLink]="['/']">Get the App</a></li>
+              <li><a [routerLink]="['/']">Contact us</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <ul>
+              <li><a [routerLink]="['/']">Careers</a></li>
+              <li><a [routerLink]="['/']">Blog</a></li>
+              <li><a [routerLink]="['/']">Help and Support</a></li>
+              <li><a [routerLink]="['/']">Affiliate</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <ul>
+              <li><a [routerLink]="['/']">Terms</a></li>
+              <li><a [routerLink]="['/']">Privacy Policy and Cookie Policy</a></li>
+              <li><a [routerLink]="['/']">Site Map</a></li>
+              <li><a [routerLink]="['/']">Featured Course</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="copyright footer-bottom">
+      <div class="row m-0">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="logo-copyright-section">
+            <div><img src="assets/img/logo.png" width="150px" alt=""></div>
+            <div>
+              Copyright &copy;<script>
+                document.write(new Date().getFullYear());
+
+              </script> All rights reserved <i class="far fa-heart" aria-hidden="true"></i> by <a
+                href="https://telnetng.com/softworks-limited/" target="_blank">Softworks Limited</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </footer>
+  <!-- ============================================================== -->
+  <!-- end footer -->
+  <!-- ============================================================== -->
+</div>
+
+<!-- Add Review Modal-->
+<div class="modal fade" id="addReviewModal" tabindex="-1" role="dialog" aria-labelledby="addReviewModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Your Review</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="review-editor-component-container">
+          <div class="review-editor-leave-star-container" data-purpose="leave-rating">
+            <div>
+              <div class="review-stars-input">
+                <div class="my-rating" data-rating="2.5"></div>
+              </div>
+              <p>I'm Really glad i found this Course</p>
+            </div>
+          </div>
+        </div>
+        <div role="toolbar" class="review-popup--button-toolbar--1x99T btn-toolbar"><button data-purpose="delete-button"
+            type="button" class="btn btn-review" data-dismiss="modal">Delete</button><button data-purpose="edit-button"
+            type="button" class="btn btn-danger" data-dismiss="modal">Edit Review</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Rating Modal-->
+<div class="modal fade" id="addRatingModal" tabindex="-1" role="dialog" aria-labelledby="addRatingModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="review-editor-container confirm-rate" data-purpose="review-editor">
+          <div class="review-editor-top-buttons-container-reverse"><button data-dismiss="modal" aria-label="Close"
+              data-purpose="close-button" type="button" class="btn btn-quintinary"><span
+                aria-hidden="true">Close</span></button></div>
+          <div class="review-editor-page-content">
+            <div>
+              <h2 data-purpose="primary-message">How would you rate this course?</h2>
+            </div>
+            <div class="review-editor-component-container">
+              <div class="review-editor-leave-star-container" data-purpose="leave-rating">
+                <div>
+                  <h4 class="text-center live-rating">Select Rating</h4>
+                  <div class="review-stars-input">
+                    <div class="course-rating"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: none;" class="review-editor-container confirm-review" data-purpose="review-editor">
+          <div class="review-editor-top-buttons-container-reverse">
+            <button data-dismiss="modal" aria-label="Close" data-purpose="close-button" type="button"
+              class="btn btn-quintinary"><span aria-hidden="true">Close</span></button>
+            <button data-purpose="back-button" type="button" class="btn btn-tertiary back-button">Back</button>
+          </div>
+          <div class="review-editor-page-content">
+            <div>
+              <h2 data-purpose="primary-message">Why did you leave this rating?</h2>
+            </div>
+            <div class="review-editor-component-container">
+              <div class="review-editor-leave-star-container" data-purpose="leave-rating">
+                <div class="review-editor--write-comment-page--1qa7S" data-purpose="write-comment">
+                  <div>
+                    <h4 class="text-center live-rating">Select Rating</h4>
+                    <div class="review-stars-input">
+                      <div class="my-rating"></div>
+                    </div>
+                  </div>
+                  <form (submit)="ratingCourse()">
+                    <textarea [(ngModel)]="reviewNote" name="reviewNote" data-purpose="review-content"
+                      placeholder="Tell us about your own personal experience taking this course. Was it a good match for you?"
+                      class="review-editor--review-content--2lVDX form-control"></textarea>
+                    <button data-purpose="save-button" type="submit"
+                      class="review-editor--action-button--2AvAK btn btn-secondary">Save and Continue </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

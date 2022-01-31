@@ -1,0 +1,172 @@
+<app-learner-sub-navbar></app-learner-sub-navbar>
+<div class="course-section spad">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="section-title">
+          <p>Sort by</p>
+        </div>
+        <div class="title-content">
+          <div class="form-group">
+            <select id="sel" (change)="toggle()" class="form-control">
+
+              <option value="0" selected>Title: A-to-Z</option>
+              <option value="1">Paid</option>
+              <option value="2">Free</option>
+            </select>
+          </div>
+
+          <div class="input-group col-md-4">
+            <input (change)="onNativeChange($event)" #courseName class="form-control py-2" type="search" placeholder="search courses"
+              id="example-search-input">
+            <span class="input-group-append">
+              <button (click)="getCourseBySearchedName(courseName.value)" class="btn btn-outline-secondary" type="button">
+                <i class="fa fa-search"></i>
+              </button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container spad">
+    <h3 id="message" class="mt-5 pl-30">{{message}}</h3>
+    <div class="row">
+      <div *ngIf="loading" class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <!-- <div *ngIf="enrolledCourses"> -->
+      <div *ngFor="let enrolledCourse of enrolledCourses| paginate : {
+      itemsPerPage: pageSize,
+      currentPage: page,
+      totalItems: count
+      };
+      let i = index
+      " [class.active]="i == currentIndex" (click)="setActiveCourse(enrolledCourse, i)" class="col-md-3">
+          <div class="course-item">
+            <!-- <a [routerLink]="['/course-lecture/course', enrolledCourse.courseId]"> -->
+            <div class="course-thumb set-bg"
+              [ngStyle]="{'background': 'url(' + enrolledCourse.courseImageUrl + ') no-repeat 0 0 / cover'}">
+              <!-- <div class="price">Price: {{courseAmount |currency:"₦"}}</div> -->
+
+
+            </div>
+          <!-- </a> -->
+
+          
+          <div class="resource-list-dropdown">
+            <div class="dropdown">
+              <button
+                class="btn btn-sm btn-default btn-resource resource-list-dropdown-btn dropdown-toggle"
+                type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-v"></i>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right"
+                aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" [routerLink]="['/']">
+                  <i class="fas fa-share fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Share
+                </a>
+                <a class="dropdown-item" [routerLink]="['/']">
+                  <i class="fas fa-star fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Favorite
+                </a>
+                <!-- <a class="dropdown-item" href="#">
+                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Settings
+                </a> -->
+                <a class="dropdown-item" (click)="archiveCourse(enrolledCourse.courseId)" role="button" >
+                  <i class="fas fa-archive fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Archive
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" (click)="deleteCourse(enrolledCourse.courseId)" role="button">
+                  <i class="fas fa-trash-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Remove
+                </a>
+              </div>
+            </div>
+          </div>
+
+
+            <div class="course-info">
+              <div class="course-text">
+                <span *ngIf="enrolledCourse.isVideoCourse != false">
+                  <a [routerLink]="['/course-lecture/course', enrolledCourse.courseId]">
+                    <h6>{{enrolledCourse.courseName}}</h6>
+                  </a>
+                </span>
+                <span *ngIf="enrolledCourse.isVideoCourse == false">
+              <a [routerLink]="['/course-class/course', enrolledCourse.courseId]">
+                <h6>{{enrolledCourse.courseName}}</h6>
+              </a>
+            </span>
+                <div class="d-flex justify-content-between align-items-center">
+                <p>by&nbsp;{{enrolledCourse.firstName}} <span>{{enrolledCourse.lastName}}</span></p>
+              </div>
+                <!-- <p [innerHTML] = "courseDescription"></p> -->
+                <!-- <div class="students">120 Students</div> -->
+                <!-- <ngb-rating [max]="5" [(rate)]="currentRate" [readonly]="false"></ngb-rating> -->
+              </div>
+              <div class="course-author">
+                <!-- <div class="ca-pic set-bg" data-setbg="assets/img/authors/2.jpg"></div> -->
+                <!-- <div class="pull-right"> -->
+                  <div class="course-progress">
+                    <span *ngIf="enrolledCourse.isCompleted == true">Completed 100%</span>
+                    <span *ngIf="enrolledCourse.isCompleted != true">In Progress</span>
+                  </div>
+                  <div>
+                    <div class="m-rating"></div>
+                    <span>Your rating</span>
+                  </div>
+                <!-- </div> -->
+                <!-- <p>{{firstName}} <span>{{lastName}}</span></p> -->
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="d-flex justify-content-space-between">
+          <pagination-controls previousLabel="Prev" nextLabel="Next" responsive="true"
+            (pageChange)="handlePageChange($event)"></pagination-controls>
+
+          <div>
+            Items per Page:
+            <select (change)="handlePageSizeChange($event)">
+              <option *ngFor="let size of pageSizes" [ngValue]="size">
+                {{ size }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- </div> -->
+</div>
+
+<!-- Delete Modal-->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Delete Course</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">Are you sure you want to Delete this Course?.</div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">No</button>
+        <a routerLinkActive="list-item-active" (click)="confirmDeleteCourse()" class="btn btn-delete">Yes</a>
+      </div>
+    </div>
+  </div>
+</div>

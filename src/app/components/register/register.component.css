@@ -1,0 +1,16 @@
+.tab .tab-content {
+    background: none;
+    padding: 30px 0px;
+}
+
+.tab .nav-tabs {
+    border-bottom: 0;
+}
+
+.tab .nav-tabs li a {
+    font-size: 16px;
+}
+
+.nav-tabs .nav-item .nav-link {
+    margin-right: 2.2rem;
+}

@@ -1,0 +1,54 @@
+.pt-20 {
+    padding-top: 10rem;
+}
+.big-button-text-image {
+    width: 100%;
+    white-space: normal;
+    border: 1px solid #c7c7c7;
+    background-color: initial;
+    border-radius: 12px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding: 1px;
+}
+.form-items .usertypes-options .usertype-btn .image-col {
+    background-color: #e8eaf6;
+    max-width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    margin-right: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-items .usertypes-options .usertype-btn .row {
+    align-items: center;
+}
+
+.big-button-text-image:hover {
+    border: #006666 2px solid;
+}
+.big-button-text-image .row {
+    margin: 10px;
+}
+.button-text-image .image-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-col i {
+    color: #006666;
+    font-size: 18px;
+}
+
+.big-button-text-image .desc-col .button-title {
+    font-size: 16px;
+}
+
+.big-button-text-image .desc-col .button-description {
+    margin-top: 7px;
+    color: #73778b;
+}

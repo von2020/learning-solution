@@ -1,0 +1,8 @@
+<nav class="subcategory-link-bar">
+    <ul class="unstyled-list subcategory-nav-list" data-purposes="nav-list">
+      
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" *ngFor="let subCategory of subCategorys">
+          <a class="expertplat-btn expertplat-btn-small expertplat-btn-ghost expertplat-heading-sm link-bar--nav-button--3uJ__" routerLink="/course-sub-category" [queryParams]="{ subcategory: subCategory.courseSubCategoryName }"><span
+            class="expertplat-text-sm link-bar-category">{{subCategory.courseSubCategoryName}}</span></a></li>
+    </ul>
+  </nav>

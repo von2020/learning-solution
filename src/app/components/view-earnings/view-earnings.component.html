@@ -1,0 +1,92 @@
+<div class="dashboard-ecommerce">
+    <div class="container-fluid dashboard-content ">
+        <!-- ============================================================== -->
+        <!-- pageheader  -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">Earning(s)</h2>
+                    <p class="pageheader-text">Nulla euismod urna eros, sit amet scelerisque torton lectus vel mauris facilisis faucibus at enim quis massa lobortis rutrum.</p>
+                    <div class="page-breadcrumb">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Payout</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Earning(s)</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+    <!-- ============================================================== -->
+    <!-- basic table  -->
+    <!-- ============================================================== -->
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card">
+            <h5 class="card-header">Facilitator Earning(s)</h5>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped table-bordered first">
+                        <thead>
+                            <tr>
+                                <th class="text-center">S/N</th>
+                                <th class="text-center">Course Name</th>
+                                <th class="text-center">Facilitator</th>
+                                <th class="text-center">Course Amount</th>
+                                <th class="text-center">Percentage</th>
+                                <th class="text-center">Amount Earned</th>
+                                <th class="text-center">Date Earned</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let earning of earnings; let i = index">
+                                <td class="text-center">{{i+1}}</td>
+                                <td class="text-center">{{earning.courseName}}</td>
+                                <td class="text-center">{{earning.firstName}}&nbsp;{{earning.lastName}}</td>
+                                <td class="text-center">{{earning.amount |currency:"₦"}}</td>
+                                <td class="text-center">{{earning.percentage}}</td>
+                                <td class="text-center">{{earning.amountEarned |currency:"₦"}}</td>
+                                <td class="text-center">{{earning.dateEarned | customDate}}</td>
+                                <td class="text-center">
+                                    <input type="checkbox" name="paymentCheck" [checked]="(payedEarning && (-1 !== payedEarning.indexOf(earning.id)) ? 'checked' : '')" value="{{earning.id}}" (change) ="updateChecked2(earning.id, $event)">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                        <div class="col-12 form-group mt-8">
+                            <button (click)="payEarnings()" type="button" id="PopoverCustomT-" [disabled]="loading" class="btn btn-rounded btn-info btn-sm">PAY</button>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end basic table  -->
+    <!-- ============================================================== -->
+</div>
+</div>
+</div>
+
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a routerLinkActive="list-item-active" data-dismiss="modal" (click)="onLogoutClick()" class="btn btn-primary">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>

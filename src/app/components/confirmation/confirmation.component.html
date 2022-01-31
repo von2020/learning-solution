@@ -1,0 +1,35 @@
+<app-navbar></app-navbar>
+<div class="form-body success-page">
+        <div class="row confirmation-bg">
+			<div class="col-md-12">
+				<h2 class="mb-5 mt-5">Thank you for Registering !!!</h2>
+				<flash-messages></flash-messages>
+				<div class="card success-card shadow">
+
+					<div style="border-radius:200px; height:100px; width:100px; background: #F8FAF5; margin:0 auto;">
+						<img src="assets/img/Group 15946@2x.png">
+					</div>
+					<div class="card-body">
+					  <h1>Email Confirmation</h1> 
+					  <p>We have sent a code to <span style="font-size:20px;color:#006666;">{{Email}}</span></p>
+
+						<p>Please Enter the code sent to you</p>
+						<h6></h6>
+						<form (submit)="onActivateSubmit()"class="success-input">
+							
+							<input class="form-control side-space" type="text" [(ngModel)]="Code" name="confirmation-code" placeholder="" required>
+
+							<div class="success-divider"></div>
+							
+                            <div class="form-button mt-2">
+								<a *ngIf="countdown != false" style="font-size: 13px;">Try again in <span id="timer">60</span> seconds!</a>
+								<a *ngIf="countdown == false"role="button" style="color:#006666;" (click)="resendCode()">resend code</a>
+								<button id="submit" type="submit" class="btn btn-danger ibtn">continue</button> 
+                            </div>
+                        </form>
+					</div>
+					</div>
+			</div>
+        </div>
+	</div>
+	<app-footer></app-footer>

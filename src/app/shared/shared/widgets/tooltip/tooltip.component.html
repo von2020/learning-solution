@@ -1,0 +1,16 @@
+<div class="course-item">
+    <div class="course-info">
+        <div class="course-text">
+            <h5 class="course-name">{{courseName}}</h5>
+            <span class="price" *ngIf="courseTypeName != 'PassCode'">Price: {{courseAmount == 0 ? 'Free' : courseAmount |currency:"₦"}}</span>
+            <span class="price" *ngIf="courseTypeName == 'PassCode'">Price:  Passcode</span>
+            <span class="date"><span class="date-inner">Date Created: </span>{{dateCreated | date:'longDate'}}</span>
+            <span class="course-level">{{levelTypeName}}&nbsp;Level</span>
+            <p class="text line-clamp" [innerHTML] = "courseDescription"></p>
+            <a class="action-item">
+                <button id="submit" (click)="getCart(courseId)" type="submit" class="w-100 btn btn-danger ibtn" *ngIf="courseTypeName != 'PassCode'">Add to cart</button>
+                <!-- <button id="submit" (click)="getPassCodeCart(courseId)" type="submit" class="w-100 btn btn-danger ibtn" *ngIf="courseTypeName == 'PassCode'">Add to cart</button> -->
+              </a>
+        </div>
+    </div>
+</div>

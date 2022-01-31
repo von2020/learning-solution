@@ -1,0 +1,124 @@
+
+
+/* @import url('https://fonts.googleapis.com/css?family=Saira+Condensed:700'); */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap');
+
+#hiddenDiv { 
+    overflow: hidden; 
+    height: 0; 
+}
+
+#cert {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    background-color: #fff;
+    background-image: url('../../../assets/img/certificate-bg.jpg') ;
+    background-repeat: no-repeat;
+    height: 100%;
+    background-position: center;
+    display: flex;
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+    /* overflow: hidden; */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+hr {
+background-color: #be2d24;
+height: 3px;
+margin: 5px;
+}
+
+div#cert-footer {
+position: relative;
+text-align: center;
+padding: 0 0 0 250px;
+}
+
+#cert-stamp, #cert-ceo-sign {
+width: 40%;
+display: inline-block;
+}
+
+div#cert-issued-by, div#cert-ceo-design {
+width: 60%;
+display: inline-block;
+/* float: left; */
+}
+
+#cert-ceo-design p:first-child {
+    font-size: 34px;
+    font-weight: 500;
+}
+
+h1 {
+/* font-family: 'Saira Condensed', sans-serif; */
+font-family: 'Pacifico', cursive;
+margin: 5px 0px;
+}
+
+body {
+width: 950px;
+height: 690px;
+position: absolute;
+left: 30px;
+top: 30px;
+}
+
+p {
+font-family: 'Arial', sans-serif;
+font-size: 18px;
+margin: 5px 0px;
+}
+
+html {
+display: inline-block;
+width: 1024px;
+height: 768px;
+background-size: 100%;
+}
+
+h1#cert-holder {
+font-size: 50px;
+color: #be2d24;
+}
+
+div#cert-desc {
+width: 70%;
+}
+
+p#cert-from {
+color: #be2d24;
+font-family: 'Pacifico', cursive;
+/* font-family: 'Saira Condensed', sans-serif; */
+}
+
+div#cert-verify {
+opacity: 1;
+/* position: absolute;
+top: 570px;
+left: 10%;
+font-size: 12px; */
+color: grey;
+
+margin-top: 75px;
+    margin-left: 150px;
+}
+
+div#cert-content {
+/* position: relative;
+top: 70px; */
+/* left: 50%; */
+text-align: center;
+}

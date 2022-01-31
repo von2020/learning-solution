@@ -1,0 +1,178 @@
+<div class="dashboard-ecommerce">
+    <div class="container-fluid dashboard-content ">
+        <!-- ============================================================== -->
+        <!-- pageheader  -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">Create Facilitator</h2>
+                    <p class="pageheader-text">Nulla euismod urna eros, sit amet scelerisque torton lectus vel mauris facilisis faucibus at enim quis massa lobortis rutrum.</p>
+                    <div class="page-breadcrumb">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Course Management</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Create Facilitator</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+    <!-- ============================================================== -->
+    <!-- basic table  -->
+    <!-- ============================================================== -->
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card">
+            <h5 class="card-header">Internal Facilitator's List</h5>
+            <div class="card-body mb-5">
+                <form [formGroup]="registerFacilitatorForm" (submit)="onRegisterFacilitatorSubmit()">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="FirstName"class="form-adjust">First name</label>
+                        <input class="form-control form-control-lg" type="text" formControlName="FirstName" name="FirstName" required>
+                      </div>
+                    </div>
+                      <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="LastName"class="form-adjust" >Last name</label>
+                        <input class="form-control form-control-lg" type="text" formControlName="LastName" name="LastName" required>
+                      </div>
+                    </div>
+                      <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="PhoneNumber"class="form-adjust" >Phone number</label>
+                        <input class="form-control form-control-lg" type="tel" formControlName="PhoneNumber" name="PhoneNumber" required>
+                      </div>
+                    </div>
+                      <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="Email"class="form-adjust" >E-mail Address</label>
+                        <input class="form-control form-control-lg" type="email" formControlName="Email" name="Email" required>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                    <div class="form-button">
+                        <button id="submit" type="submit" class="btn btn-rounded btn-dark">Submit</button> 
+                    </div>
+                  </div>
+                </form>
+            </div>
+
+            <!-- <div class="card-body border-top">
+                <div class="table-responsive">
+                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped table-bordered first">
+                        <thead>
+                            <tr>
+                                <th class="text-center">S/N</th>
+                                <th class="text-center">Category Name</th>
+                                <th class="text-center">category Description</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let category of categorys; let i = index">
+                                <td class="text-center">{{i+1}}</td>
+                                <td class="text-center">{{category.courseCategoryName}}</td>
+                                <td class="text-center">{{category.categoryDescription}}</td>
+                                <td class="text-center">
+                                    <button type="button" data-toggle="dropdown" class="btn btn-outline-dark dropdown-toggle">Select Action</button>
+                                                    <div class="dropdown-menu">
+                                                        <a (click)="updateCategory(category.id)" class="dropdown-item">Edit</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a (click)="deleteCategory(category.id)" class="dropdown-item">Delete</a>
+                                                    </div>
+                                        </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end basic table  -->
+    <!-- ============================================================== -->
+</div>
+</div>
+</div>
+
+<!-- Edit Modal-->
+<!-- <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Edit Course Category</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        
+        <div class="modal-body">
+            <form>
+                <div class="col-md-6">
+                <div class="form-group">
+                    <label for="CourseCategoryName" class="col-form-label">Category Name</label>
+                    <input [(ngModel)]="CourseCategoryName" name="CourseCategoryName" id="CourseCategoryName" type="text" class="form-control form-control-lg form-control form-control-lg-lg">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="customFile" class="mt-2">Category Image</label>
+                    <input (change)="onFileChanged($event)" name="CourseCategoryImage" accept="image/jpeg,image/jpg,image/png" type="file" class="file-upload form-control form-control-lg form-control form-control-lg-lg" id="customFile">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="CategoryDescription">Category Description</label>
+                    <textarea [(ngModel)]="CategoryDescription" name="CategoryDescription" class="form-control form-control-lg" id="CategoryDescription" rows="3"></textarea>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <a role="button" (click)="updateCourseCategory()" class="btn btn-rounded btn-dark">Submit</a>
+            </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+<!-- Delete Modal-->
+<!-- <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Delete Course</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Are you sure you want to Delete this Course?.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">No</button>
+          <a routerLinkActive="list-item-active" (click)="confirmDeleteCategory()" class="btn btn-delete">Yes</a>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a routerLinkActive="list-item-active" data-dismiss="modal" (click)="onLogoutClick()" class="btn btn-primary">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,408 @@
+<app-navbar></app-navbar>
+<!-- ======= Hero Section ======= -->
+<section id="hero">
+  <div class="hero-container">
+    <div id="heroCarousel" class="carousel slide carousel-fade" data-interval="50000" data-ride="carousel">
+
+      <!-- <ol class="carousel-indicators" id="hero-carousel-indicators"></ol> -->
+
+      <div class="carousel-inner" role="listbox">
+
+        <!-- Slide 1 -->
+        <div class="carousel-item active">
+          <div class="carousel-background"><img src="assets/img/hero-slider/1.jpg" alt=""></div>
+          <div class="carousel-container">
+            <div class="carousel-contents">
+              <div class="carousel-banner">
+                <h2 class="banner_heading animate__animated animate__fadeInLeft">Training 5 or more people?</h2>
+                <p class="banner_text animate__animated animate__fadeInUp">Get your team access to expertplat's top
+                  5,000+ courses.</p>
+                <div class="search">
+                  <!-- <a routerLink="/course-search" [queryParams]="{name: 'fr' }">name</a> -->
+                  <div class="search-form">
+                    <div class="input-group">
+                      <input id="searchInputs" #courseName type="text" class="form-control h-3"
+                        placeholder="What Would you Like to Learn?">
+                      <div class="input-group-append">
+                        <button id="searchButton" (click)="getCourseByCourseName(courseName.value)"
+                          class="btn btn-secondary btn-w" type="button">
+                          <i class="fa fa-search"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-item">
+          <div class="carousel-background"><img src="assets/img/hero-slider/2.jpg" alt=""></div>
+          <div class="carousel-container">
+            <div class="carousel-contents">
+              <div class="carousel-banner">
+                <h2 class="banner_heading animate__animated animate__fadeInLeft">Training a Team?</h2>
+                <p class="banner_text animate__animated animate__fadeInUp">Expertplat allows you take courses as a
+                  group. Its simple!!! Constitute a team of 5 or more accountability partners and access courses on the
+                  go.</p>
+                <div class="teach-link">
+                  <a [routerLink]="['/teach-home']"
+                    class="expertplat-btn expertplat-btn-carousel expertplat-btn-primary expertplat-heading-md">Start
+                    Now</a>
+                </div>
+                <!-- <div class="search">
+                        <div class="search-form">
+                        <div class="input-group">
+                            <input id="searchInput" #courseName type="text" class="form-control h-3" placeholder="What Would you Like to Learn?">
+                            <div class="input-group-append">
+                              <button id="searchButton" (click)="getCourseByCourseName(courseName.value)" class="btn btn-secondary btn-w" type="button">
+                                <i class="fa fa-search"></i>
+                              </button>
+                            </div>
+                          </div>
+                    </div>
+                    </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="carousel-item">
+          <div class="carousel-background"><img src="assets/img/hero-slider/3.jpg" alt=""></div>
+          <div class="carousel-container">
+            <div class="carousel-contents">
+              <div class="carousel-banner">
+                <h2 class="banner_heading animate__animated animate__fadeInLeft">Dream up</h2>
+                <p class="banner_text animate__animated animate__fadeInUp">Learn the latest skills to reach your
+                  professional goals.</p>
+                <div class="search">
+                  <div class="search-form">
+                    <div class="input-group">
+                      <input id="searchInputs" #courseName type="text" class="form-control h-3"
+                        placeholder="What Would you Like to Learn?">
+                      <div class="input-group-append">
+                        <button id="searchButton" (click)="getCourseByCourseName(courseName.value)"
+                          class="btn btn-secondary btn-w" type="button">
+                          <i class="fa fa-search"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon icofont-thin-double-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon icofont-thin-double-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a> -->
+
+    </div>
+  </div>
+</section><!-- End Hero -->
+
+
+<section class="categories-section spad">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 p-l-0">
+        <div class="app-sidebar">
+          <div class="scrollbar-sidebar">
+            <div class="app-sidebar__inner">
+              <ul class="vertical-nav-menu">
+                <li class="app-sidebar__heading"></li>
+                <li>
+                  <!-- class="mm-active" -->
+                  <a href routerLink="/course-category" [queryParams]="{category: 'Development' }">
+                    <i class="fas fa-code"></i>
+                    Development
+                  </a>
+                </li>
+                <li>
+                  <a href routerLink="/course-category" [queryParams]="{category: 'Design' }">
+                    <i class="fas fa-drafting-compass"></i>
+                    Design
+                  </a>
+                </li>
+                <li>
+                  <a href routerLink="/course-category" [queryParams]="{category: 'Finance & Accounting' }">
+                    <i class="fas fa-coins"></i>
+                    Finance & Accounting
+                  </a>
+                </li>
+                <li>
+                  <a href routerLink="/course-category" [queryParams]="{category: 'Photography' }">
+                    <i class="fas fa-camera"></i>
+                    Photography
+                  </a>
+                </li>
+                <li>
+                  <a href routerLink="/course-category" [queryParams]="{category: 'Music' }">
+                    <i class="fas fa-music"></i>
+                    Music
+                  </a>
+                </li>
+                <li>
+                  <a href routerLink="/course-category" [queryParams]="{category: 'Business' }">
+                    <i class="fas fa-chart-bar"></i>
+                    Business
+                  </a>
+                </li>
+                <li>
+                  <a href routerLink="/course-category" [queryParams]="{category: 'IT & Software' }">
+                    <i class="fas fa-sitemap"></i>
+                    IT & Software
+                  </a>
+                </li>
+                <li>
+                  <a href routerLink="/course-category" [queryParams]="{category: 'Office Productivity' }">
+                    <i class="fas fa-building"></i>
+                    Office Productivity
+                  </a>
+                </li>
+                <li>
+                  <a href routerLink="/course-category" [queryParams]="{category: 'Health & Fitness' }">
+                    <i class="fas fa-heartbeat"></i>
+                    Health & Fitness
+                  </a>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12">
+        <div class="app-main">
+
+
+          <div class="app-main__inner">
+            <h3 class="mb-3">The world's largest selection of courses</h3>
+            <p>There is no limit to what you can learn here. With over 100+ well tailored courses, you can take the
+              right personal and professional steps with Expertplat.</p>
+
+
+            <!-- *ngIf="loading || httploading" -->
+            <div *ngIf="loading" class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+
+            <!-- [tooltip]="template" -->
+            <div *ngIf="randomCourses" class="regular slider">
+              <div *ngFor="let randomCourse of randomCourses">
+                <a routerLink="/course-preview"
+                  [queryParams]="{ course: randomCourse.courseData.courseName, id: randomCourse.courseData.id }">
+                  <app-course-item [tippy]="contextMenu" [data]="randomCourse.courseData" placement="right"
+                    interactive="true" courseName="{{randomCourse.courseData.courseName}}"
+                    firstName="{{randomCourse.courseData.facilitatorFirstName}}"
+                    lastName="{{randomCourse.courseData.facilitatorLastName}}"
+                    aboutCourse="{{randomCourse.courseData.aboutCourse}}"
+                    courseAmount="{{randomCourse.courseData.courseAmount}}"
+                    courseTypeName="{{randomCourse.courseData.courseTypeName}}"
+                    courseImage="{{randomCourse.courseData.courseImageUrl}}"
+                    courseDescription="{{randomCourse.courseData.courseSubTitle}}"
+                    rating="{{randomCourse.averageRating}}"
+                    rateCount="{{randomCourse.averageRating | number : '1.1-1'}}"></app-course-item>
+                </a>
+              </div>
+            </div>
+
+            <ng-template #contextMenu let-hide let-item="data">
+              <app-tooltip class="toolTip" courseId="{{item.id}}" courseName="{{item.courseName}}" courseAmount="{{item.courseAmount}}" courseTypeName="{{item.courseTypeName}}"
+              levelTypeName="{{item.levelTypeName}}" courseDescription="{{item.courseDescription}}" dateCreated="{{item.dateCreated}}"></app-tooltip>
+            </ng-template>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="downloadapp-section dpad pb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 text-center">
+        <div class="row">
+          <div class="col-md-6 p-2">
+            <img src="assets/img/google-play-badge.png" width="150px">
+          </div>
+          <div class="col-md-6 p-2">
+            <img src="assets/img/app-store-badge.png" width="150px">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <img src="assets/img/Group 400.png" width="400px">
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="signup-warp">
+          <div class="section-title text-left">
+            <h2>Download the expertplat App</h2>
+            <p>Need a more personalized experience? Download the Expertplat Mobile App. Its simple, fast, and offers a
+              seamless learning experience. Type in your Mobile number and a Download Link will be sent to you.</p>
+          </div>
+          <form class="downloadapp-form">
+            <input type="text" id="v-upload" placeholder="11 Digit Mobile number">
+            <button class="site-btn inline">Get Link</button>
+          </form>
+        </div>
+      </div>
+      <div class="col-lg-3 d-flex justify-content-center">
+        <img src="assets/img/Group 394.png" width="250px">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="site-section section-title bg-light">
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-md-7 text-center">
+        <h2>Top Categories</h2>
+        <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum magnam illum maiores adipisci
+                    pariatur, eveniet.</p> -->
+      </div>
+    </div>
+  </div>
+  <div class="course-warp">
+    <div class="row top-course">
+      <div *ngFor="let categorie of categories" class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+        <a href [routerLink]="['/course-category']" [queryParams]="{category: categorie.courseCategoryName}"
+          class="category-item">
+          <div class="card">
+            <img src="{{categorie.categoryImageUrl}}" loading="lazy" width="300" height="350" class="card-img-top"
+              alt="{{categorie.courseCategoryName}}">
+            <div class="card-body">
+              <h5 class="card-title">{{categorie.courseCategoryName}}</h5>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonie-section section-title">
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-md-7 text-center">
+        <h2>What Our Students Say</h2>
+        <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum magnam illum maiores adipisci
+                    pariatur, eveniet.</p> -->
+        <i class="fa fa-quote-left fa-6x" style="color: #007373;" aria-hidden="true"></i>
+      </div>
+    </div>
+  </div>
+  <div class="testimonial-section">
+    <div class="container course-warp">
+      <div class="row">
+        <div class="col-md-12">
+
+          <div id="testimonial-slider" class="owl-carousel owl-theme">
+            <div class="testimonial">
+              <div class="testimonial-content">
+                <div class="testimonial-icon">
+                  <i class="fa fa-quote-left"></i>
+                </div>
+                <p class="description">
+                  My experience on Expertplat App has been really wonderful. The courses are well structured and and
+                  broken down in the simplest manner which aids quick assimilation.
+                </p>
+              </div>
+              <h3 class="title">Fisayo O</h3>
+              <span class="post">Software Engineer/ DevOps</span>
+            </div>
+
+            <div class="testimonial">
+              <div class="testimonial-content">
+                <div class="testimonial-icon">
+                  <i class="fa fa-quote-left"></i>
+                </div>
+                <p class="description">
+                  Thanks to the Instructors my armature skills have been brushed up and I'm now speed with current
+                  trends and learnings in my Industry. I'm so Happy.
+                </p>
+              </div>
+              <h3 class="title">Greg E</h3>
+              <span class="post">SWIFT Technical Enginner</span>
+            </div>
+
+            <div class="testimonial">
+              <div class="testimonial-content">
+                <div class="testimonial-icon">
+                  <i class="fa fa-quote-left"></i>
+                </div>
+                <p class="description">
+                  My learning journey on Expertplat App is by far one of my best decision ever. The instructors are
+                  friendly and the speed at which support is rendered is impressive.
+                </p>
+              </div>
+              <h3 class="title">Gerald E</h3>
+              <span class="post">Student</span>
+            </div>
+
+            <!-- <div class="testimonial">
+                        <div class="testimonial-content">
+                            <div class="testimonial-icon">
+                                <i class="fa fa-quote-left"></i>
+                            </div>
+                            <p class="description">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent bibendum dolor sit amet eros imperdiet, sit amet hendrerit nisi vehicula.
+                            </p>
+                        </div>
+                        <h3 class="title">Peter</h3>
+                        <span class="post">Web Developer</span>
+                    </div> -->
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="teach-section spad">
+  <div class="teach-wrapper">
+    <div class="teach-bg">
+      <div class="teach-content-wrapper">
+        <div class="teach-text-section">
+          <h3 class="expertplat-heading-xxl teach-header">Become an instructor</h3>
+          <p class="expertplat-text-md teach-content">
+            Top instructors from around the world teach millions of students on expertplat. We provide the tools and
+            skills to teach what you love.
+          </p>
+          <div class="teach-link">
+            <a [routerLink]="['/teach-home']"
+              class="expertplat-btn expertplat-btn-large expertplat-btn-primary expertplat-heading-md">Start teaching
+              today</a>
+          </div>
+        </div>
+        <img src="assets/img/signup-bg.jpg" loading="lazy" class="d-none d-md-block teach-image"
+          alt="non student cta image" width="320" height="320">
+
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+<app-footer></app-footer>

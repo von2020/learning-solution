@@ -1,0 +1,196 @@
+.payment-section {
+    /* height: 100vh; */
+    height: 100%;
+}
+
+.section-title {
+	text-align: left;
+	padding: 0;
+	margin-bottom: 70px;
+}
+
+.spad {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.top-pad {
+    padding-top: 80px;
+    padding-bottom: 20px;
+}
+
+.success-divider {
+    margin: .5rem 0;
+    overflow: hidden;
+    border-top: 1px solid #ced6d4;
+}
+
+.payment-method-add-widget-link {
+    border: 2px dashed #ced6d4;
+    height: 167px !important;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    line-height: 167px;
+}
+
+.payment-methods-card {
+    border: 1px solid #ced6d4;
+    box-sizing: border-box;
+}
+
+.payment-methods-card,
+.payment-method-add-widget-link,
+.payment-method-details-container {
+    border-radius: 8px;
+    margin: 0 12px 24px;
+    max-width: -webkit-calc(50% - 12px);
+    max-width: calc(100% - 12px);
+    width: -webkit-calc(100% - 12px);
+    width: calc(100% - 12px);
+    position: relative;
+}
+
+.payment-method-details-container .details-image-container{
+    text-align: center;
+}
+
+.details-info-panel {
+    display: flex;
+}
+
+.details-image-container {
+    height: 60px;
+    margin: 24px;
+    width: 100px;
+}
+
+.details-image-container i {
+    font-size: 48px;
+}
+
+.details-image {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.details-header {
+    margin-top: 24px;
+    margin-right: 24px;
+    margin-bottom: 24px;
+    position: relative;
+}
+
+.details-label {
+    font-size: 1.125rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.5rem;
+    font-family: 'Roboto',sans-serif;
+    color: #202124;
+}
+
+.info-message,
+.detail-info-non-header {
+    color: rgba(0,0,0,0.54);
+    font-size: 12px;
+    line-height: 18px;
+    margin-top: 4px;
+}
+
+.details-actions-bar {
+    border-top: 1px solid #ced6d4;
+    padding: 10px 0 10px 24px;
+    min-height: 36px;
+}
+
+.default-action {
+    float: left;
+}
+
+.details-default-actions {
+    justify-content: flex-end;
+    display: flex;
+}
+
+.details-action {
+    height: 36px;
+    line-height: 36px;
+    display: inline-block;
+}
+
+.info-message,
+.button-standard {
+    font-family: 'Roboto',sans-serif;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    height: 36px;
+    letter-spacing: .25px;
+    line-height: 36px;
+    margin-right: 24px;
+    padding-left: 24px;
+    padding-right: 24px;
+    text-transform: none;
+    vertical-align: top;
+    color: #007373;
+    background-color: transparent;
+}
+
+.button-default {
+    font-family: 'Roboto',sans-serif;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 400;
+    height: 36px;
+    letter-spacing: .25px;
+    line-height: 36px;
+    margin-right: 24px;
+    padding-left: 24px;
+    padding-right: 24px;
+    text-transform: none;
+    vertical-align: top;
+    background-color: transparent;
+}
+
+
+.button-standard:hover {
+    background-color: #ececec;
+}
+
+.link-display-text {
+    display: inline-block;
+}
+
+.option-content-container {
+    display: flex;
+    margin: 16px 0;
+}
+
+.option-content-container img {
+    width: 24px;
+    margin: 0 24px 0 2px;
+}
+
+.option-content {
+    color: rgba(0,0,0,0.87);
+    font-size: 15px;
+    line-height: 20px;
+    width: 100%;
+    margin-top: 0;
+    -webkit-align-self: center;
+    align-self: center
+}
+
+.additional-option .option-label {
+    position: relative;
+    vertical-align: middle;
+}
+
+.bank-details {
+    position: relative;
+}
+
+.bank-details .container {
+    max-width: 700px !important;
+}

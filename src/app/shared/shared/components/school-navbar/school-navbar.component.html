@@ -1,0 +1,60 @@
+
+	<header style="position: relative" class="header-section">
+		<nav class="navbar navbar-expand-sm navbar-light bg-white-sl">
+			<a class="navbar-brand" [routerLink]="['/school-sign-up']">
+				<div class="logo site-logo">
+					<img class="img-fluid img-responsive" src="assets/img/logo.png" alt="logo" width="160"> for Schools
+				</div>
+				
+			</a>
+			<button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="collapsibleNavId">
+				<!-- <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					<li class="ml-50 nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Explore</a>
+						<div class="dropdown-menu" aria-labelledby="dropdownId">
+							<a class="dropdown-item" href="#">Action 1</a>
+							<a class="dropdown-item" href="#">Action 2</a>
+						</div>
+					</li>
+				</ul> -->
+				
+				<!-- <form class="form-inline mr-auto mt-2 mt-lg-0">
+					<div class="searchbar">
+						<input class="search_input" type="text" name="" placeholder="Search...">
+						<a href="#" class="search_icon"><i class="fa fa-search"></i></a>
+					  </div>
+				</form> -->
+				<ul class="navbar-nav ml-auto mt-2">
+					<li class="nav-item">
+						<a *ngIf="!(isLoggedIn())" class="nav-link" [routerLink]="['/home']">e-Learning</a>
+						<a *ngIf="isLoggedIn()"class="nav-link" [routerLink]="['/home-learner']">e-Learning</a>
+					</li>
+
+				<li class="nav-item">
+					<a class="nav-link" href="#">Plans</a>
+				</li>
+				<!-- <li class="nav-item">
+					<a class="nav-link" href="teachers-page.html">Teach on expertplat</a>
+				</li> -->
+				<!-- <li class="nav-item">
+					<a class="nav-link" href="#">
+						<span class="material-icons-outlined md-36">
+						shopping_cart
+						</span>
+					</a>
+				</li> -->
+				<li [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" class="login-btn nav-item">
+					<a class="nav-link" [routerLink]="['/school-log-in']">Login</a>
+				</li>
+				<li [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+					<a class=" my-2 my-sm-0" [routerLink]="['/school-sign-up']"><button class="btn header-btn-inverse" type="submit">Sign up</button> <span class="sr-only">(current)</span></a>
+			</li>
+			</ul>
+			</div>
+		</nav>
+	</header>
+	<!-- Header section end -->

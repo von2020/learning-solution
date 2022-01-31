@@ -1,0 +1,21 @@
+.section-title {
+    text-align: left;
+    padding: 0px;
+    margin-bottom: 70px;
+}
+
+.btn-primary {
+    background-color: #006666 !important;
+    border: none !important;
+}
+
+.status-style {
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #006666;
+}
+
+#exampleModal .modal-dialog,
+#exampleModal2 .modal-dialog {
+    max-width: 920px;
+}

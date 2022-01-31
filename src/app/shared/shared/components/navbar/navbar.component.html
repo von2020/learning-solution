@@ -1,0 +1,155 @@
+<header class="shadow header-section">
+    <nav class="navbar topbar navbar-expand-sm navbar-light bg-white">
+        <a *ngIf="!(isLoggedIn())" class="navbar-brand" [routerLink]="['/']">
+            <div class="logo site-logo">
+                <img class="img-fluid img-responsive" src="assets/img/logo.png" alt="logo" width="150">
+            </div>
+            
+        </a>
+        <a *ngIf="isLoggedIn()" class="navbar-brand" [routerLink]="['/home-learner']">
+            <div class="logo site-logo">
+                <img class="img-fluid img-responsive" src="assets/img/logo.png" alt="logo" width="150">
+            </div>
+            
+        </a>
+
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0  navbar-category">
+                <li class="ml-50 nav-item dropdown">
+                    <a class="nav-link dropdown-toggle nav-txt" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Explore</a>
+                    <ul class="dropdown-menu category-dropdown" aria-labelledby="dropdownId">
+                        <!-- <a data-value="{{categorie.id}}" *ngFor="let categorie of categories" tabindex="-1" class="dropdown-item forCtegroy" routerLink="/course-category" [queryParams]="{ category: categorie.courseCategoryName }">{{categorie.courseCategoryName}}</a> -->
+                        <!-- <ul class="dropdown-menu forCtegroy"> -->
+                            <li>
+                                <a class="dropdown-item" href routerLink="/course-category" [queryParams]="{category: 'Development' }" >
+                                    Development
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href routerLink="/course-category" [queryParams]="{category: 'Design' }">
+                                    Design
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href routerLink="/course-category" [queryParams]="{category: 'Finance & Accounting' }">
+                                    Finance & Accounting
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href routerLink="/course-category" [queryParams]="{category: 'Photography' }">
+                                    Photography
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href routerLink="/course-category" [queryParams]="{category: 'Music' }">
+                                    Music
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href routerLink="/course-category" [queryParams]="{category: 'Business' }">
+                                    Business
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href routerLink="/course-category" [queryParams]="{category: 'IT & Software' }">
+                                    IT & Software
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href routerLink="/course-category" [queryParams]="{category: 'Office Productivity' }">
+                                    Office Productivity
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href routerLink="/course-category" [queryParams]="{category: 'Personal Development' }">
+                                    Personal Development
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href routerLink="/course-category" [queryParams]="{category: 'Health & Fitness' }">
+                                    Health & Fitness
+                                </a>
+                            </li>
+
+                        <!-- </ul> -->
+                        </ul>
+                </li>
+            </ul>
+            
+            <form *ngIf="isLoggedIn()" class="form-inline mr-auto mt-2 mt-lg-0">
+                <!-- <input class="form-control mr-sm-2" type="text" placeholder="Search"> -->
+                <div class="searchbar">
+                    <input id="search_in" class="search_input" #courseName type="text" placeholder="Search Course Name...">
+                    <a id="search_btn" (click)="getCourseByCourseName(courseName.value)" type="button" class="search_icon"><i class="fa fa-search"></i></a>
+                  </div>
+            </form>
+            <ul class="nav-right-links navbar-nav  my-2 my-lg-0">
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}"  class="nav-txt nav-item">
+                <a class="nav-link" [routerLink]="['/school-sign-up']">Expertplat For Schools</a>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" class="nav-txt nav-item">
+                <a class="nav-link" [routerLink]="['/teach-home']">Teach on expertplat</a>
+            </li>
+            <!-- <li [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" class="nav-item">
+                <a class="nav-link" href="#">
+                    <span class="material-icons-outlined md-36">
+                    shopping_cart
+                    </span>
+                </a>
+            </li> -->
+
+
+            <!-- Nav Item - Alerts -->
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}"  class="nav-txt nav-item mx-1">
+        <a class="nav-link" (click)="unBadge()" [routerLink]="['/cart']">
+            <span class="clickme rounded-circle material-icons-outlined md-36">
+                shopping_cart
+                </span>
+          <!-- Counter - Alerts -->
+          <!-- <span class="badge badge-danger badge-counter">3+</span> -->
+          <span id="cartBadgevisibility" *ngIf="isCartExist()" class="badge badge-round badge-cart badge-danger">1</span>
+        </a>
+      </li>
+
+
+            <li *ngIf="!(isLoggedIn())" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" class="login-btn nav-item">
+                <a class="nav-link" [routerLink]="['/login']">Login</a>
+            </li>
+            <div *ngIf="!(isLoggedIn())" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" >
+                <a class="btn header-btn-inverse" [routerLink]="['/register']">Sign up</a>
+            </div>
+        <li *ngIf="isLoggedIn() && !(isFLoggedIn())" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}"  class="nav-item dropdown">
+            <a class="nav-link" [routerLink]="['/courses-learner']" id="dropdownId" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">My Courses</a>
+        </li>
+        <li *ngIf="isLoggedIn()" class="nav-item">
+            <a class="nav-link"><span class="material-icons-outlined md-36">
+                favorite_border
+                </span>
+            </a>
+        </li>
+        <li *ngIf="isLoggedIn()" class="nav-item">
+            <a class="nav-link"><span class="material-icons-outlined md-36">
+                notifications
+                </span>
+            </a>
+        </li>
+        <li *ngIf="isLoggedIn()" class="nav-item dropdown">
+            <a class="nav-link" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> {{courseAmount == 0 ? 'Free' : courseAmount |currency:"₦"}}
+                <img src="{{profilePicture == null ? 'assets/img/gender-neutral-user.png' : profilePicture}}" width="40px" class="clickme rounded-circle" alt="profile">
+                <span id="badgevisibility" class="badge badge-round badge-notify badge-danger">1</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownId">
+                <a class="dropdown-item" [routerLink]="['/profile-learner']">Edit Profile</a>
+                <a class="dropdown-item" [routerLink]="['/payment-learner']">Payment Method</a>
+                <a class="dropdown-item" role="button" (click)="onLogoutClick()" >Logout</a>
+            </div>
+        </li>
+        </ul>
+        </div>
+    </nav>
+</header>

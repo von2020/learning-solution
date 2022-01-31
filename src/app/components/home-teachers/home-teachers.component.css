@@ -1,0 +1,312 @@
+
+.card_dash {
+    background: #fff;
+    margin-top: 30px;
+    float: left;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #efefef;
+	padding: 20px;
+}
+
+.card_dash_left {
+    float: left;
+}
+
+.card_dash_right {
+    float: right;
+	padding: 15px 0;
+}
+
+.card_dash_right img {
+    width: 70px;
+}
+
+.card_dash_left h5 {
+    font-size: 16px;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.card_dash_left h2 {
+    font-size: 24px;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    margin-bottom: 15px;
+    text-align: left;
+    margin-top: 0;
+}
+
+.card_dash_left span {
+    font-size: 12px;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    background: #efefef;
+    padding: 5px 10px;
+    border-radius: 10px;
+	color: #fff;
+}
+
+.crdbg_1 {
+	background: #ffc136 !important;
+}
+
+.crdbg_2 {
+	background: #c182f9 !important;
+}
+
+.crdbg_3 {
+	background: #ffa052 !important;
+}
+
+.crdbg_4 {
+	background: #cca1ff !important;
+}
+
+.card-body-create {
+    flex: 1 1 auto;
+    padding: 1.25rem;
+}
+
+.section-title {
+	text-align: left;
+	padding: 0;
+	margin-bottom: 0px;
+}
+
+.spad {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.top-pad {
+    padding-top: 80px;
+    padding-bottom: 20px;
+}
+
+.round-pad {
+    padding: 35px;
+}
+
+a {
+    color: #474747;
+    text-decoration: none;
+    background-color: transparent
+}
+
+a:hover {
+    color: #006666;
+    text-decoration: none
+}
+
+.soft-btn {
+    color: #006666 !important;
+    border-color: #006666 !important;
+}
+
+.soft-btn:hover {
+    color: #ffffff !important;
+    background-color: #006666 !important;
+}
+
+.mt-7 {
+    margin-top: 5rem !important;
+}
+
+.site-btn {
+	/* display: inline-block;
+	text-align: center;
+	border: none;
+	padding: 20px 15px;
+	font-weight: 600;
+	font-size: 14px;
+	position: relative;
+	color: #fff;
+	cursor: pointer;
+    background: #006666; */
+    
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+    background: #006666;
+    /* padding: 0px 20px; */
+    border-radius: 25px;
+    border: 0;
+    /* height: 40px; */
+}
+
+.site-btn:hover {
+    color: #fff;
+	cursor: pointer;
+	background: #474747;
+}
+
+.plan-btn {
+	display: inline-block;
+	/* min-width: 240px; */
+	text-align: center;
+	border: none;
+	padding: 15px 18px;
+	font-weight: 600;
+	font-size: 14px;
+	position: relative;
+	color: #fff;
+	cursor: pointer;
+	background: #474747;
+}
+
+.plan-btn:hover {
+	color: #fff;
+	cursor: pointer;
+	background: #006666;
+}
+
+.subscription-section .subscription-section-title p {
+    font-size: 18px;
+    /* font-weight: 600; */
+    margin-top: 25px;
+}
+
+.subscription-section .create-icons {
+    background: #006666;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+    padding: 50px;
+}
+
+.subscription-section .create-plan {
+    /* background: #006666; */
+    display: flex;
+  justify-content: center;
+  align-items: center;
+    padding: 10px;
+}
+
+
+.subscription-section .create-icons img {
+    width: 250px;
+    margin: 0 auto;
+}
+
+.subscription-section .create-plan img {
+    width: 250px;
+    margin: 0 auto;
+}
+
+.subscription-section .sub-text {
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+
+.bpad {
+    padding-bottom: 80px;
+    padding-top: 0px;
+}
+
+.subscription-section .lpad {
+    padding-left: 45px !important;
+    padding-right: 30px !important;
+}
+
+.subscription-section .rpad {
+    padding: 45px 30px !important;
+}
+
+
+.card .card-header .dropdown {
+    line-height: 1
+}
+
+.card .card-header .dropdown .dropdown-menu {
+    line-height: 1.5
+}
+
+.card .card-header[data-toggle=collapse] {
+    text-decoration: none;
+    position: relative;
+    padding: .75rem 3.25rem .75rem 1.25rem
+}
+
+.card .card-header[data-toggle=collapse]::after {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding-right: 1.725rem;
+    line-height: 51px;
+    font-weight: 900;
+    content: '\f107';
+    font-family: 'Font Awesome 5 Free';
+    color: #6e707e
+}
+
+.card .card-header[data-toggle=collapse].collapsed {
+    border-radius: .35rem
+}
+
+.card .card-header[data-toggle=collapse].collapsed::after {
+    content: '\f105'
+}
+
+.chart-area {
+    position: relative;
+    height: 10rem;
+    width: 100%
+}
+
+
+.plan-wrapper {
+    position: relative;
+}
+
+/* .plan-card {
+    display: block;
+} */
+
+.overlay-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background: rgba(0, 0, 0, .7);
+}
+
+.plan-wrapper:hover .overlay {
+    opacity: 1;
+
+}
+
+.accordion .card-header:after {
+    font-family: 'FontAwesome';  
+    content: "\f068";
+    float: right; 
+}
+.accordion .card-header.collapsed:after {
+    /* symbol for "collapsed" panels */
+    content: "\f069"; 
+}
+
+.area {
+float: left;
+background: #e2e2e2;
+width: 100%;
+height: 100%;
+}

@@ -1,0 +1,25 @@
+<div class="jumbotron jumbotron-fluid" style="background-image: url('assets/img/course-bg.jpg');">
+    <div class="breadcrumb-background-gradient"></div>
+    <div class="container pr">
+      <div class="breadcrumb-text-container">
+        <h3>My Courses</h3>
+      </div>
+      <nav class="navbar navbar-expand-sm z-2 navbar-light bg-light">
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+  
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}"  class="nav-item">
+              <a class="nav-link" [routerLink]="['/courses-learner']">All courses</a>
+          </li>
+          <li [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}"  class="nav-item">
+            <a class="nav-link" [routerLink]="['/courses-learner']">Wishlist</a>
+        </li>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}"  class="nav-item">
+          <a class="nav-link" [routerLink]="['/archived-courses-learner']">Archived</a>
+      </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+  

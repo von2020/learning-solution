@@ -1,0 +1,80 @@
+<app-school-navbar></app-school-navbar>
+	<div class="school-bg">
+        <div class="form-body">
+        <div class="row">
+			<div class="col-md-7">
+            <div class="pl-10 img-holder">
+                <!-- <div class="bg"></div> -->
+                <div class="info-holder">
+                    <h2 class="welcome-title">Join over 5 million expertplat students' and teachers around the world</h2>
+                    </div>
+			</div>
+		</div>
+		<div class="col-md-5 form-holder">
+            <!-- <div class="form-holder"> -->
+                <div style="background-color: transparent;" class="form-content pt-20">
+                    <div class="w500 form-items">
+                        <div class="page-links">
+                            <a class="active">Sign up</a>
+                        </div>
+                        <form #f="ngForm" class="school-input" (ngSubmit)="f.form.valid" novalidate>
+                        <div class="form-group">
+							<input [(ngModel)]="school.firstName" class="form-control" type="text" name="firstname" placeholder="First name *" required>
+                        </div>
+
+                        <div class="form-group">
+							<input [(ngModel)]="school.lastName" class="form-control" type="text" name="lastname" placeholder="Last name *" required>
+                        </div>
+
+                        <div class="form-group">
+                            <input [(ngModel)]="school.email" class="form-control" type="email" name="email" placeholder="E-mail Address *" required>
+                        </div>
+                           
+                        <div class="form-group">
+                            <select [(ngModel)]="school.schoolTypeId " class="form-control" name="School type">
+                                <option [ngValue]="null">Choose school type *</option>
+                                <option *ngFor="let schoolType of schoolTypes" value="{{schoolType.id}}">{{schoolType.schoolTypeName}}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+							<input [(ngModel)]="school.schoolName" class="form-control" type="text" name="school-name" placeholder="Provide School Name *" required>
+                        </div>
+
+                        <div class="form-group">
+							<input #scode="ngModel" [(ngModel)]="school.schoolCode" class="form-control" type="text" maxlength="3" name="school-code" placeholder="Provide School code *" required>
+                        </div>
+							
+                        <div class="form-group">
+                            <input [(ngModel)]="school.phoneNumber" class="form-control" type="tel" name="phone number" placeholder="Phone number *" required>
+                        </div>
+
+                        <div class="form-group">
+                            <input [(ngModel)]="school.campusName" class="form-control" type="text" name="main-campus" placeholder="main campus *" required>
+                        </div>
+
+                        <div class="form-group">
+							<textarea [(ngModel)]="school.campusAddress" name="address" id="address" cols="30" rows="10" placeholder="Address *" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+							<input [(ngModel)]="school.password" class="form-control" type="password" name="password" placeholder="Password *" required>
+                        </div>
+
+                        <div class="form-button">
+                            <button (click)="create()" class="w100 ibtn">continue</button> 
+								<!-- <button id="submit" type="submit" data-toggle="modal" data-target="#confirmModal" class="w100 ibtn">continue</button>  -->
+								<!-- <a href="forget15.html">Forgot password?</a> -->
+                        </div>
+                        </form>
+                        <div class="other-links">
+                            <span>Already have an Account ?</span><a [routerLink]="['/school-log-in']">Log in</a>
+                        </div>
+                    </div>
+                </div>
+			<!-- </div> -->
+		</div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

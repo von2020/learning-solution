@@ -1,0 +1,57 @@
+<!-- <div id="hiddenDiv"> -->
+<div id="cert">
+    <div style="width: 100%;">
+    <div id="cert-content">
+      <h1 id="cert-title">
+          Certificate of Completion
+        </h1>
+        <br><br>
+        
+        <p id="cert-declaration">
+          THIS IS TO CERTIFY THAT
+        </p>
+        
+    <h1 id="cert-holder">
+      {{certificateData.lernerFullName}}
+    </h1>
+    
+    <p class="mt-5" id='cert-completed-line'>
+      has successfully completed the
+    </p>
+    
+    <h2 id="cert-course">
+      {{certificateData.courseName}}
+    </h2>
+    
+    <p id='cert-issued'>
+     <b>Issued on:</b> {{certificateData.completionDate | date:'longDate'}}.
+    </p>
+  </div>
+  <br>
+  <br>
+  <br>
+  <div class="row">
+      <div class="col-md-6">
+
+          <div id="cert-footer">
+              <div id="cert-ceo-design">
+                <p style="font-family: 'Mrs Saint Delafield', cursive;">{{certificateData.facilitatorFullName}}</p>
+                <hr>
+                <p>{{certificateData.facilitatorFullName}}</p>
+              </div>
+            </div>
+      </div>
+      <div class="col-md-1">
+          <p>and</p>
+      </div>
+      <div class="col-md-5">
+          <img id="cert-stamp" src="assets/img/logo.png">
+      </div>
+  </div>
+    
+    <div id="cert-verify">
+        Certificate no. : <span class="font-weight-bold">{{certificateData.certificateNumber}}</span> <br> 
+        Expertplat has confirmed the participation of this individual in the course.
+      </div></div>
+</div>
+<!-- </div> -->

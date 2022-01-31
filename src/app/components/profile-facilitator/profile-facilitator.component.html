@@ -1,0 +1,127 @@
+<div class="profile-section spad">
+    <div class="row">
+        <div class="col-md-12">
+        <div class="section-title">
+          <h2>Profile & Settings</h2>
+      </div>
+    </div>
+      </div>
+
+      <div class="row">
+          <div class="col-md-12">
+            <flash-messages></flash-messages>
+            <div class="tab" role="tabpanel">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item active">
+                        <a class="nav-link active" href="#Section1" role="tab" data-toggle="tab">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#Section2" role="tab" data-toggle="tab">Profile Picture</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#Section3" role="tab" data-toggle="tab">Privacy & Settings</a>
+                    </li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content tabs">
+                    <div role="tabpanel" class="tab-pane active" id="Section1">
+                        
+            <form (submit)="onProfileUpdateSubmit()" class="profile-input" [formGroup]="profileUpdateForm">
+                <div class="form-group ">
+                    <label for="First Name"class="form-adjust" >First Name</label>
+                    <input class="form-control" type="text" formControlName="FirstName" name="FirstName" required>
+                  </div>
+                  <div class="form-group ">
+                    <label for="Email"class="form-adjust" >Email</label>
+                    <input class="form-control" type="email" [(ngModel)]="Email" [ngModelOptions]="{standalone: true}" name="Email" [disabled]='disableTextbox' required>
+                  </div>
+                  <div class="form-group ">
+                    <label for="Last Name"class="form-adjust" >Last Name</label>
+                    <input class="form-control" type="text" formControlName="LastName" name="LastName" required>
+                  </div>
+                  <div class="form-group ">
+                    <label for="Username"class="form-adjust" >Username</label>
+                    <input class="form-control" type="text" formControlName="UserName" name="UserName" required>
+                  </div>
+                  <div class="form-group ">
+                    <label for="Phone Number"class="form-adjust" >Phone Number</label>
+                    <input class="form-control" type="tel" formControlName="PhoneNumber" name="PhoneNumber">
+                  </div>
+                  <div class="form-group ">
+                    <label for="Profession"class="form-adjust" >Profession</label>
+                    <input class="form-control" type="text" formControlName="Profession" name="Profession" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="Bio">Bio</label>
+                    <textarea class="form-control" formControlName="Bio" id="Bio" rows="3" maxlength="500"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="InstitutionAttended"class="form-adjust" >Institution Attended</label>
+                    <input class="form-control" type="text" formControlName="InstitutionAttended" name="InstitutionAttended">
+                  </div>
+                  <div class="form-group ">
+                    <label for="CourseOfStudy"class="form-adjust" >Course of Study</label>
+                    <input class="form-control" type="text" formControlName="CourseOfStudy" name="CourseOfStudy">
+                  </div>
+                  <div class="form-group ">
+                    <label for="CertificateObtained"class="form-adjust" >Certificate Obtained</label>
+                    <input class="form-control" type="text" formControlName="CertificateObtained" name="CertificateObtained">
+                  </div>
+                
+                <div class="form-button d-inline">
+                    <a (click) = "enableFields()" class="btn site-btn mt-5 mr-3">edit</a>
+                    <button id="submit" type="submit" class="btn ibtn mt-5">Save</button>
+                </div>
+            </form>
+            
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="Section2">
+                        <div class="profile-picture-section">
+                      <div class="row">
+                        <div class="small-12 medium-2 large-2 columns">
+                          <div class="circle">
+                            <!-- User Profile Image -->
+                            <img class="profile-pic" src="assets/img/user-profile.svg">
+                     
+                            <!-- Default Image -->
+                            <!-- <i class="fa fa-user fa-5x"></i> -->
+                          </div>
+                          <div class="p-image">
+                            <i class="fa fa-camera upload-button"></i>
+                             <input class="file-upload" type="file" accept="image/jpeg,image/jpg,image/png"/>
+                          </div>
+                       </div>
+                     </div>
+                    </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="Section3">
+                        
+                        
+                                </div>
+                </div>
+            </div>
+          </div>
+      </div>
+      </div>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a routerLinkActive="list-item-active" data-dismiss="modal" (click)="onLogoutClick()" class="btn btn-primary">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  

@@ -1,0 +1,21 @@
+.account-bg {
+    position: relative;
+    margin-left: 0;
+    margin-right: 0;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
+    background: url("../../../assets/img/page-bg/admin-bg.jpg");
+}
+
+@media screen and (min-width: 768px) {
+.form-holder .pda {
+    padding: 199px 50px !important;
+}
+}
+
+.img-holder .info-holder h2 {
+    color: #fff;
+    text-align: left;
+}

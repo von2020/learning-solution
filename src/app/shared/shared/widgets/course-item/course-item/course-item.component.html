@@ -1,0 +1,23 @@
+    <div class="course-item">
+        <div class="course-thumb set-bg" [ngStyle]="{'background': 'url(' + courseImage + ') no-repeat 0 0 / cover'}">
+            <div class="price" *ngIf="courseTypeName != 'PassCode'">Price: {{courseAmount == 0 ? 'Free' : courseAmount |currency:"₦"}}</div>
+            <div class="price" *ngIf="courseTypeName == 'PassCode'">Price:  Passcode</div>
+        </div>
+        <div class="course-info">
+            <div class="course-text">
+                <!-- {{courseAmount |currency:"₦"}} -->
+                <h5 class="course-name">{{courseName}}</h5>
+                <p class="text" [innerHTML] = "courseDescription"></p>
+                <!-- <div class="students">120 Students</div> -->
+                <div class="rating-item">
+                    <span class="rate-count">{{rateCount}}</span>
+                    <div class="my-rating" attr.data-rating="{{rating}}"></div>
+                </div>
+                <!-- <ngb-rating [max]="5" [(rate)]="currentRate" [readonly]="false"></ngb-rating> -->
+            </div>
+            <div class="course-author">
+                <!-- <div class="ca-pic set-bg" data-setbg="assets/img/authors/2.jpg"></div> -->
+                <p>{{firstName}} <span>{{lastName}}</span></p>
+            </div>
+        </div>
+    </div>

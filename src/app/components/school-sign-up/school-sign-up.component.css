@@ -1,0 +1,30 @@
+.pt-20 {
+    padding-top: 10rem;
+}
+
+.form-content select {
+    width: 100%;
+    /* padding: 24px 20px; */
+    text-align: left;
+    outline: 0;
+    height: 50px;
+    border-radius: 6px;
+    border: 1px solid rgba(178, 220, 220, 0.5);
+    background-color: #FAFAFA;
+    color: #000;
+    font-size: 15px;
+    font-weight: 300;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    margin-bottom: 24px;
+}
+
+.form-content input, .form-content select, .form-content textarea {
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width:411px) {
+.form-holder .form-content {
+    padding: 125px 30px 30px;
+}
+}

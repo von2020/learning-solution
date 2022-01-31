@@ -1,0 +1,321 @@
+<div class="container-fluid">
+    <div class="my-course-section spad">
+        <div class="row">
+            <div class="col-md-12">
+            <div class="section-title">
+              <h2>Manage Assessments</h2>
+          </div>
+        </div>
+          </div>
+          <div class="row">
+              <div class="col-md-12">
+                <div class="main-card mb-3 card">
+                    <div class="card-body">
+                        <!-- <section id="tabs">
+                            <div class="container">
+                                <h6 class="section-title h1">Tabs</h6> -->
+                                <!-- <div class="row">
+                                    <div class="col-xs-12 "> -->
+                                        <nav>
+                                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                                <a class="nav-item nav-link active" id="nav-all-tab" data-toggle="tab" href="#nav-all" role="tab" aria-controls="nav-all" aria-selected="true">All Assessments</a>
+                                                <a class="nav-item nav-link" id="nav-view-tab" data-toggle="tab" href="#nav-view" role="tab" aria-controls="nav-view" aria-selected="false">View Assessments</a>
+                                                <a class="nav-item nav-link" id="nav-add-tab" data-toggle="tab" href="#nav-add" role="tab" aria-controls="nav-add" aria-selected="false">Add Assessments</a>
+                                            </div>
+                                        </nav>
+                                        <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                                            <div class="tab-pane fade show active" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab">
+
+                                                <div *ngIf="topicMessage != null" class="text-center">
+                                                  <h3>{{topicMessage}}</h3>
+                                                </div>
+                                                
+                                                <div style="display: none;" id="topicQuiz">
+                                                <div *ngIf="createdTopicQuizzes" class="table-responsive" style="padding: 0.5em;">
+                                                    <table class="align-middle mb-0 table table-borderless table-striped table-hover" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                                                      <thead>
+                                                        <tr> 
+                                                            <th class="text-center">S/N</th>
+                                                            <th class="text-center">Description</th>
+                                                            <th class="text-center">Duration</th>
+                                                            <th class="text-center">Percentage Pass Mark</th>
+                                                            <th class="text-center">Status</th>
+                                                            <th class="text-center">Action</th>
+                                                        </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                        <tr *ngFor="let createdTopicQuiz of createdTopicQuizzes; let i = index">
+                                                          <td class="text-center text-muted">{{ i + 1}}</td>
+                                                          <td class="text-center"> {{createdTopicQuiz.description}}</td>
+                                                          <td class="text-center">{{createdTopicQuiz.duration + " minutes"}}</td>
+                                                          <td class="text-center">{{createdTopicQuiz.percentagePassMark}}</td>
+                                                          <td class="text-center status-style">
+                                                            {{createdTopicQuiz.status?"ACTIVE": "INACTIVE"}}
+                                                        </td>
+                                                        <td class="text-center">
+                                                            
+                                                            <!-- Example single danger button -->
+                                                            <div class="btn-group">
+                                                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                Select Action
+                                                                </button>
+                                                                <div class="dropdown-menu">
+                                                                <a class="dropdown-item" data-toggle="modal" (click)="updateQuiz(createdTopicQuiz)" data-target="#editSectionModal" href="#">Edit Assessment</a>
+                                                                <a class="dropdown-item" (click)="viewQuestions(createdTopicQuiz)">View Questions</a>
+                                                                <a class="dropdown-item" href="#">Add Questions</a>
+                                                                <div class="dropdown-divider"></div>
+                                                                <a class="dropdown-item" href="#">Delete Assessment</a>
+                                                                </div>
+                                                            </div>
+                                                            <!-- <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Details</button> -->
+                                                        </td>
+                                                        </tr>
+                                      
+                                                      </tbody>
+                                                    </table>
+                                                  </div>
+                                                  </div>
+
+                                            </div>
+                                            <div class="tab-pane fade" id="nav-view" role="tabpanel" aria-labelledby="nav-view-tab">
+
+                                                <form class="">
+                                                    <div class="form-row">
+                                                            <div class="position-relative form-group">
+                                                                <label for="exampleEmail11" class="">Select Category</label>
+                                                                <select id="sel" (change)="toggle()" class="form-control" name="" required="">
+                                                                    <option value selected disabled>----</option>
+                                                                    <option value="0">Course Topic</option>
+                                                                    <option value="1">Course</option>
+                                                                    </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="position-relative form-group">
+                                                      <label for="exampleAddress" class="">Course</label>
+                                                      <select id="course" (change)="toggleCourse()" class="form-control" required>
+                                                          <option value selected disabled>----</option>
+                                                          <option *ngFor="let course of courses" value={{course.courseData.id}}>{{course.courseData.courseName}}</option>
+                                                         
+                                                        </select>
+                                                  </div>
+                                                    
+                                                  
+                                                      <button type="submit" (click)="getAssessment()" class="mt-2 btn btn-primary">Submit</button>
+                                                </form>
+
+                                                
+                                                <div *ngIf="message != null" class="text-center">
+                                                  <h2>{{message}}</h2>
+                                                </div>
+                                                
+                                                <div style="display: none;" id="viewedQuiz">
+                                                  <div *ngIf="viewedQuizzes" class="table-responsive">
+                                                    <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                                        <thead>
+                                                        <tr>
+                                                            
+                                                            
+                                                            <th class="text-center">CourseID</th>
+                                                            <th class="text-center">Duration</th>
+                                                            <th class="text-center">Percentage Pass Mark</th>
+                                                            <th class="text-center">Description</th>
+                                                            <th class="text-center">Status</th>
+                                                            <th class="text-center">Action</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr *ngFor="let quiz of viewedQuizzes">
+                                                            <td class="text-center text-muted">{{quiz.courseId}}</td>
+                                                            <td >
+                                                               {{quiz.duration + " minutes"}}
+                                                            </td>
+                                                            <td class="text-center">{{quiz.percentagePassMark}}</td>
+                                                            <td class="text-center">
+                                                                {{quiz.description}}
+                                                            </td>
+                                                            <td class="text-center status-style">
+                                                                {{quiz.status?"ACTIVE": "INACTIVE"}}
+                                                            </td>
+                                                            <td class="text-center">
+                                                                
+                                                                <!-- Example single danger button -->
+                                                                <div class="btn-group">
+                                                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    Select Action
+                                                                    </button>
+                                                                    <div class="dropdown-menu">
+                                                                    <a class="dropdown-item" role="button" data-toggle="modal" (click)="updateQuiz(quiz)" data-target="#editSectionModal" href="#">Edit Assessment</a>
+                                                                    <a class="dropdown-item" role="button" (click)="viewQuestions(quiz)">View Questions</a>
+                                                                    <a class="dropdown-item" role="button" (click)="AddQuestions(quiz)">Add Questions</a>
+                                                                    <div class="dropdown-divider"></div>
+                                                                    <a class="dropdown-item" href="#">Delete Assessment</a>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Details</button> -->
+                                                            </td>
+                                                        </tr>
+                                                        
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                              </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="nav-add" role="tabpanel" aria-labelledby="nav-add-tab">
+                                               
+                                                <form >
+                                                   
+                                                    <div class="position-relative form-group">
+                                                        <label for="exampleAddress" class="">Assessment Duration (Minutes)</label>
+                                                        <input id="duration"   placeholder="Assessm entduration in minutes" type="text" class="form-control" required>
+                                                    </div>
+                                                    <div class="position-relative form-group">
+                                                        <label for="exampleAddress" class="">Passmark (Maximum 100%)</label>
+                                                        <input id="percent"  placeholder="add percentage pass mark" type="text" class="form-control" required>
+                                                    </div>
+                                                    <div class="position-relative form-group">
+                                                        <label for="exampleAddress" class="">Course</label>
+                                                        <select id="assCourse"   class="form-control" required>
+                                                            
+                                                            <option *ngFor="let course of courses" value={{course.courseData.id}}>{{course.courseData.courseName}}</option>
+                                                           
+                                                          </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Description</label>
+                                                        <textarea id="description"  style="resize: none;" rows="6" class="form-control" placeholder="Enter Description"  required autocomplete="off"></textarea>
+                                                 </div>
+
+                                                 <button [hidden]="active" (click)="add()" class="mt-2 btn btn-primary">Add </button>
+                                                 <button [hidden]="!active" class="mt-2 btn btn-disabled">Adding ...</button>
+                                                </form>                                            
+                                            </div>
+                                        </div>
+                                    
+                    </div>
+                </div>
+              </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-md-12">
+                <div class="main-card mb-3 card">
+                    <div class="card-header">Created Course Assessments
+                    </div>
+                    <div *ngIf="quizMessage != null" class="text-center m-5">
+                      <h4>{{quizMessage}}</h4>
+                    </div>
+                    
+                    <div style="display: none;" id="cQuiz">
+                    <div *ngIf="createdQuizzes" class="table-responsive">
+                        <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                            <thead>
+                            <tr>
+                                
+                                
+                                <th class="text-center">CourseID</th>
+                                <th class="text-center">Duration</th>
+                                <th class="text-center">Percentage Pass Mark</th>
+                                <th class="text-center">Description</th>
+                                <th class="text-center">Status</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let quiz2 of createdQuizzes">
+                                <td class="text-center text-muted">{{quiz2.courseId}}</td>
+                                <td >
+                                   {{quiz2.duration + " minutes"}}
+                                </td>
+                                <td class="text-center">{{quiz2.percentagePassMark}}</td>
+                                <td class="text-center">
+                                    {{quiz2.description}}
+                                </td>
+                                <td class="text-center status-style">
+                                    {{quiz2.status?"ACTIVE": "INACTIVE"}}
+                                </td>
+                                <td class="text-center">
+                                    
+                                    <!-- Example single danger button -->
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Select Action
+                                        </button>
+                                        <div class="dropdown-menu">
+                                        <a class="dropdown-item" role="button" data-toggle="modal" (click)="updateQuiz(quiz2)" data-target="#editSectionModal">Edit Assessment</a>
+                                        <a class="dropdown-item" role="button" (click)="viewQuestions(quiz2)">View Questions</a>
+                                        <a class="dropdown-item" role="button" (click)="AddQuestions(quiz2)">Add Questions</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" role="button" (click)="deleteQuiz(quiz2)">Delete Assessment</a>
+                                        </div>
+                                    </div>
+                                    <!-- <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Details</button> -->
+                                </td>
+                            </tr>
+                            
+                            </tbody>
+                        </table>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+          </div>
+          </div>
+
+          <!-- Edit Assessment Modal-->
+<div class="modal fade" id="editSectionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Assessment</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- <div class="terminal"> -->
+            <div class="form-group">
+              <label for="passmark">Percentage Passmark</label>
+              <input type="text" [(ngModel)]="activeQuiz.percentagePassMark" id="activeQuiz_PercentagePassMark"  class="form-control form-control-lg" >
+            </div>
+
+            <div class="form-group">
+                <label for="duration">Duration</label>
+                <input type="text" [(ngModel)]="activeQuiz.duration"  id="activeQuiz_Duration"   class="form-control form-control-lg" >
+              </div>
+
+              <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" [(ngModel)]="activeQuiz.description"  class="form-control form-control-lg" >
+              </div>
+            
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" type="submit" (click)="completeQuizUpdate(activeQuiz)"  data-dismiss="modal" >Continue</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a routerLinkActive="list-item-active" data-dismiss="modal" (click)="onLogoutClick()" class="btn btn-primary">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  

@@ -1,0 +1,724 @@
+<!-- Page Wrapper -->
+<div id="wrapper">
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="spad d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content">
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <div class="tabControl">
+                    <div class="container">
+                        <ul class="nav nav-pills nav-fill" id="pills-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-1" role="tab">Step 1</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-2" role="tab">Step 2</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-3" role="tab">Step 3</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-req-tab" data-toggle="pill" href="#pills-4" role="tab">Step 4</a>
+                            </li>
+                            <!-- <li class="nav-item">
+                              <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-5" role="tab">Finish</a>
+                          </li> -->
+                        </ul>
+                    </div>
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-1" role="tabpanel" aria-labelledby="pills-home-tab">
+  
+                              <div class="edit-section spad">
+                                <div class="row">
+                                  <div class="col-md-7">
+                                  <div class="section-title">
+                                    <h2>Create Course</h2>
+                                </div>
+                              </div>
+                              <div class="col-md-5"> 
+                              <div class="alert alert-info text-center mt-2 mb-2" role="alert">
+                                Click on "Save Changes" below to Apply Changes before moving to the next Step
+                              </div>
+                              </div>
+                                </div>
+                              <div class="row">
+                              <div class="col-md-7">
+                                <div class="section-subtitle">
+                                  <h3>Basic Information</h3>
+                              </div> 
+                              <div class="form-group mt-5">
+                                <label for="courseTitle">Course Title</label>
+                                <input type="text" [(ngModel)]="CourseName" class="form-control form-control-lg" id="courseTitle" placeholder="">
+  
+                              </div>
+                              <div class="form-group mt-5">
+                                <label for="courseSubTitle">Course Subtitle</label>
+                                <textarea class="form-control form-control-lg" [(ngModel)]="CourseSubTitle" id="courseSubTitle" rows="3" maxlength="200"></textarea>
+                                <small id="descriptionHelp" class="form-text text-muted">Not more than 200 characters.</small>
+                                <!-- <input type="text" [(ngModel)]="CourseSubTitle" class="form-control form-control-lg" id="courseSubTitle" placeholder=""> -->
+                              </div>
+                              <div class="form-group mt-5">
+                                <label for="courseImage">Course Image Preview</label>
+                              <ngx-dropzone 
+                              [maxFileSize]="'1000000'"
+                              (change)="onSelect($event)"
+                              [multiple]="'false'"
+                              [accept]="'image/jpeg,image/jpg,image/png'">
+                                <ngx-dropzone-label>Click or Drag and Drop an Image for your Course Preview!</ngx-dropzone-label>
+                                <ngx-dropzone-image-preview
+                                  ngProjectAs="ngx-dropzone-preview"
+                                  *ngFor="let f of files"
+                                  [file]="f"
+                                  [removable]="true"
+                                  (removed)="onRemove(f)"
+                                >
+                                  <ngx-dropzone-label> ({{ f.type }})</ngx-dropzone-label>
+                                </ngx-dropzone-image-preview>
+                              </ngx-dropzone>
+                            </div>
+                        
+                            <!-- <div class="form-group mt-5">
+                              <label for="aboutCourse">About Course</label>
+                              <input type="text" [(ngModel)]="AboutCourse" class="form-control form-control-lg" id="aboutCourse" placeholder="">
+                            </div> -->
+                              <!-- <label class="mt-5" for="courseTitle">Description</label> -->
+                              <form class="mt-5" [formGroup]="editorForm" (submit)="onSubmit()">
+                                  <div class="form-group">
+                                    <label for="editor">Description</label>
+                                    <quill-editor [style]="editorStyle" [modules]="config" [theme]="quillTheme" (onContentChanged)="maxLength($event)" formControlName="editor"></quill-editor>
+                                    <!-- <input type="text" name="" id="" class="form-control" placeholder="" aria-describedby="helpId"> -->
+                                    <small id="descriptionHelp" class="form-text text-muted">Shortly describe this course.</small>
+                                    <span *ngIf="editorForm.get('editor').value != null">{{ 1007 - editorForm.get('editor').value.length }} words left</span>
+                                  </div>
+                              </form>
+                              <!-- <div id="toolbar"></div> -->
+                              <!-- <div aria-describedby="descriptionHelp" id="editor"></div> -->
+                              <!-- <small id="descriptionHelp" class="form-text text-muted">Shortly describe this course.</small> -->
+                              
+                        </div>
+                                
+                              <div class="col-md-5">
+                                <flash-messages></flash-messages>
+                                <div class="save-section shadow">
+                                  <a class="save-item d-flex justify-content-center">
+                                    <button id="submit" href="#pills-2" type="submit" (click)="createCourse()" class="btn btn-danger ibtn">save changes</button> 
+                                  </a>
+                                  <!-- <div class="dropdown-divider"></div>
+                                  <a class="save-item" href="#">
+                                    Save Draft
+                                    <i style="float: right; color: rgba(0, 0, 0, 0.2);" class="fas fa-check fa-fw"></i>
+                                  </a>
+                                  <div class="dropdown-divider"></div>
+                                  <a class="save-item text-danger" href="#">
+                                    Delete Course
+                                  </a> -->
+                                </div>
+                        
+                                <div class="course-option">
+                                  <label class="mb-2" for="options">Options</label>
+                                  <div class="card shadow">
+                                    <div class="card-body b-radius">
+                        
+                                      <div class="form-group">
+                                        <label for="courseCategory">Category</label>
+                                        <select id="category" (change)="showSubCategory()" [(ngModel)]="CourseCategoryId" class="form-control">
+                                          <option [ngValue]="null">Choose Category*</option>
+                                          <option *ngFor="let categorie of categories" value="{{categorie.id}}">{{categorie.courseCategoryName}}</option>
+                                        </select>
+                                        <small id="categoryHelp" class="form-text text-muted">Select a category.</small>
+                                      </div>
+                                      
+                                      <div id="subCategorySelect" style="display:none;" class="form-group">
+                                        <label for="courseSubCategory">Sub Category</label>
+                                        <select id="subCategory" [(ngModel)]="CourseSubCategoryId" class="form-control">
+                                          <option [ngValue]="null">Choose Subcategory*</option>
+                                          <option *ngFor="let subCategory of subCategorys" value="{{subCategory.id}}">{{subCategory.courseSubCategoryName}}</option>
+                                        </select>
+                                        <small id="subCategoryHelp" class="form-text text-muted">Select a category.</small>
+                                      </div>
+                        
+                                      <div class="form-group">
+                                        <label for="courseType">Course Type</label>
+                                        <select name="courseType" id="sel" (change)="toggle($event)" [(ngModel)]="CourseTypeId" class="form-control">
+                                          <option [ngValue]="null">Choose Type*</option>
+                                          <option *ngFor="let courseType of courseTypes" value="{{courseType.id}}">{{courseType.courseTypeName}}</option>
+                                          <!-- <option value="1" selected>Paid</option>
+                                          <option value="2">Free</option>
+                                          <option value="3">Passcode</option> -->
+                                        </select>
+                                        <small id="selectCourseHelp" class="form-text text-muted">Select a course type.</small>
+                                      </div>
+
+                                      <div id="courseCompleted" style="display:none;" class="form-group">
+                                        <label for="isCourseCompleted">Completed Offline ?</label>
+                                        <select name="IsCompletedOffline" id="isCourseCompleted" (change)="toggleValue($event)" [(ngModel)]="IsCompletedOffline" class="form-control">
+                                          <option [ngValue]="null">Select Option*</option>
+                                          <option value="1">Yes</option>
+                                          <option value="2">No</option>
+                                        </select>
+                                      </div>
+
+                                      <div id="dateCompleted" style="display:none;" class="form-group">
+                                      <label for="dateCourseCompleted">Date Completed</label>
+                                      <input name="DateCompletedOffline" id="dateCourseCompleted" type="date" placeholder="select a Date" [(ngModel)]="DateCompletedOffline" class="form-control" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label for="IsVideoDownloadable">Make Contents Downloadable ?</label>
+                                      <select name="IsDownloadableVideo" id="IsVideoDownloadable" (change)="toggleDownloadValue($event)" [(ngModel)]="IsVideoDownloadable" class="form-control">
+                                        <option [ngValue]="null">Select Option*</option>
+                                        <option value="1">Yes</option>
+                                        <option value="2">No</option>
+                                      </select>
+                                    </div>
+
+                                      <div class="form-group">
+                                        <label for="levelType">Course Level</label>
+                                        <select name="levelType" id="selType" [(ngModel)]="LevelTypeId" class="form-control">
+                                          <option [ngValue]="null">Select Level*</option>
+                                          <option value="1" selected>Primary/Elementary</option>
+                                          <option value="2">Secondary/Higher</option>
+                                          <option value="3">University/Adult</option>
+                                          <option value="4">All</option>
+                                        </select>
+                                        <small id="selectCourseHelp" class="form-text text-muted">Select a course Level.</small>
+                                      </div>
+                        
+                                      <div id="price" style="display:none;" class="form-group">
+                                        <label for="inlineFormInputGroupPrice">Price</label>
+                                        <div class="input-group">
+                                          <div class="input-group-prepend">
+                                            <div class="input-group-text">₦</div>
+                                          </div>
+                                          <input type="number" class="form-control" [(ngModel)]="CourseAmount" id="inlineFormInputGroupPrice" placeholder="">
+                                        </div>
+                                      </div>
+                        
+                                      <!-- <div class="form-group">
+                                        <label for="tagsinput">Tags</label>
+                                        <select multiple data-role="tagsinput">
+                                          <option value="jQuery">jQuery</option>
+                                          <option value="Angular">Angular</option>
+                                          <option value="React">React</option>
+                                          <option value="Vue">Vue</option>
+                                          ...
+                                        </select>
+                                        <small id="selectTagHelp" class="form-text text-muted">Select one or more tags</small>
+                                        </div> -->
+                        
+                                      </div>
+                                    </div>
+                                  </div>
+                                <!-- </div> -->
+                        
+                                <!-- <div class="test-video">
+                                <div id="show"></div>
+                                <input type="text" id="path" placeholder="put movie path"/>
+                                <input type="submit" onclick="play();" value="Play on"/>
+                              </div> -->
+                        
+                              </div>
+                              </div>
+                              </div>
+                            <!-- <div class="row navbuttons pt-5">
+                                <div class="col-6 col-sm-auto" id="btnNext">
+                                    <a class="btn site-btn btnNext">Next</a>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="tab-pane fade" id="pills-2" role="tabpanel" aria-labelledby="pills-profile-tab">
+                          
+            <div class="course-section spad">
+              <div class="row">
+                  <div class="col-md-7">
+                  <div class="section-title">
+                    <h2>Course Content</h2>
+                </div>
+              </div>
+              <div class="col-md-5"> 
+              <div class="alert alert-info text-center mt-2 mb-2" role="alert">
+                Click on "Next" below when done adding contents to move to the next Step
+              </div>
+              </div>
+                </div>
+            <div class="row">
+              <div class="col-md-7">
+                
+                <div class="form-group mt-5 d-flex justify-content-between">
+                  <!-- <label for="courseTitle">Sections</label>
+                  <div id="accordion" class="mt-3 accordion">
+                    </div> -->
+                    <button *ngIf="coursePreview ==null" class="btn mb-3 mr-3 soft-btn"  data-toggle="modal" data-target="#addPreviewModal"  type="submit">Add a Preview</button>
+                    <button class="btn mb-3 soft-btn"  data-toggle="modal" data-target="#addSectionModal"  type="submit">Add Section</button>
+                </div>
+              
+                <flash-messages></flash-messages>
+                <label for="courseTitle">Created Sections</label>
+  
+                <div *ngIf="coursePreview !=null" id="accordion-o" class="mt-3 accordion">
+                  <div class="card border-2 mb-0 mb-3 shadow">
+                      <div class="card-header course-topic-header collapsed" data-toggle="collapse" href="#collapseOne">
+                          <a class="card-title"> Course Preview </a>
+                      </div>
+                      <div id="collapseOne" class="card-body p-0 course-topic-content  collapse moreCollapse" data-parent="#accordion-o">
+                        <ul class="connected sortable list1 section_menu" aria-labelledby="userDropdown">
+                          <li class="section-item toKnow ui-state-default">
+                            <a (click)="playVideo(coursePreview)" role="button" class="d-inline">
+                              <i class="fas fa-grip-lines fa-sm fa-fw mr-2 text-gray-400"></i>
+                              Video Preview
+                            </a>
+                          </li>
+                        </ul>
+                        </div>
+                        
+                  </div>
+                  </div>
+  
+                  <!-- <div  *ngIf="coursePreview" id="accordion-o" class="mt-3 accordion">
+                    <div class="card border-2 mb-0 mb-5 shadow">
+                        <div class="card-header collapsed" data-toggle="collapse" href="#collapseOne">
+                            <a class="card-title"> Course Preview </a>
+                        </div>
+                        <div id="collapseOne" class="card-body p-0 collapse moreCollapse" data-parent="#accordion-o">
+                          <ul class="section_menu" aria-labelledby="userDropdown">
+                            <li class="section-item">
+                              <a href="#" class="d-inline">
+                    <i class="far fa-play-circle fa-fw mr-2"></i>
+                              Course Introduction
+                              <p style="float: right; margin: 0px; font-size:14px;color:rgba(0, 0, 0, 0.5);">5m 24s</p>
+                            </a>
+                            </li>
+                            </ul>
+                          </div>
+                    </div>
+                    </div> -->
+  
+                  <div *ngIf="courseTopicLists" id="accordion" class="mt-3 accordion">
+                    <div *ngFor="let courseTopicList of courseTopicLists" class="card border-2 mb-0 mb-3 shadow">
+                        <div class="card-header course-topic-header collapsed" data-toggle="collapse" [attr.data-target]="'#collapse'+courseTopicList.courseTopic.id">
+                            <a class="card-title"> {{courseTopicList.courseTopic.topic}} </a>
+                            <div class="course-topic-remove">
+                              <span style="font-size:14px;color:rgba(0, 0, 0, 0.5); margin-right: 8px;">{{courseTopicList.duration*1000 | customDuration: 'ms':'hhmmss'}}</span>
+                              <a (click)="deleteCourseTopics(courseTopicList.courseTopic.id)"><i class="fas fa-trash-alt"></i></a>
+                          </div>
+                        </div>
+                        <div [id]="'collapse'+courseTopicList.courseTopic.id" class="card-body p-0 course-topic-content  collapse moreCollapse" data-parent="#accordion">
+                          <ul [id]="'sortable'+courseTopicList.courseTopic.id" class="connected sortable list1 section_menu" aria-labelledby="userDropdown">
+                            <li *ngFor="let courseTopicContent of courseTopicList.courseTopic.material" [id]="'section'+courseTopicList.courseTopic.id" class="section-item toKnow ui-state-default">
+                              <a href="{{courseTopicContent.fileUrl}}" target="_blank" role="button" class="d-inline">
+                                <i class="fas fa-grip-lines fa-sm fa-fw mr-2 text-gray-400"></i>
+                                {{courseTopicContent.description}}
+                              </a>
+                              <div style="float: right;">
+                                <!-- <div class="resource-list-dropdown">
+                                  <div class="dropdown">
+                                    <button
+                                      class="btn btn-sm btn-default btn-resource resource-list-dropdown-btn dropdown-toggle"
+                                      type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                      aria-haspopup="true" aria-expanded="false">
+                                      Resources
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right"
+                                      aria-labelledby="dropdownMenuButton">
+                                      <div class="dropdown-item d-flex justify-content-between align-items-center" role="button" data-toggle="modal" data-target="#addResourceModal" (click)="passVideoId(courseTopicContent.id, courseTopicList.courseTopic.id)">
+                                      <span style="font-weight: bold;">Add Resource</span>
+                                      <span><i class="fas fa-plus"></i></span>
+                                    </div>
+                                    <div class="dropdown-item d-flex justify-content-between align-items-center" *ngFor="let materialData of courseTopicContent.courseTopicVideoMaterials">
+                                          <a href="{{materialData.fileUrl}}" target="_blank" download="{{materialData.fileName}}">{{materialData.description}}</a>
+                                          <a role="button"data-toggle="modal" data-target="#deleteModal" (click)="deleteResourceItem(materialData.id)"><i class="fas fa-trash-alt"></i></a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div> -->
+                                <!-- <span style="font-size:14px;color:rgba(0, 0, 0, 0.5); margin-right: 4px;">{{courseTopicContent.duration*1000 | customDuration: 'ms':'mmss'}}</span> -->
+                                <!-- <span class="course-topic-edit mr-2">
+                                <i (click)="editCourseTopicContent(courseTopicContent)" class="fas fa-edit fa-sm fa-fw mr-2 text-gray-400"></i>
+                              </span> -->
+                              <span class="course-topic-video-remove">
+                                  <a (click)="deleteCourseTopicContent(courseTopicContent.id)"><i class="fas fa-trash-alt"></i></a>
+                              </span>
+                              </div>
+                              
+                              
+                            
+                            </li><button class="btn mt-3 soft-btn" type="submit" data-toggle="modal" (click)="getCourseTopicId(courseTopicList.courseTopic.id)">Add more content</button>
+                            </ul>
+                            <!-- data-target="#editSubSectionModal" -->
+                          </div>
+                          
+                    </div>
+                    </div>
+  
+            </div>
+    
+            <div class="col-md-5 p-0">
+              <flash-messages></flash-messages>
+
+
+
+              <!-- <div *ngIf="documentUrl != ''" class="test-video"> -->
+                <!-- <ngx-doc-viewer
+                  [url]="documentUrl"
+                  viewer="google"
+                  style="width:100%;height:50vh;"
+                ></ngx-doc-viewer> -->
+              <!-- </div> -->
+              
+  
+            </div>
+  
+            </div>
+          </div>
+                            <div class="row navbuttons pt-5">
+                                <div class="col-6 col-sm-auto step2Prev" id="btnPrevious">
+                                    <a class="btn site-btn btnPrevious">Previous</a>
+                                </div>
+                                <div class="col-6 col-sm-auto" id="btnNext">
+                                    <a class="btn site-btn btnNext">Next</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="pills-3" role="tabpanel" aria-labelledby="pills-contact-tab">
+                          <div class="edit-section spad">
+                            <div class="row">
+                              <div class="col-md-7">
+                              <div class="section-title">
+                                <h2>Course Objectives</h2>
+                            </div>
+                          </div>
+                          <div class="col-md-5"> 
+                          <div class="alert alert-info text-center mt-2 mb-2" role="alert">
+                            Click on "Save Changes" below to Apply Changes before moving to the next Step
+                          </div>
+                          </div>
+                            </div>
+                            <div class="row">
+                            <div class="col-md-6">
+                              <p [innerHTML] ="objectiveContent.objective" *ngFor="let objectiveContent of objectiveContents"></p>
+  
+                            <!-- <label class="mt-5" for="courseTitle">Description</label> -->
+                            <form class="form-top" [formGroup]="editorForm" (submit)="onSubmit()">
+                                <div class="form-group">
+                                  <quill-editor [style]="editorStyle" [modules]="config" [theme]="quillTheme" (onContentChanged)="maxLength($event)" formControlName="editor"></quill-editor>
+                                  <!-- <input type="text" name="" id="" class="form-control" placeholder="" aria-describedby="helpId"> -->
+                                  <small id="descriptionHelp" class="form-text text-muted">Click on Submit to show Output.</small>
+                                  <span *ngIf="editorForm.get('editor').value != null">{{ 1007 - editorForm.get('editor').value.length }} words left</span>
+                                </div>
+                                <button class="expertplat-btn expertplat-btn-large expertplat-btn-primary expertplat-heading-md" data-toggle="tooltip" data-placement="right" title="Click to View Input on the Right Side">Preview</button>
+                            </form>
+                            <!-- <div id="toolbar"></div> -->
+                            <!-- <div aria-describedby="descriptionHelp" id="editor"></div> -->
+                            <!-- <small id="descriptionHelp" class="form-text text-muted">Shortly describe this course.</small> -->
+                            
+                        </div>
+                              
+                            <div class="col-md-6">
+                              <flash-messages></flash-messages>
+                              <div class="save-section shadow">
+                                <a class="save-item d-flex justify-content-center">
+                                  <button id="submit" type="submit" (click)="createCourseObjectives()" class="btn btn-danger ibtn">save changes</button> 
+                                </a>
+                                <!-- <div class="dropdown-divider"></div>
+                                <a class="save-item" role="button">
+                                  Save Draft
+                                  <i style="float: right; color: rgba(0, 0, 0, 0.2);" class="fas fa-check fa-fw"></i>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="save-item text-danger" href="#">
+                                  Delete Course
+                                </a> -->
+                              </div>
+                        
+                              <div class="output">
+                                  <p [innerHTML] = "editorContent"></p>
+                                </div>
+                              <!-- </div> -->
+                        
+                              <!-- <div class="test-video">
+                              <div id="show"></div>
+                              <input type="text" id="path" placeholder="put movie path"/>
+                              <input type="submit" onclick="play();" value="Play on"/>
+                            </div> -->
+
+                            </div>
+                            </div>
+                          </div>
+                            <div class="row navbuttons pt-5">
+                                <div class="col-6 col-sm-auto" id="btnPrevious">
+                                    <a class="btn site-btn btnPrevious">Previous</a>
+                                </div>
+                                <div class="col-6 col-sm-auto" id="btnNext">
+                                    <a class="btn site-btn btnNext">Next</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="pills-4" role="tabpanel" aria-labelledby="pills-req-tab">
+                          <div class="edit-section spad">
+                            <div class="row">
+                              <div class="col-md-7">
+                              <div class="section-title">
+                                <h2>Course Requirements</h2>
+                            </div>
+                          </div>
+                          <div class="col-md-5"> 
+                          <div class="alert alert-info text-center mt-2 mb-2" role="alert">
+                            Click on "Save Changes" below to Apply Changes before moving to the next Step
+                          </div>
+                          </div>
+                            </div>
+                            <div class="row">
+                            <div class="col-md-6">
+  
+                              
+                              <p [innerHTML] ="requirementContent.requirement" *ngFor="let requirementContent of requirementContents"></p>
+                        
+                            <!-- <label class="mt-5" for="courseTitle">Description</label> -->
+                            <form class="form-top" [formGroup]="editorForm" (submit)="onSubmit()">
+                                <div class="form-group">
+                                  <quill-editor [style]="editorStyle" [modules]="config" [theme]="quillTheme" (onContentChanged)="maxLength($event)" formControlName="editor"></quill-editor>
+                                  <!-- <input type="text" name="" id="" class="form-control" placeholder="" aria-describedby="helpId"> -->
+                                  <small id="descriptionHelp" class="form-text text-muted">Click on Submit to show Output.</small>
+                                  <span *ngIf="editorForm.get('editor').value != null">{{ 1007 - editorForm.get('editor').value.length }} words left</span>
+                                </div>
+                                <button class="expertplat-btn expertplat-btn-large expertplat-btn-primary expertplat-heading-md" data-toggle="tooltip" data-placement="right" title="Click to View Input on the Right Side">Preview</button>
+                            </form>
+                            <!-- <div id="toolbar"></div> -->
+                            <!-- <div aria-describedby="descriptionHelp" id="editor"></div> -->
+                            <!-- <small id="descriptionHelp" class="form-text text-muted">Shortly describe this course.</small> -->
+                            
+                        </div>
+                              
+                            <div class="col-md-6">
+                              <flash-messages></flash-messages>
+                              <div class="save-section shadow">
+                                <a class="save-item d-flex justify-content-center">
+                                  <button id="submit" type="submit" (click)="createCourseRequirements()" class="btn btn-danger ibtn">save changes</button> 
+                                </a>
+                                <!-- <div class="dropdown-divider"></div>
+                                <a class="save-item" href="#">
+                                  Save Draft
+                                  <i style="float: right; color: rgba(0, 0, 0, 0.2);" class="fas fa-check fa-fw"></i>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="save-item text-danger" href="#">
+                                  Delete Course
+                                </a> -->
+                              </div>
+                        
+                              <div class="output">
+                                  <p [innerHTML] = "editorContent"></p>
+                                </div>
+                              <!-- </div> -->
+                        
+                              <!-- <div class="test-video">
+                              <div id="show"></div>
+                              <input type="text" id="path" placeholder="put movie path"/>
+                              <input type="submit" onclick="play();" value="Play on"/>
+                            </div> -->
+                        
+                            </div>
+                            </div>
+                          </div>
+                        
+                            <div class="row navbuttons pt-5">
+                                <div class="col-6 col-sm-auto" id="btnPrevious">
+                                    <a class="btn site-btn btnPrevious">Previous</a>
+                                </div>
+                                <div class="col-6 col-sm-auto" id="btnNext">
+                                    <a [routerLink]="['/courses-facilitator']" class="btn site-btn btnNext">Finish</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="tab-pane fade" id="pills-5" role="tabpanel" aria-labelledby="pills-contact-tab">Thank You!</div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+      
+      <!-- Add Section Modal-->
+  <div class="modal fade" id="addSectionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add a Section</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- <div class="terminal"> -->
+            <div class="form-group">
+              <label for="courseTitle">Course Content Title</label>
+              <input #courseTitle type="text" [(ngModel)]="Topic" class="form-control form-control-lg" placeholder="">
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" data-dismiss="modal" (click)="createSection(courseTitle.value);">Continue</a>
+        </div><!--createCourseTopic-->
+      </div>
+    </div>
+  </div>
+  
+  <!-- Add Resource Modal-->
+  <div class="modal fade" id="addResourceModal" tabindex="-1" role="dialog" aria-labelledby="addResourceModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addResourceModalLabel">Add a Resource</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- <div class="terminal"> -->
+            <div class="form-group">
+              <label for="resourceTitle">Resource Title</label>
+              <input #resourceTitle [(ngModel)]="Description" type="text" class="form-control form-control-lg" placeholder="">
+            </div>
+  
+            <div class="form-group">
+              <label for="resource">Select Resource</label>
+              <input type="file" (change)="onSelectResource($event)" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf,text/plain" name="resource" class="form-control" id="resource">
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" data-dismiss="modal" (click)="createResourceSection(resourceTitle.value);">Continue</a>
+        </div><!--createCourseTopic-->
+      </div>
+    </div>
+  </div>
+  
+      <!-- Add Preview Modal-->
+      <div class="modal fade" id="addPreviewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add a Preview</h5>
+              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <!-- <div class="form-group">
+                  <label for="coursePreviewTitle">Preview Title</label>
+                  <input #coursePreviewTitle type="text" [(ngModel)]="Topic" class="form-control form-control-lg" placeholder="">
+                </div> -->
+                
+            <div class="form-group mt-5">
+              <label for="courseImage">Upload Video</label>
+              <small id="uploadHelp" class="form-text text-muted">Not More than 40mb<flash-messages></flash-messages></small>
+              <ngx-dropzone [multiple]="'false'"
+              [maxFileSize]="'10000000'"
+              accept="image/jpeg,image/jpg,image/png,video/mp4"
+              (change)="onSelectMedia($event)" style="margin: 20px;">
+                <ngx-dropzone-label>Drag and Drop to Upload file</ngx-dropzone-label>
+                <ngx-dropzone-image-preview
+                  ngProjectAs="ngx-dropzone-preview"
+                  *ngFor="let m of Medias"
+                  [file]="m"
+                  [removable]="true"
+                  (removed)="onRemoveMedia(m)"
+                >
+                  <ngx-dropzone-label> ({{ m.type }})</ngx-dropzone-label>
+                </ngx-dropzone-image-preview>
+              </ngx-dropzone>
+          </div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+              <a class="btn btn-primary" data-dismiss="modal" (click)="createPreview();">Continue</a>
+            </div><!--createCourseTopic-->
+          </div>
+        </div>
+      </div>
+  
+  
+  <!-- Success Modal-->
+  <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="sucess-modal-container confirm-rate">
+            <div class="success-modal-top-buttons-container-reverse"><button data-dismiss="modal" aria-label="Close"
+                data-purpose="close-button" type="button" class="btn btn-quintinary"><span
+                  aria-hidden="true">Close</span></button></div>
+            <div class="success-modal-page-content">
+              <div *ngIf="success" class="success-checkmark">
+                <div class="check-icon">
+                  <span class="icon-line line-tip"></span>
+                  <span class="icon-line line-long"></span>
+                  <div class="icon-circle"></div>
+                  <div class="icon-fix"></div>
+                </div>
+              </div>
+              
+              <div *ngIf="error" class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex;">
+                <span class="swal2-x-mark">
+                    <span class="swal2-x-mark-line-left"></span>
+                    <span class="swal2-x-mark-line-right"></span>
+               </span>
+             </div>
+  
+  
+              <div>
+                <h2 data-purpose="primary-message">{{message}}</h2>
+              </div>
+            </div>
+          </div>
+  
+            </div>
+            <div *ngIf="finish" class="modal-footer">
+              <!-- <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button> -->
+              <a [routerLink]="[ '/courses-facilitator']" data-dismiss="modal" class="btn btn-success">OK</a>
+            </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Delete Modal-->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteModalLabel">Remove Resource</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Are you sure you want to Remove this Resource?.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">No</button>
+            <a routerLinkActive="list-item-active" (click)="confirmDeleteResourceItem()" class="btn btn-delete" data-dismiss="modal">Yes</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a routerLinkActive="list-item-active" data-dismiss="modal" (click)="onLogoutClick()" class="btn btn-primary">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    

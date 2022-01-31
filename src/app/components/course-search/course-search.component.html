@@ -1,0 +1,141 @@
+<app-navbar></app-navbar>
+<!-- <app-sub-navbar></app-sub-navbar> -->
+<div class="allCategory-section spad">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-2">
+        <div class="wrapper center-block">
+          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading active" role="tab" id="headingThree">
+              <h4 class="panel-title">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Level
+                </a>
+              </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+              <div class="panel-body">
+                <div *ngFor="let courseLevel of courseLevels" class="form-check">
+                  <label class="toggle-input-container expertplat-text-sm form-check-label" for="defaultCheck1">
+                  <input class="form-check-input expertplat-icon expertplat-icon-xsmall expertplat-fake-toggle-input expertplat-fake-toggle-checkbox" type="checkbox"
+                  (change)="onNativeLevelChange($event, courseLevel.id)" value="{{courseLevel.id}}" id="defaultCheck1">
+                  {{ courseLevel.levelTypeName }}
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading active" role="tab" id="headingFour">
+              <h4 class="panel-title">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                  Price
+                </a>
+              </h4>
+            </div>
+            <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+              <div class="panel-body">
+                <div *ngFor="let courseType of courseTypes" class="form-check">
+                  <label class="toggle-input-container expertplat-text-sm form-check-label" for="defaultCheck1">
+                  <input class="form-check-input expertplat-icon expertplat-icon-xsmall expertplat-fake-toggle-input expertplat-fake-toggle-checkbox" type="checkbox"
+                  (change)="onNativeChange($event, courseType.id)" value="{{courseType.id}}" id="defaultCheck1">
+                  {{ courseType.courseTypeName }}
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <div class="col-md-10">
+        <h3 *ngIf="message" id="message" class="expertplat-heading-xxl mb-5 pl-30">{{message}}</h3>
+        <div *ngIf="categoryIds" class="shopping-list-section card no-background">
+          <ul *ngFor="let categoryId of categoryIds| paginate : {
+            itemsPerPage: pageSize,
+            currentPage: page,
+            totalItems: count
+          };
+    let i = index
+  "
+  [class.active]="i == currentIndex"
+        (click)="setActiveCourse(categoryId, i)" class="list-group list-group-flush">
+            <li class="list-group-item">
+              <div class="card mb-3 overflow-hidden">
+                <a routerLink="/course-preview" [queryParams]="{ course: categoryId.courseData.courseName, id: categoryId.courseData.id }">
+                <div class="row no-gutters">
+                  <div class="col-md-3 b-square">
+                    <img src="{{categoryId.courseData.courseImageUrl}}" class="card-img" height="150"
+                      alt="{{categoryId.courseSubCategoryName}}">
+                  </div>
+                  <div class="col-md-9">
+                    <div class="card-body card-content">
+                      <!-- <div class="column-wrapper">
+                        <div class="cart-course-title">{{categoryId.courseData.courseName}}</div>
+                        <div class="cart-course-subtitle text" [innerHTML] = "categoryId.courseData.courseSubTitle"></div>
+                        <div class="cart-course-subtitle">by&nbsp;{{categoryId.courseData.facilitatorFirstName}}&nbsp;{{categoryId.courseData.facilitatorLastName}}</div>
+                      </div>
+                      <div class="price-text-container">
+                        <div class="list-price">
+                          <div class="price-text cart-current-price text-danger">
+                            <span class="sr-only">Original</span><span>{{categoryId.courseData.courseAmount == 0 ? 'Free' : categoryId.courseData.courseAmount |currency:"₦"}}</span>
+                          </div>
+                        </div>
+                      </div> -->
+                      
+                      <div class="column-wrapper">
+                        <div class="cart-course-title">{{categoryId.courseData.courseName}}</div>
+                        <div class="cart-course-subtitle text" [innerHTML] = "categoryId.courseData.courseSubTitle"></div>
+                        <div class="cart-course-author">by&nbsp;{{categoryId.courseData.facilitatorFirstName}}&nbsp;{{categoryId.courseData.facilitatorLastName}}</div>
+                        <div class="cart-course-rating"> <span>{{categoryId.averageRating | number : '1.1-1'}}</span> <div class="cart-rating" attr.data-rating="{{categoryId.averageRating}}"></div>    </div> 
+                        <div class="cart-course-level">{{categoryId.courseData.levelTypeName}}&nbsp;Level</div>                 
+                      </div>
+                      <div class="price-text-container">
+                        <div class="list-price">
+                          <div class="price-text cart-current-price text-danger">
+                            <span class="sr-only">Original</span><span>{{categoryId.courseData.courseAmount == 0 ? 'Free' : categoryId.courseData.courseAmount |currency:"₦"}}</span>
+                          </div>
+                          <!-- <div class="original-price-container price-text"><span class="sr-only">Discount
+                              Price</span><span><s><span>₦25,999</span></s></span></div> -->
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              </a>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="row mt-5">
+          <div class="col-md-12">
+            <div class="d-flex justify-content-space-between">
+            <pagination-controls
+              previousLabel="Prev"
+              nextLabel="Next"
+              responsive="true"
+              (pageChange)="handlePageChange($event)"
+            ></pagination-controls>
+
+            <div>
+            Items per Page:
+    <select (change)="handlePageSizeChange($event)">
+      <option *ngFor="let size of pageSizes" [ngValue]="size">
+        {{ size }}
+      </option>
+    </select>
+  </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<app-footer></app-footer>

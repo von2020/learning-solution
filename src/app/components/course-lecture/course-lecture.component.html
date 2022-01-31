@@ -1,0 +1,492 @@
+
+
+    
+  
+  <div class="dashboard-main-wrapper">
+  <div class="dash-row dash-header top">
+    <div class="dash-row-content">
+      <div class="header-course-dashboard-header">
+        <a><img class="logo" alt="expertplat logo" width="140" src="assets/img/logo-white.png"></a>
+        <!-- <div class="logo site-logo">
+                    <img class="img-fluid img-responsive" src="assets/img/logo.png" alt="logo">
+                  </div> -->
+        <div class="header-vertical-divider"></div>
+        <div class="header-course-details">
+          <a href="" class="header-header-link header-course-title"
+            data-purpose="course-header-title"><span width="0"><span><span>{{course.courseData.courseName}}</span></span><span
+                style="position: fixed; visibility: hidden; top: 0px; left: 0px;">…</span></span></a>
+        </div>
+        <div class="header-ratings d-flex">
+          <div class="mr-2">
+            <div *ngIf="leaveRating == true" role="button" tabindex="0" data-purpose="review-button" class="leave-rating-simple-review-container">
+              <span class="leave-rating--single-star--1QqJX udi-small udi udi-star"></span><span
+                class="font-text-sm leave-rating-helper-text" data-toggle="modal" data-target="#addRatingModal"
+                data-purpose="helper-text">Leave a rating</span></div>
+          </div>
+          <span>
+            <a [routerLink]="['/home-learner']">
+            <button type="button" class="btn btn-sm btn-tertiary-white">
+              <span class="marketplace-social-share-button-share-button__text">Exit</span>
+            </button>
+            </a>
+          </span>
+        </div>
+        <div role="toolbar" class="options-menu-buttons">
+          <div class="marketplace-social-share-button-share-button">
+            <button type="button" class="btn btn-sm btn-tertiary-white">
+              <!-- <span class="udi udi-share"></span> -->
+              <i class="fas fa-share"></i>
+              <span class="marketplace-social-share-button-share-button__text">Share</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ============================================================== -->
+  <!-- end navbar -->
+  <!-- ============================================================== -->
+  <!-- ============================================================== -->
+
+  <!-- ============================================================== -->
+  <div class="dashboard-wrapper">
+    <div class="dashboard-item-view scaled-height-limiter">
+      <div class="container-fluid dashboard-content ">
+        <!-- ============================================================== -->
+        <!-- pageheader  -->
+        <!-- ============================================================== -->
+        <div class="row">
+          <div class="col-xl-9 col-lg-9 col-md-9 pr-0">
+            <div class="video-player-container">
+              <video id="my-video" class="video-js vjs-big-play-centered" controls controlsList="nodownload" preload="auto" width="100%"
+                height="622" poster="MY_VIDEO_POSTER.jpg" data-setup='{}'>
+                <source type='video/mp4'>
+                <p class="vjs-no-js">
+                  To view this video please enable JavaScript, and consider upgrading to a web browser that
+                  <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                </p>
+              </video>
+            </div>
+
+            <div class="dashboard-lecture-details">
+              <div class="tab" role="tabpanel">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                  <li class="nav-item active">
+                    <a class="nav-link active" href="#Section1" role="tab" data-toggle="tab">Overview</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#Section2" role="tab" data-toggle="tab">Q&A</a>
+                  </li>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="#Section3" role="tab" data-toggle="tab">Notes</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#Section4" role="tab" data-toggle="tab">Announcements</a>
+                  </li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content tabs">
+                  <div role="tabpanel" class="tab-pane active" id="Section1">
+                    <div class="container mt-10 dash-content-container">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                              <div class="course-overview-heading">
+                                <div class="font-heading-lg mb-space-sm">About this course</div>
+                              </div>
+                            </li>
+                            <li class="list-group-item">
+                              <div class="course-overview">
+                                <div>By the numbers</div>
+                                <div class="course-stats">
+                                  <div>Skill level: Beginner Level</div>
+                                  <div>Students: {{students}}</div>
+                                  <div>Languages: English</div>
+                                  <div>Captions: No</div>
+                                </div>
+                                <div data-purpose="course-additional-stats">
+                                  <div>Lectures: {{courseTopicCount}}</div>
+                                  <!-- <div>Video: 21 total hours</div> -->
+                                </div>
+                              </div>
+                            </li>
+                            <li class="list-group-item">
+                              <div class="course-overview">
+                                <div>Certificates</div>
+                                <div class="course-overview--wide--37Lev">
+                                  <p class="mb-space-sm">Get expertplat certificate by completing entire course</p>
+                                  <button type="button"
+                                    class="course-overview-certificate-button btn btn-sm btn-default" [disabled]="isCourseCompleted != true" (click)="getCourseCertificate()">expertplat
+                                    certificate</button>
+                                </div>
+                                <!-- (click)="convetToPDF()" -->
+                              </div>
+                            </li>
+                            <li class="list-group-item">
+                              <div class="course-overview">
+                                <div>Features</div>
+                                <div class="course-overview--wide--37Lev">
+                                  <span>Available on <a href="#" target="_blank">iOS</a> and <a href="#"
+                                      target="_blank">Android</a></span>
+                                </div>
+                              </div>
+                            </li>
+                            <li class="list-group-item">
+                              <div class="course-overview">
+                                <div>Description</div>
+                                <div *ngIf="course.courseData.courseDescription != null" class="course-overview--wide--37Lev">
+                                  <div [ngClass]="{'show-less-description': showShorterDesciption}" id="dataList">
+                                <p [innerHTML] = "course.courseData.courseDescription"></p>
+                              </div>
+                              <p class="read-more" type="button" (click)="alterDescriptionTexts()">
+                                {{ showShorterDesciption ? 'View all': 'View less' }}
+                              </p>
+                                </div>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div role="tabpanel" class="tab-pane fade" id="Section2">
+                    <div class="container spad mt-10 dash-content-container">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="text-center">
+                        <h3 id="message" class="mt-5 pl-30">Available Soon</h3>
+                          </div>
+                          </div>
+                          </div>
+                  </div>
+                  </div>
+                  <div role="tabpanel" class="tab-pane fade" id="Section3">
+                    <div class="container spad mt-10 dash-content-container">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="text-center">
+                        <h3 id="message" class="mt-5 pl-30">Available Soon</h3>
+                          </div>
+                          </div>
+                          </div>
+                  </div>
+                  </div>
+                  <div role="tabpanel" class="tab-pane fade" id="Section4">
+                    <div class="container spad mt-10 dash-content-container">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="text-center">
+                        <h3 id="message" class="mt-5 pl-30">Available Soon</h3>
+                          </div>
+                          </div>
+                          </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- ============================================================== -->
+          <!-- end wrapper  -->
+          <!-- left sidebar -->
+          <!-- ============================================================== -->
+          <div class="col-xl-3 col-lg-3 col-md-3 p-0">
+
+            <div class="nav-left-sidebar sidebar-dark">
+              <div class="menu-list">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                  <a class="d-xl-none d-lg-none" href="#">Course Outline</a>
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarNav">
+                    <div class="bs-example">
+                      <div *ngIf="courseTopicLists" class="accordion" id="accordionExample">
+                        <div *ngFor="let courseTopicList of courseTopicLists;let i = index"
+                          [id]="'heading'+courseTopicList.courseTopic.id" class="card">
+                          <div class="card-header" role="button" data-toggle="collapse"
+                            [attr.data-target]="'#collapse'+courseTopicList.courseTopic.id">
+                            <h2 class="mb-0">
+                              <a href="#collapseOne" class="card-title" data-toggle="collapse"
+                                data-target="#collapseOne">
+                                {{courseTopicList.courseTopic.topic}}
+                              </a>
+                            </h2>
+                          </div>
+                          <div [id]="'collapse'+courseTopicList.courseTopic.id" class="collapse" aria-labelledby="headingOne"
+                            data-parent="#accordionExample">
+                            <ul class="section_menu" aria-labelledby="userDropdown">
+                              <li *ngFor="let courseTopicContent of courseTopicList.courseTopic.video; index as i"
+                                class="section-item">
+                                <div class="item-link" role="link">
+                                  <label class="custom-control fill-checkbox">
+                                    <input type="checkbox" class="fill-control-input" [id]="'chkbox'+courseTopicContent.id" [checked]="checked">
+                                    <span class="fill-control-indicator"></span>
+                                    <!-- <span class="fill-control-description">Fill checkbox</span> -->
+                                  </label>
+                                  <div class="item-link-item">
+                                    <div role="button" (click)="playVideo(courseTopicContent.fileUrl, courseTopicContent.id, courseTopicList.courseTopic.id)"
+                                      class="item-link-title" id="decClick">
+                                      {{courseTopicContent.description}}
+                                    </div>
+                                    <div class="item-link-lecture">
+                                      <div class="item-link-metadata">
+                                        <span class="item-link-type"><i class="far fa-play-circle fa-fw"></i></span>
+                                        <span>{{courseTopicContent.duration | customDuration: 'ms':'mmss'}}</span>
+                                      </div>
+                                      <div *ngIf="courseTopicContent.courseTopicVideoMaterials.length != 0" class="resource-list-dropdown">
+                                        <div class="dropdown">
+                                          <button
+                                            class="btn btn-sm btn-default btn-resource resource-list-dropdown-btn dropdown-toggle"
+                                            type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                            Resources
+                                          </button>
+                                          <div class="dropdown-menu dropdown-menu-right"
+                                            aria-labelledby="dropdownMenuButton">
+                                            <div class="dropdown-item" *ngFor="let materialData of courseTopicContent.courseTopicVideoMaterials">
+                                              <a href="{{materialData.fileUrl}}" target="_blank" download="{{materialData.fileName}}">{{materialData.description}}</a>
+                                          </div>
+                                            <!-- <a *ngFor="let courseTopicMaterial of courseTopicList.courseTopic.material" class="dropdown-item" href="{{courseTopicMaterial.fileUrl}}">{{courseTopicMaterial.description}}</a> -->
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                    </div>
+                                  </div>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="card-header" role="button" data-toggle="collapse" data-target ="#collapseTwo">
+                            <h2 class="mb-0">
+                              <a href="#collapseTwo" class="card-title" data-toggle="collapse"
+                                data-target="#collapseTwo">
+                                Quiz
+                              </a>
+                              <!-- <a class="card-title"> Quiz </a> -->
+                            </h2>
+                          </div>
+                          <div id="collapseTwo" class="collapse" data-parent="#accordionExample">
+                            <ul class="section_menu" aria-labelledby="userDropdown">
+                              <li class="section-item">
+                                <div class="item-link" role="link">
+                                  <label class="custom-control fill-checkbox">
+                                    <input type="checkbox" class="fill-control-input" id="chkboxquiz" [checked]="checked">
+                                    <span class="fill-control-indicator"></span>
+                                    <!-- <span class="fill-control-description">Fill checkbox</span> -->
+                                  </label>
+                                  <div class="item-link-item d-flex justify-content-center">
+                                    <!-- <div class="item-link-lecture">
+                                      <div class="item-link-metadata">
+                                        <span class="item-link-type"><i class="fas fa-question-circle fa-fw"></i></span>
+                                      </div>
+
+                                    </div> -->
+                                    <div role="button" (click)="takeQuiz()"
+                                      class="item-link-title">
+                                      <span class="item-link-type" style="color: #14171C; opacity: .3;"><i class="fas fa-question-circle fa-fw"></i></span>
+                                      Take Final Quiz
+                                    </div>
+                                  </div>
+                                </div>
+                              </li>
+                              </ul>
+                            </div>
+                      </div>
+                        <!-- <ul>
+                          <li>
+                            <a routerLink="/take-quiz" [queryParams]="{ id: course.id }">Take Quiz</a>
+                          </li>
+                        </ul> -->
+                      </div>
+                    </div>
+                  </div>
+                </nav>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+        <!-- <div class="footer">
+            <hr>
+            <div class="footer-bottom container-fluid">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 p-0">
+                         Copyright © 2018 Concept. All rights reserved. Dashboard by <a href="">expertplat</a>.
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="text-md-right footer-links d-none d-sm-block">
+                            <a href="javascript: void(0);">About</a>
+                            <a href="javascript: void(0);">Support</a>
+                            <a href="javascript: void(0);">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <footer class="footer-section rpad pb-0">
+          <div class="footer-top">
+            <div class="footer-warp">
+              <div class="row">
+                <div class="col-md-4">
+                  <ul>
+                    <li><a [routerLink]="['/']">expertplat for Schools</a></li>
+                    <li><a [routerLink]="['/']">Teach on expertplat</a></li>
+                    <li><a [routerLink]="['/']">Get the App</a></li>
+                    <li><a [routerLink]="['/']">Contact us</a></li>
+                  </ul>
+                </div>
+                <div class="col-md-4">
+                  <ul>
+                    <li><a [routerLink]="['/']">Careers</a></li>
+                    <li><a [routerLink]="['/']">Blog</a></li>
+                    <li><a [routerLink]="['/']">Help and Support</a></li>
+                    <li><a [routerLink]="['/']">Affiliate</a></li>
+                  </ul>
+                </div>
+                <div class="col-md-4">
+                  <ul>
+                    <li><a [routerLink]="['/']">Terms</a></li>
+                    <li><a [routerLink]="['/']">Privacy Policy and Cookie Policy</a></li>
+                    <li><a [routerLink]="['/']">Site Map</a></li>
+                    <li><a [routerLink]="['/']">Featured Course</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="copyright footer-bottom">
+            <div class="row m-0">
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="logo-copyright-section">
+                  <div><img src="assets/img/logo.png" width="150px" alt=""></div>
+                  <div>
+                    Copyright &copy;<script>
+                      document.write(new Date().getFullYear());
+
+                    </script> All rights reserved <i class="far fa-heart" aria-hidden="true"></i> by <a
+                      href="https://telnetng.com/softworks-limited/" target="_blank">Softworks Limited</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </footer>
+        <!-- ============================================================== -->
+        <!-- end footer -->
+        <!-- ============================================================== -->
+
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end left sidebar -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- wrapper  -->
+    <!-- ============================================================== -->
+  </div>
+</div>
+
+<!-- Add Review Modal-->
+<div class="modal fade" id="addReviewModal" tabindex="-1" role="dialog" aria-labelledby="addReviewModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Your Review</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="review-editor-component-container">
+          <div class="review-editor-leave-star-container" data-purpose="leave-rating">
+            <div>
+              <div class="review-stars-input">
+                <div class="my-rating" data-rating="2.5"></div>
+              </div>
+              <p>I'm Really glad i found this Course</p>
+            </div>
+          </div>
+        </div>
+        <div role="toolbar" class="review-popup--button-toolbar--1x99T btn-toolbar"><button data-purpose="delete-button"
+            type="button" class="btn btn-review" data-dismiss="modal">Delete</button><button data-purpose="edit-button" type="button"
+            class="btn btn-danger" data-dismiss="modal">Edit Review</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Rating Modal-->
+<div class="modal fade" id="addRatingModal" tabindex="-1" role="dialog" aria-labelledby="addRatingModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="review-editor-container confirm-rate" data-purpose="review-editor">
+          <div class="review-editor-top-buttons-container-reverse"><button data-dismiss="modal" aria-label="Close"
+              data-purpose="close-button" type="button" class="btn btn-quintinary"><span
+                aria-hidden="true">Close</span></button></div>
+          <div class="review-editor-page-content">
+            <div>
+              <h2 data-purpose="primary-message">How would you rate this course?</h2>
+            </div>
+            <div class="review-editor-component-container">
+              <div class="review-editor-leave-star-container" data-purpose="leave-rating">
+                <div>
+                  <h4 class="text-center live-rating">Select Rating</h4>
+                  <div class="review-stars-input">
+                    <div class="course-rating"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: none;" class="review-editor-container confirm-review" data-purpose="review-editor">
+            <div class="review-editor-top-buttons-container-reverse">
+                <button data-dismiss="modal" aria-label="Close" data-purpose="close-button" type="button" class="btn btn-quintinary"><span aria-hidden="true">Close</span></button>
+                <button data-purpose="back-button" type="button" class="btn btn-tertiary back-button">Back</button>
+            </div>
+            <div class="review-editor-page-content">
+              <div>
+                <h2 data-purpose="primary-message">Why did you leave this rating?</h2>
+              </div>
+              <div class="review-editor-component-container">
+                <div class="review-editor-leave-star-container" data-purpose="leave-rating">
+                    <div class="review-editor--write-comment-page--1qa7S" data-purpose="write-comment">
+                        <div>
+                    <h4 class="text-center live-rating">Select Rating</h4>
+                    <div class="review-stars-input">
+                      <div class="my-rating"></div>
+                      <!--  data-rating="2.5" -->
+                    </div>
+                </div>
+                <form (submit)="ratingCourse()">
+                <textarea [(ngModel)]="reviewNote" name="reviewNote" data-purpose="review-content" placeholder="Tell us about your own personal experience taking this course. Was it a good match for you?" class="review-editor--review-content--2lVDX form-control"></textarea>
+                <button data-purpose="save-button" type="submit" class="review-editor--action-button--2AvAK btn btn-secondary">Save and Continue </button>
+            </form>
+            </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  
+  </div>

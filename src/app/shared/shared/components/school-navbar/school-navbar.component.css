@@ -1,0 +1,13 @@
+
+
+@media screen and (max-width:411px) {
+    
+    .bg-white-sl {
+        background-color: transparent !important;
+        max-width: 1805px;
+        padding: .5em 1em;
+        width: 100%;
+        margin: auto;
+    }
+    
+}

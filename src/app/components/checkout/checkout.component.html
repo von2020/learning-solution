@@ -1,0 +1,82 @@
+<app-navbar></app-navbar>
+<div class="form-body">
+    <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="img-holder">
+            <div class="bg payment">
+                <!-- <img src="assets/img/payment-bg.jpg" alt=""> -->
+            </div>
+            <div class="info-holder">
+            </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="form-holder">
+            <div class="form-content">
+                <div class="payment-fields form-items">
+                    <!-- <h3>Do you know that paying of tax is a civic duty?</h3>
+                    <p>Fill in your TIN and Password to continue.</p> -->
+                    <div class="page-links">
+                        <a href="login.html" class="active">Checkout</a>
+                    </div>
+
+                    <h3>Summary</h3>
+                          <div class="success-divider"></div>
+                            <div class="priceDiv">
+                                <p>Orginal Price :</p>
+                                <p>Coupon Discounts :</p>
+                            </div>
+                          <div class="success-divider"></div>
+
+                    <form class="payment-input" [formGroup]="paymentForm" (submit)="payNow()">
+                        <div class="form-group mb-0">
+                            <label for="Name"class="form-adjust">Name on Card</label>
+                            <input class="form-control" type="text" formControlName="Name" name="Name" required>
+                          </div>
+                          <div class="form-group mb-0">
+                            <label for="CardNumber"class="form-adjust" >Card Number</label>
+                            <input class="form-control" type="number" formControlName="CardNumber" name="CardNumber" required>
+                          </div>
+                          <div class="form-group mb-0">
+                            <label for="ExpiryMonth"class="form-adjust" >Expiry Date(MM/YY)</label>
+                            <input class="form-control" placeholder="MM" autocomplete="false" oninput="this.value=this.value.slice(0,this.maxLength)" maxlength="2" type="number" formControlName="ExpiryMonth" name="ExpiryMonth" required>
+                          </div>
+                          <div class="form-group mb-0">
+                            <label for="ExpiryYear"class="form-adjust" >&nbsp;</label>
+                            <input class="form-control" placeholder="YY" autocomplete="false" oninput="this.value=this.value.slice(0,this.maxLength)" maxlength="2" type="number" formControlName="ExpiryYear" name="ExpiryYear" required>
+                          </div>
+                          <div class="form-group mb-0">
+                            <label for="Cvv"class="form-adjust" >CVV/CVC</label>
+                            <input class="form-control" placeholder="CVV/CVC" autocomplete="false" oninput="this.value=this.value.slice(0,this.maxLength)" maxlength="3" type="number" type="number" formControlName="Cvv" name="Cvv" required>
+                          </div>
+                          <div class="form-group mb-0">
+                            <label for="Country"class="form-adjust" >Country</label>
+                            <input class="form-control" type="text" formControlName="Country" name="Country" required>
+                          </div>
+                          <div class="form-group mb-0">
+                            <label for="Zip"class="form-adjust" >Zip</label>
+                            <input class="form-control" type="number" formControlName="Zip" name="Zip" required>
+                          </div>
+                          
+                          <div class="success-divider"></div>
+                          <div class="priceDiv">
+                            <p>Total :</p>
+                        </div>
+                          <div class="success-divider"></div>
+
+                          <p>expertplat is required by law to collect applicable transaction taxes for purchases made in certain tax jurisdictions. <br>
+                            By completing your purchase you agree to these Terms of Service.</p>
+                          
+                        <div class="form-button">
+                            <button id="submit" type="submit" class="w100 ibtn p-1">Complete Payment</button>
+                        </div>
+                    </form>
+                  </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,143 @@
+.jumbotron {
+    padding: 2rem 1rem;
+    background-color: #002626;
+}
+
+.jumbotron h3 {
+    color: white;
+}
+
+.breadcrumb {
+    background-color: transparent;
+}
+
+.breadcrumb .breadcrumb-item.active{
+    color: #EEF5F2;
+}
+
+.breadcrumb .breadcrumb-item.notactive {
+    color: #EEF5F2;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+    display: inline-block;
+    padding-right: .5rem;
+    color: #EEF5F2;
+    content: "/";
+}
+
+.cart-section {
+    background: #EEF5F2;
+}
+
+.emptyCart {
+    padding: 40px 20px;
+    display: inline-block;
+    text-align: center;
+}
+
+.emptyCart .material-icons {
+    font-size: 120px;
+    color: grey;
+}
+
+.ibtn {
+    background-color: #006666;
+    color: #fff;
+    box-shadow: 0 0 0 rgba(80, 182, 255, 0.31);
+}
+
+.list-group-item {
+    background-color: transparent;
+    padding: 0.75rem 0;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.total-price {
+    padding: 10px 0;
+}
+
+.price-text {
+    font-size: 15;
+    font-weight: 400;
+    color: #686f7a;
+}
+
+.course-price-text {
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.btn-group-lg>.btn, .btn-lg {
+    padding: 16px 12px;
+    font-size: 15px;
+    line-height: 1.35135;
+    border-radius: 2px;
+}
+
+.cart-section .shopping-list-section {
+    border: none !important;
+}
+
+.card-content {
+    flex: 1 1;
+    min-width: 1px;
+    display: flex;
+    justify-content: space-between;
+    max-height: 100px;
+}
+
+.shopping-list-section .price-text-container {
+    display: flex;
+    margin-bottom: 0;
+    right: 10px;
+    text-align: right;
+    top: 10px;
+}
+
+.shopping-list-section .price-text-container .course-price-tag {
+    padding-top: 2px;
+    padding-left: 4px;
+}
+
+.shopping-list-section .price-text-container .cart-current-price span{
+    font-weight: bold;
+}
+
+.shopping-list-section .price-text-container .list-price {
+    align-items: flex-end;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.shopping-list-section .column-wrapper .cart-course-title {
+    font-weight: 700;
+    font-size: 16px;
+}
+.shopping-list-section .column-wrapper .cart-course-author {
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 2.0;
+}
+
+.shopping-list-section .column-wrapper .cart-course-subtitle {
+    font-size: 13.5px;
+    color: #686f7a;
+    line-height: 1.8;
+}
+
+@media (min-width: 1200px) {
+.container {
+    max-width: 1320px;
+}
+}
+
+.flash-message
+{
+    z-index: 10000;
+    position: relative;
+}

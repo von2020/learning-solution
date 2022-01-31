@@ -1,0 +1,7 @@
+{
+  "/api/*": {
+      "target": "https://expertplat.com",
+      "secure": false,
+      "logLevel": "debug"
+  }
+}
